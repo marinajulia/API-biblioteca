@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Biblioteca.Domain.Services.Entidades
 {
-    public class Livros
+    public class Livro
     {
         [Key]
         public int LivroId { get; set; }

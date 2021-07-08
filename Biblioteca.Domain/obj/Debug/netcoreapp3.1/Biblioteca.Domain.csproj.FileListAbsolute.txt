@@ -3,9 +3,7 @@ C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\bin\Debug\netcoreapp3.
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\bin\Debug\netcoreapp3.1\Biblioteca.Domain.runtimeconfig.dev.json
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\bin\Debug\netcoreapp3.1\Biblioteca.Domain.dll
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\bin\Debug\netcoreapp3.1\Biblioteca.Domain.pdb
-C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\bin\Debug\netcoreapp3.1\Biblioteca.Infra.dll
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.dll
-C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\bin\Debug\netcoreapp3.1\Biblioteca.Infra.pdb
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.pdb
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\obj\Debug\netcoreapp3.1\Biblioteca.Domain.csproj.AssemblyReference.cache
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\obj\Debug\netcoreapp3.1\Biblioteca.Domain.AssemblyInfoInputs.cache

@@ -1,8 +1,5 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Biblioteca.Infra.Data
 {
