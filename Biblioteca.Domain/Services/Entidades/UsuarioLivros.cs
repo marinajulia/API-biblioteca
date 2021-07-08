@@ -14,6 +14,6 @@ namespace Biblioteca.Domain.Services.Entidades
         public Usuario Usuario { get; set; }
 
         public int LivroId { get; set; }
-        public Livros Livro { get; set; }
+        public Livro Livro { get; set; }
     }
 }

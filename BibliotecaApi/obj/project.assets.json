@@ -1525,7 +1525,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Biblioteca.Infra": "1.0.0",
+          "Biblioteca.SharedKernel": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7"
         },
@@ -1540,6 +1540,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "Biblioteca.Domain": "1.0.0",
           "Biblioteca.SharedKernel": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7"

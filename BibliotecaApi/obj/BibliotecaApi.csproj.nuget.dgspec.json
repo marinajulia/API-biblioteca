@@ -32,8 +32,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj": {
-                "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj"
+              "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj": {
+                "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj"
               }
             }
           }
@@ -116,6 +116,9 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+              "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj": {
+                "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj"
+              },
               "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj": {
                 "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj"
               }

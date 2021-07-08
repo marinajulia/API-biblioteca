@@ -1,0 +1,12 @@
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.deps.json
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.runtimeconfig.json
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.runtimeconfig.dev.json
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.dll
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.pdb
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.csproj.AssemblyReference.cache
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.AssemblyInfoInputs.cache
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.AssemblyInfo.cs
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.csproj.CoreCompileInputs.cache
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.dll
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.pdb
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.genruntimeconfig.cache

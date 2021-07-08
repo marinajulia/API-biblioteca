@@ -1,0 +1,15 @@
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\Biblioteca.Infra.deps.json
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\Biblioteca.Infra.runtimeconfig.json
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\Biblioteca.Infra.runtimeconfig.dev.json
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\Biblioteca.Infra.dll
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\Biblioteca.Infra.pdb
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.dll
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.pdb
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.csproj.AssemblyReference.cache
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.AssemblyInfoInputs.cache
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.AssemblyInfo.cs
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.csproj.CoreCompileInputs.cache
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.csproj.CopyComplete
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.dll
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.pdb
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.genruntimeconfig.cache
