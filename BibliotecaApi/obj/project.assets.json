@@ -1525,6 +1525,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "Biblioteca.Infra": "1.0.0",
           "Biblioteca.SharedKernel": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7"
@@ -1540,7 +1541,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Biblioteca.Domain": "1.0.0",
           "Biblioteca.SharedKernel": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7"
@@ -5853,7 +5853,6 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Biblioteca.Domain >= 1.0.0",
-      "Biblioteca.Infra >= 1.0.0",
       "Biblioteca.SharedKernel >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 5.0.7",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.7",
@@ -5895,9 +5894,6 @@
           "projectReferences": {
             "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj": {
               "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj"
-            },
-            "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj": {
-              "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj"
             },
             "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj": {
               "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj"

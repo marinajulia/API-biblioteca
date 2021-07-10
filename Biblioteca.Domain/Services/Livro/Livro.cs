@@ -19,7 +19,7 @@ namespace Biblioteca.Domain.Services.Entidades
         public Categoria Categoria { get; set; }
 
         public int AutorId { get; set; }
-        public Autor Autor { get; set; }
+        public Autores Autor { get; set; }
 
         [MaxLength(1000, ErrorMessage = "Este compo deve conter entre 1 e 1000 caracteres")]
         [MinLength(1, ErrorMessage = "Este campo deve conter entre 1 e 1000 caracteres")]

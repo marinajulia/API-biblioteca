@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Biblioteca.Domain\Biblioteca.Domain.csproj" />
     <ProjectReference Include="..\Biblioteca.SharedKernel\Biblioteca.SharedKernel.csproj" />
+    <ProjectReference Include="..\Biblioteca.Domain\Biblioteca.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Biblioteca.Infra\Biblioteca.Infra.csproj" />
     <ProjectReference Include="..\Biblioteca.SharedKernel\Biblioteca.SharedKernel.csproj" />
   </ItemGroup>
 

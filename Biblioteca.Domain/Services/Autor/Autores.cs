@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace Biblioteca.Domain.Services.Entidades
+namespace Biblioteca.Domain.Services.Categoria
 {
-    public class Autor
+    public class Autores
     {
         [Key]
         public int AutorId { get; set; }
@@ -10,6 +13,5 @@ namespace Biblioteca.Domain.Services.Entidades
         [MaxLength(100, ErrorMessage = "Este compo deve conter entre 1 e 100 caracteres")]
         [MinLength(1, ErrorMessage = "Este campo deve conter entre 1 e 100 caracteres")]
         public string NomeAutor { get; set; }
-
     }
 }

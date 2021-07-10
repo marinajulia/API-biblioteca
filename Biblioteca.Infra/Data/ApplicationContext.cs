@@ -11,7 +11,7 @@ namespace Biblioteca.Infra.Data
             
         }
 
-        public DbSet<Autor> Autor { get; set; }
+        public DbSet<A> Autor { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Editora> Editora { get; set; }
         public DbSet<Livro> Livro { get; set; }
