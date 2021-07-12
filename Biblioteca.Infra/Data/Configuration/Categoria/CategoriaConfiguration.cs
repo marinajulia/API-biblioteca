@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Biblioteca.Infra.Data.Configuration
 {
-    public class CategoriaConfiguration : IEntityTypeConfiguration<Categoria>
+    public class CategoriaConfiguration : IEntityTypeConfiguration<CategoriaEntity>
     {
-        public void Configure(EntityTypeBuilder<Categoria> builder)
+        public void Configure(EntityTypeBuilder<CategoriaEntity> builder)
         {
             builder.ToTable("Categoria");
             builder.HasKey(p => p.CategoriaId);

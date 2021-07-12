@@ -1536,6 +1536,22 @@
           "bin/placeholder/Biblioteca.Domain.dll": {}
         }
       },
+      "Biblioteca.Infra/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Biblioteca.Domain": "1.0.0",
+          "Biblioteca.SharedKernel": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "5.0.7",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7"
+        },
+        "compile": {
+          "bin/placeholder/Biblioteca.Infra.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Biblioteca.Infra.dll": {}
+        }
+      },
       "Biblioteca.SharedKernel/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -5823,6 +5839,11 @@
       "path": "../Biblioteca.Domain/Biblioteca.Domain.csproj",
       "msbuildProject": "../Biblioteca.Domain/Biblioteca.Domain.csproj"
     },
+    "Biblioteca.Infra/1.0.0": {
+      "type": "project",
+      "path": "../Biblioteca.Infra/Biblioteca.Infra.csproj",
+      "msbuildProject": "../Biblioteca.Infra/Biblioteca.Infra.csproj"
+    },
     "Biblioteca.SharedKernel/1.0.0": {
       "type": "project",
       "path": "../Biblioteca.SharedKernel/Biblioteca.SharedKernel.csproj",
@@ -5832,6 +5853,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Biblioteca.Domain >= 1.0.0",
+      "Biblioteca.Infra >= 1.0.0",
       "Biblioteca.SharedKernel >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 5.0.7",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.7",
@@ -5873,6 +5895,9 @@
           "projectReferences": {
             "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj": {
               "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj"
+            },
+            "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj": {
+              "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj"
             },
             "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj": {
               "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj"

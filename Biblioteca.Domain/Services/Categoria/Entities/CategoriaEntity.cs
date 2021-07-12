@@ -2,7 +2,7 @@
 
 namespace Biblioteca.Domain.Services.Entidades
 {
-    public class Categoria
+    public class CategoriaEntity
     {
         [Key]
         public int CategoriaId { get; set; }

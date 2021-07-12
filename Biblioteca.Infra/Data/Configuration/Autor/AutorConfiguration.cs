@@ -4,9 +4,9 @@ using Biblioteca.Domain.Services.Categoria;
 
 namespace Biblioteca.Infra.Data.Configuration
 {
-    public class AutorConfiguration : IEntityTypeConfiguration<Autor>
+    public class AutorConfiguration : IEntityTypeConfiguration<Categoria>
     {
-        public void Configure(EntityTypeBuilder<Autor> builder)
+        public void Configure(EntityTypeBuilder<Categoria> builder)
         {
             builder.ToTable("Autor");
             builder.HasKey(p => p.AutorId);
