@@ -7,7 +7,7 @@ namespace Biblioteca.Domain.Services.Categoria
     {
         IEnumerable<CategoriaEntity> Get();
         CategoriaEntity GetById(int id);
-        CategoriaEntity Post(CategoriaEntity autor);
+        CategoriaEntity Post(CategoriaEntity categoria);
         CategoriaEntity GetByName(string nome);
     }
 }

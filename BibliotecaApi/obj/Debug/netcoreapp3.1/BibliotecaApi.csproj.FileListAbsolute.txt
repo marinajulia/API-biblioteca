@@ -65,3 +65,5 @@ C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\Bi
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\BibliotecaApi.dll
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\BibliotecaApi.pdb
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\BibliotecaApi.genruntimeconfig.cache
+C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Biblioteca.Infra.dll
+C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Biblioteca.Infra.pdb

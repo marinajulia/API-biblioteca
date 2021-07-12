@@ -1,5 +1,6 @@
-using Biblioteca.Domain.Services.Autor;
+using Biblioteca.Domain.Services.Categoria;
 using Biblioteca.Infra.Data;
+using Biblioteca.Infra.Repositories.RepositoryCategoria;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace BibliotecaApi
         {
             services.AddScoped<ApplicationContext, ApplicationContext>();
             //services.AddScoped<IAutorRepository, AutorRepository>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddControllers();
         }
 
