@@ -13,3 +13,4 @@ C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\obj\Debug\netcoreapp3.
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\obj\Debug\netcoreapp3.1\Biblioteca.Domain.dll
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\obj\Debug\netcoreapp3.1\Biblioteca.Domain.pdb
 C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\obj\Debug\netcoreapp3.1\Biblioteca.Domain.genruntimeconfig.cache
+C:\Users\Marina\source\repos\Biblioteca\Biblioteca.Domain\bin\Debug\netcoreapp3.1\SharedKernel.Domain.dll

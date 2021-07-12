@@ -23,5 +23,18 @@
     <ProjectReference Include="..\Biblioteca.SharedKernel\Biblioteca.SharedKernel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Autor\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SharedKernel.Api">
+      <HintPath>..\Dll\SharedKernel.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="SharedKernel.Domain">
+      <HintPath>..\Dll\SharedKernel.Domain.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 
 </Project>

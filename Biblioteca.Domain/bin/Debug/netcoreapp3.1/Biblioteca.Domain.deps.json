@@ -12,7 +12,8 @@
           "Microsoft.EntityFrameworkCore": "5.0.7",
           "Microsoft.EntityFrameworkCore.Design": "5.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7",
-          "Microsoft.EntityFrameworkCore.Tools": "5.0.7"
+          "Microsoft.EntityFrameworkCore.Tools": "5.0.7",
+          "SharedKernel.Domain": "1.0.0.0"
         },
         "runtime": {
           "Biblioteca.Domain.dll": {}
@@ -1092,6 +1093,14 @@
         "runtime": {
           "Biblioteca.SharedKernel.dll": {}
         }
+      },
+      "SharedKernel.Domain/1.0.0.0": {
+        "runtime": {
+          "SharedKernel.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1782,6 +1791,11 @@
     },
     "Biblioteca.SharedKernel/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharedKernel.Domain/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Biblioteca.Domain.Services.Entidades
+namespace Biblioteca.Domain.Services.Categoria.Dto
 {
-    public class CategoriaEntity
+    public class CategoriaDto
     {
-        [Key]
         public int CategoriaId { get; set; }
         public string NomeCategoria { get; set; }
         public string DescriçãoCategoria { get; set; }

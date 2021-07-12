@@ -1,6 +1,9 @@
 ﻿using Biblioteca.Domain.Services.Categoria;
+using Biblioteca.Domain.Services.Categoria.Dto;
+using Biblioteca.Domain.Services.CategoriaService;
 using Biblioteca.Domain.Services.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using SharedKernel.Domain.Notification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +16,14 @@ namespace BibliotecaApi.Controllers.Categoria
     public class CategoriaController : ControllerBase
     {
         private readonly ICategoriaRepository _categoriaRepository;
+        private readonly ICategoriaService _categoriaService;
+        private readonly INotification _notification;
 
-        public CategoriaController(ICategoriaRepository categoriaRepository)
+        public CategoriaController(ICategoriaRepository categoriaRepository, ICategoriaService categoriaService, INotification notification)
         {
             _categoriaRepository = categoriaRepository;
+            _categoriaService = categoriaService;
+            _notification = notification;
         }
 
         [HttpGet]
@@ -39,27 +46,14 @@ namespace BibliotecaApi.Controllers.Categoria
             return Ok(categoria);
         }
         [HttpPost]
-        public IActionResult Post(CategoriaEntity categoria)
+        public IActionResult Post(CategoriaDto categoria)
         {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
-                else
-                {
-                    var nomeCategoria = _categoriaRepository.GetByName(categoria.NomeCategoria);
-                    if (nomeCategoria != null)
-                        return BadRequest("Essa categoria já existe");
+            var response = _categoriaService.Post(categoria);
 
-                    var categorias = _categoriaRepository.Post(categoria);
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
 
-                    return Ok(categorias);
-                }
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            return Ok(response);
         }
 
         //[HttpGet("findbyname")]

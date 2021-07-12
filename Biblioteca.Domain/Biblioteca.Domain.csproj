@@ -21,4 +21,10 @@
     <ProjectReference Include="..\Biblioteca.SharedKernel\Biblioteca.SharedKernel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="SharedKernel.Domain">
+      <HintPath>..\Dll\SharedKernel.Domain.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

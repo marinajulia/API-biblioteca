@@ -38,6 +38,8 @@
           "Microsoft.EntityFrameworkCore.Design": "5.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.7",
+          "SharedKernel.Api": "1.0.0.0",
+          "SharedKernel.Domain": "1.0.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -1437,6 +1439,28 @@
         },
         "compile": {
           "Biblioteca.SharedKernel.dll": {}
+        }
+      },
+      "SharedKernel.Api/1.0.0.0": {
+        "runtime": {
+          "SharedKernel.Api.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "SharedKernel.Api.dll": {}
+        }
+      },
+      "SharedKernel.Domain/1.0.0.0": {
+        "runtime": {
+          "SharedKernel.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "SharedKernel.Domain.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -3758,6 +3782,16 @@
     },
     "Biblioteca.SharedKernel/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharedKernel.Api/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SharedKernel.Domain/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
