@@ -32,7 +32,6 @@
       "BibliotecaApi/1.0.0": {
         "dependencies": {
           "Biblioteca.Domain": "1.0.0",
-          "Biblioteca.Infra": "1.0.0",
           "Biblioteca.SharedKernel": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.7",
           "Microsoft.EntityFrameworkCore.Design": "5.0.7",
@@ -1411,20 +1410,6 @@
         },
         "compile": {
           "Biblioteca.Domain.dll": {}
-        }
-      },
-      "Biblioteca.Infra/1.0.0": {
-        "dependencies": {
-          "Biblioteca.Domain": "1.0.0",
-          "Biblioteca.SharedKernel": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "5.0.7",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7"
-        },
-        "runtime": {
-          "Biblioteca.Infra.dll": {}
-        },
-        "compile": {
-          "Biblioteca.Infra.dll": {}
         }
       },
       "Biblioteca.SharedKernel/1.0.0": {
@@ -3747,11 +3732,6 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "Biblioteca.Domain/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Biblioteca.Infra/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

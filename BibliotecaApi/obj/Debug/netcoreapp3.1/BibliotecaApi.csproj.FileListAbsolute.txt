@@ -49,10 +49,8 @@ C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\ru
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Biblioteca.Domain.dll
-C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Biblioteca.Infra.dll
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.dll
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Biblioteca.Domain.pdb
-C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Biblioteca.Infra.pdb
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.pdb
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\BibliotecaApi.csproj.AssemblyReference.cache
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\BibliotecaApi.AssemblyInfoInputs.cache

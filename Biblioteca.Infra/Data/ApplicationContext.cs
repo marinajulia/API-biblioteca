@@ -1,4 +1,5 @@
-﻿using Biblioteca.Domain.Services.Entidades;
+﻿using Biblioteca.Domain.Services.Categoria;
+using Biblioteca.Domain.Services.Entidades;
 using Microsoft.EntityFrameworkCore;
 
 namespace Biblioteca.Infra.Data
@@ -11,7 +12,7 @@ namespace Biblioteca.Infra.Data
             
         }
 
-        public DbSet<A> Autor { get; set; }
+        public DbSet<Autor> Autor { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Editora> Editora { get; set; }
         public DbSet<Livro> Livro { get; set; }

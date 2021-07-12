@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Biblioteca.Domain.Services.Categoria
 {
-    public class Autores
+    public class Autor
     {
         [Key]
         public int AutorId { get; set; }
