@@ -2,9 +2,8 @@
 using Biblioteca.Domain.Services.Categoria.Dto;
 using Biblioteca.Domain.Services.Entidades;
 using SharedKernel.Domain.Notification;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Biblioteca.Domain.Services.CategoriaService
 {
@@ -17,6 +16,34 @@ namespace Biblioteca.Domain.Services.CategoriaService
         {
             _notification = notification;
             _categoriaRepository = categoriaRepository;
+        }
+
+        public IEnumerable<CategoriaDto> Get()
+        {
+            var categorias = _categoriaRepository.Get();
+
+            return categorias.Select(x => new CategoriaDto 
+            {
+                CategoriaId = x.CategoriaId,
+                NomeCategoria = x.NomeCategoria,
+                DescriçãoCategoria = x.DescriçãoCategoria
+            });
+        }
+
+
+        public CategoriaDto GetById(int id)
+        {
+            var categoria = _categoriaRepository.GetById(id);
+
+            if (categoria == null)
+                return _notification.AddWithReturn<CategoriaDto>("A categoria não pode ser encontrada");
+
+            return new CategoriaDto
+            {
+                CategoriaId = categoria.CategoriaId,
+                DescriçãoCategoria = categoria.DescriçãoCategoria,
+                NomeCategoria = categoria.NomeCategoria
+            };
         }
 
         public CategoriaDto Post(CategoriaDto categoria)
@@ -38,5 +65,7 @@ namespace Biblioteca.Domain.Services.CategoriaService
                 NomeCategoria = categoriaEntity.NomeCategoria
             };
         }
+
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using Biblioteca.Domain.Services.Categoria;
+﻿using Biblioteca.Domain.Services.Autor.Entities;
+using Biblioteca.Domain.Services.Categoria;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,10 +21,9 @@ namespace Biblioteca.Domain.Services.Entidades
         public CategoriaEntity Categoria { get; set; }
 
         public int AutorId { get; set; }
-        public Services.Categoria.Categoria Autor { get; set; }
 
-        [MaxLength(1000, ErrorMessage = "Este compo deve conter entre 1 e 1000 caracteres")]
-        [MinLength(1, ErrorMessage = "Este campo deve conter entre 1 e 1000 caracteres")]
+        public AutorEntity Autor { get; set; }
+
         public string Descrição { get; set; }
 
         public int EditoraId { get; set; }

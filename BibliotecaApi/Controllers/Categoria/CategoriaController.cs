@@ -1,13 +1,8 @@
 ﻿using Biblioteca.Domain.Services.Categoria;
 using Biblioteca.Domain.Services.Categoria.Dto;
 using Biblioteca.Domain.Services.CategoriaService;
-using Biblioteca.Domain.Services.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BibliotecaApi.Controllers.Categoria
 {
@@ -30,7 +25,7 @@ namespace BibliotecaApi.Controllers.Categoria
         // [Authorize]
         public IActionResult Get()
         {
-            var categorias = _categoriaRepository.Get();
+            var categorias = _categoriaService.Get();
 
             return Ok(categorias);
         }
@@ -39,11 +34,11 @@ namespace BibliotecaApi.Controllers.Categoria
         //[Authorize]
         public IActionResult GetById(int id)
         {
-            var categoria = _categoriaRepository.GetById(id);
-            if (categoria == null)
-                return BadRequest("A categoria não pode ser encontrada");
+            var response = _categoriaService.GetById(id);
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
 
-            return Ok(categoria);
+            return Ok(response);
         }
         [HttpPost]
         public IActionResult Post(CategoriaDto categoria)

@@ -42,7 +42,7 @@ namespace Biblioteca.Infra.Repositories.RepositoryCategoria
         {
             using (var context = new ApplicationContext())
             {
-                context.Categoria.Add(categoria);
+                context.Categoria.Add(categoria); //para put seria update
                 context.SaveChanges();
                 return categoria;
             }
