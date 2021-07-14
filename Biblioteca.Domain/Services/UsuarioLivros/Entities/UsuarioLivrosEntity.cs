@@ -2,15 +2,15 @@
 
 namespace Biblioteca.Domain.Services.Entidades
 {
-    public class UsuarioLivros
+    public class UsuarioLivrosEntity
     {
         [Key]
         public int UsuarioLivrosId { get; set; }
 
         public int UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
+        public UsuarioEntity Usuario { get; set; }
 
         public int LivroId { get; set; }
-        public Livro Livro { get; set; }
+        public LivroEntity Livro { get; set; }
     }
 }

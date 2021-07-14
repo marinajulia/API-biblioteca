@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Biblioteca.Infra.Data.Configuration
 {
-    public class StatusUsuarioConfiguration : IEntityTypeConfiguration<StatusUsuario>
+    public class StatusUsuarioConfiguration : IEntityTypeConfiguration<StatusUsuarioEntity>
     {
-        public void Configure(EntityTypeBuilder<StatusUsuario> builder)
+        public void Configure(EntityTypeBuilder<StatusUsuarioEntity> builder)
         {
             builder.ToTable("StatusUsuario");
             builder.HasKey(p => p.StatusUsuarioId);

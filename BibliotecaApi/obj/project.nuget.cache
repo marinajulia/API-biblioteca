@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TvHiNIpOUyzIvt7e4biUkJKNR3VopM176w1rGrCJJB6+RiURfWykdGmMTrP/YcRCEBdm5t5nTPmg9qGnz75vPQ==",
+  "dgSpecHash": "P5hr55H1wNYMQ4mFYkHSI5Cj6Sc07WTfdIeiVm/OMELys4kN/ljKRriLLC766tOfB43dJG8jPfnj4CfUcsH2Zw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\BibliotecaApi.csproj",
+  "projectFilePath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\Biblioteca.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marina\\.nuget\\packages\\automapper\\8.0.0\\automapper.8.0.0.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

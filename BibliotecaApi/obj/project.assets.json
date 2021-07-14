@@ -5899,9 +5899,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\BibliotecaApi.csproj",
-      "projectName": "BibliotecaApi",
-      "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\BibliotecaApi.csproj",
+      "projectUniqueName": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\Biblioteca.Api.csproj",
+      "projectName": "Biblioteca.Api",
+      "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\Biblioteca.Api.csproj",
       "packagesPath": "C:\\Users\\Marina\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\obj\\",
       "projectStyle": "PackageReference",
