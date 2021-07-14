@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Biblioteca.Infra.Data.Configuration
 {
-    public class EditoraConfiguration : IEntityTypeConfiguration<Editora>
+    public class EditoraConfiguration : IEntityTypeConfiguration<EditoraEntity>
     {
-        public void Configure(EntityTypeBuilder<Editora> builder)
+        public void Configure(EntityTypeBuilder<EditoraEntity> builder)
         {
             builder.ToTable("Editora");
             builder.HasKey(p => p.EditoraId);

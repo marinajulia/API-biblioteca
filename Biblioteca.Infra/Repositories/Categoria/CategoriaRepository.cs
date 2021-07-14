@@ -1,10 +1,8 @@
 ﻿using Biblioteca.Domain.Services.Categoria;
 using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Infra.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Biblioteca.Infra.Repositories.RepositoryCategoria
 {

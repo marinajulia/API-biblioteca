@@ -1,20 +1,20 @@
-﻿using Biblioteca.Domain.Services.Categoria.Dto;
-using Biblioteca.Domain.Services.CategoriaService;
+﻿using Biblioteca.Domain.Services.Editora;
+using Biblioteca.Domain.Services.Editora.Dto;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
 
-namespace BibliotecaApi.Controllers.Categoria
+namespace BibliotecaApi.Controllers.Editora
 {
     [ApiController]
-    [Route("v1/categoria")]
-    public class CategoriaController : ControllerBase
+    [Route("v1/editora")]
+    public class EditoraController : ControllerBase
     {
-        private readonly ICategoriaService _categoriaService;
+        private readonly IEditoraService _editoraService;
         private readonly INotification _notification;
 
-        public CategoriaController(ICategoriaService categoriaService, INotification notification)
+        public EditoraController(IEditoraService editoraService, INotification notification)
         {
-            _categoriaService = categoriaService;
+            _editoraService = editoraService;
             _notification = notification;
         }
 
@@ -22,25 +22,25 @@ namespace BibliotecaApi.Controllers.Categoria
         // [Authorize]
         public IActionResult Get()
         {
-            var categorias = _categoriaService.Get();
+            var editoras = _editoraService.Get();
 
-            return Ok(categorias);
+            return Ok(editoras);
         }
 
         [HttpGet("findbyid")]
         //[Authorize]
         public IActionResult GetById(int id)
         {
-            var response = _categoriaService.GetById(id);
+            var response = _editoraService.GetById(id);
             if (response == null)
                 return BadRequest(_notification.GetErrors());
 
             return Ok(response);
         }
         [HttpPost]
-        public IActionResult Post(CategoriaDto categoria)
+        public IActionResult Post(EditoraDto editora)
         {
-            var response = _categoriaService.Post(categoria);
+            var response = _editoraService.Post(editora);
 
             if (response == null)
                 return BadRequest(_notification.GetErrors());

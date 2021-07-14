@@ -27,7 +27,7 @@ namespace Biblioteca.Domain.Services.Entidades
         public string Descrição { get; set; }
 
         public int EditoraId { get; set; }
-        public Editora Editora { get; set; }
+        public EditoraEntity Editora { get; set; }
 
         public int StatusLivroId { get; set; }
         public StatusLivro StatusLivro { get; set; }
