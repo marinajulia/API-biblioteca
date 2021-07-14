@@ -2,9 +2,11 @@ using Biblioteca.Domain.Services.Autor;
 using Biblioteca.Domain.Services.Categoria;
 using Biblioteca.Domain.Services.CategoriaService;
 using Biblioteca.Domain.Services.Editora;
+using Biblioteca.Domain.Services.PerfilUsuario;
 using Biblioteca.Infra.Data;
 using Biblioteca.Infra.Repositories.Autor;
 using Biblioteca.Infra.Repositories.Editora;
+using Biblioteca.Infra.Repositories.PerfilUsuario;
 using Biblioteca.Infra.Repositories.RepositoryCategoria;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,10 +36,12 @@ namespace BibliotecaApi
             services.AddScoped<IAutorRepository, AutorRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IEditoraRepository, EditoraRepository>();
+            services.AddScoped<IPerfilUsuarioRepository, PerfilUsuarioRepository>();
 
             //Services
             services.AddScoped<ICategoriaService, CategoriaService>();
             services.AddScoped<IEditoraService, EditoraService>();
+            services.AddScoped<IPerfilUsuarioService, PerfilUsuarioService>();
 
             services.AddControllers();
         }

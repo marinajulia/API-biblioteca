@@ -26,6 +26,6 @@ namespace Biblioteca.Domain.Services.Entidades
         public string Email { get; set; }
 
         public int PerfilUsuarioId { get; set; }
-        public PerfilUsuario PerfilUsuario{ get; set; }
+        public PerfilUsuarioEntity PerfilUsuario{ get; set; }
     }
 }

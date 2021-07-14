@@ -16,7 +16,7 @@ namespace Biblioteca.Infra.Data
         public DbSet<CategoriaEntity> Categoria { get; set; }
         public DbSet<EditoraEntity> Editora { get; set; }
         public DbSet<Livro> Livro { get; set; }
-        public DbSet<PerfilUsuario> PerfilUsuario { get; set; }
+        public DbSet<PerfilUsuarioEntity> PerfilUsuario { get; set; }
         public DbSet<StatusLivro> StatusLivro { get; set; }
         public DbSet<StatusUsuario> StatusUsuario { get; set; }
         public DbSet<Usuario> Usuario { get; set; }

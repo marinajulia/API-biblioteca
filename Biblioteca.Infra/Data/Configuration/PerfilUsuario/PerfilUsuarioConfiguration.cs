@@ -5,9 +5,9 @@ using System;
 
 namespace Biblioteca.Infra.Data.Configuration
 {
-    public class PerfilUsuarioConfiguration : IEntityTypeConfiguration<PerfilUsuario>
+    public class PerfilUsuarioConfiguration : IEntityTypeConfiguration<PerfilUsuarioEntity>
     {
-        public void Configure(EntityTypeBuilder<PerfilUsuario> builder)
+        public void Configure(EntityTypeBuilder<PerfilUsuarioEntity> builder)
         {
             builder.ToTable("PerfilUsuario");
             builder.HasKey(p => p.PerfilUsuarioId);
