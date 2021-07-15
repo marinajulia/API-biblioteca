@@ -1,3 +1,4 @@
+using Biblioteca.Domain.Services;
 using Biblioteca.Domain.Services.Autor;
 using Biblioteca.Domain.Services.Categoria;
 using Biblioteca.Domain.Services.CategoriaService;
@@ -6,7 +7,9 @@ using Biblioteca.Domain.Services.Livro;
 using Biblioteca.Domain.Services.PerfilUsuario;
 using Biblioteca.Domain.Services.StatusLivro;
 using Biblioteca.Domain.Services.StatusLivro.Entities;
+using Biblioteca.Domain.Services.StatusUsuario;
 using Biblioteca.Infra.Data;
+using Biblioteca.Infra.Repositories;
 using Biblioteca.Infra.Repositories.Autor;
 using Biblioteca.Infra.Repositories.Editora;
 using Biblioteca.Infra.Repositories.Livro;
@@ -51,16 +54,18 @@ namespace BibliotecaApi
             services.AddScoped<IPerfilUsuarioRepository, PerfilUsuarioRepository>();
             services.AddScoped<IStatusLivroRepository, StatusLivroRepository>();
             services.AddScoped<ILivroRepository, LivroRepository>();
+            services.AddScoped<IStatusUsuarioRepository, StatusUsuarioRepository>();
         }
 
         private void RegisterServices (IServiceCollection services)
         {
-            services.AddScoped<AutorService, AutorService>();
+            services.AddScoped<IAutorService, AutorService>();
             services.AddScoped<ICategoriaService, CategoriaService>();
             services.AddScoped<IEditoraService, EditoraService>();
             services.AddScoped<IPerfilUsuarioService, PerfilUsuarioService>();
             services.AddScoped<IStatusLivroService, StatusLivroService>();
-            services.AddScoped<LivroService, LivroService>();
+            services.AddScoped<ILivroService, LivroService>();
+            services.AddScoped<IStatusUsuarioService, StatusUsuarioService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
