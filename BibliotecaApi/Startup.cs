@@ -1,3 +1,4 @@
+using Biblioteca.Domain.Common.Token;
 using Biblioteca.Domain.Services;
 using Biblioteca.Domain.Services.Autor;
 using Biblioteca.Domain.Services.Categoria;
@@ -18,13 +19,18 @@ using Biblioteca.Infra.Repositories.Livro;
 using Biblioteca.Infra.Repositories.PerfilUsuario;
 using Biblioteca.Infra.Repositories.RepositoryCategoria;
 using Biblioteca.Infra.Repositories.StatusUsuario;
+using Biblioteca.Infra.Repositories.Usuario;
 using Biblioteca.Infra.Repositories.UsuarioLivros;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SharedKernel.Domain.Notification;
+using System.Text;
 
 namespace BibliotecaApi
 {
@@ -43,8 +49,33 @@ namespace BibliotecaApi
 
             RegisterRepositories(services);
             RegisterServices(services);
-            
+
+            services.AddCors();
             services.AddControllers();
+
+            var key = Encoding.ASCII.GetBytes(Settings.Secret);
+
+            services.AddAuthentication(x => {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x => {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Biblioteca", Version = "v1" });
+            });
+
         }
 
         private void RegisterRepositories(IServiceCollection services)
@@ -58,7 +89,7 @@ namespace BibliotecaApi
             services.AddScoped<IStatusLivroRepository, StatusLivroRepository>();
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IStatusUsuarioRepository, StatusUsuarioRepository>();
-            //services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IUsuarioLivrosRepository, UsuarioLivrosRepository>();
         }
 
@@ -71,7 +102,7 @@ namespace BibliotecaApi
             services.AddScoped<IStatusLivroService, StatusLivroService>();
             services.AddScoped<ILivroService, LivroService>();
             services.AddScoped<IStatusUsuarioService, StatusUsuarioService>();
-            //services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IUsuarioLivrosService, UsuarioLivrosService>();
         }
 
@@ -80,11 +111,17 @@ namespace BibliotecaApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Biblioteca v1"));
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

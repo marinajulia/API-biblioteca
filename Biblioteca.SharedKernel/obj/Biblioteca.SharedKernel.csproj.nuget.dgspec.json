@@ -44,6 +44,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.7, )"
@@ -63,6 +67,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.7, )"
+            },
+            "chilkat-x64": {
+              "target": "Package",
+              "version": "[9.5.0.87, )"
             }
           },
           "imports": [

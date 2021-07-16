@@ -71,3 +71,9 @@ C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\Bi
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\Biblioteca.Api.dll
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\Biblioteca.Api.pdb
 C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\Biblioteca.Api.genruntimeconfig.cache
+C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\ChilkatDotNet46.dll
+C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Marina\source\repos\Biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
