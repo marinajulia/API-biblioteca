@@ -1,7 +1,5 @@
 ﻿using Biblioteca.Domain.Services.Autor.Entities;
-using Biblioteca.Domain.Services.Categoria;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Biblioteca.Domain.Services.Entidades
 {

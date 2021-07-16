@@ -9,6 +9,5 @@ namespace Biblioteca.Domain.Services.CategoriaService
         IEnumerable<CategoriaDto> Get();
         CategoriaDto GetById(int id);
 
-
     }
 }

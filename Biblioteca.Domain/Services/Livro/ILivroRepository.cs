@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Biblioteca.Domain.Services.Entidades;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Biblioteca.Domain.Services.Livro
 {
     public interface ILivroRepository
     {
+        IEnumerable<LivroEntity> Get();
+        LivroEntity GetById(int id);
+        LivroEntity Post(LivroEntity livro);
+        LivroEntity GetByName(string nome);
     }
 }
