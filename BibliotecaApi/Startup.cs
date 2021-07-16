@@ -8,6 +8,8 @@ using Biblioteca.Domain.Services.PerfilUsuario;
 using Biblioteca.Domain.Services.StatusLivro;
 using Biblioteca.Domain.Services.StatusLivro.Entities;
 using Biblioteca.Domain.Services.StatusUsuario;
+using Biblioteca.Domain.Services.Usuario;
+using Biblioteca.Domain.Services.UsuarioLivros;
 using Biblioteca.Infra.Data;
 using Biblioteca.Infra.Repositories;
 using Biblioteca.Infra.Repositories.Autor;
@@ -16,6 +18,7 @@ using Biblioteca.Infra.Repositories.Livro;
 using Biblioteca.Infra.Repositories.PerfilUsuario;
 using Biblioteca.Infra.Repositories.RepositoryCategoria;
 using Biblioteca.Infra.Repositories.StatusUsuario;
+using Biblioteca.Infra.Repositories.UsuarioLivros;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -55,6 +58,8 @@ namespace BibliotecaApi
             services.AddScoped<IStatusLivroRepository, StatusLivroRepository>();
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IStatusUsuarioRepository, StatusUsuarioRepository>();
+            //services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IUsuarioLivrosRepository, UsuarioLivrosRepository>();
         }
 
         private void RegisterServices (IServiceCollection services)
@@ -66,6 +71,8 @@ namespace BibliotecaApi
             services.AddScoped<IStatusLivroService, StatusLivroService>();
             services.AddScoped<ILivroService, LivroService>();
             services.AddScoped<IStatusUsuarioService, StatusUsuarioService>();
+            //services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IUsuarioLivrosService, UsuarioLivrosService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

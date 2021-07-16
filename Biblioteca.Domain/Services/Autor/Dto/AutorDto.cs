@@ -3,7 +3,6 @@
     public class AutorDto
     {
         public int AutorId { get; set; }
-
         public string NomeAutor { get; set; }
     }
 }

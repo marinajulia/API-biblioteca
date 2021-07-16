@@ -1,7 +1,4 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Biblioteca.Domain.Services.Usuario.Dto
 {
@@ -10,10 +7,6 @@ namespace Biblioteca.Domain.Services.Usuario.Dto
         public int UsuarioId { get; set; }
 
         public string NomeUsuario { get; set; }
-
-        public string CPF { get; set; }
-
-        public string Senha { get; set; }
 
         public int StatusUsuarioId { get; set; }
 

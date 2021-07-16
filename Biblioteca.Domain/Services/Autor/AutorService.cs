@@ -1,9 +1,8 @@
 ﻿using Biblioteca.Domain.Services.Autor.Dto;
 using Biblioteca.Domain.Services.Autor.Entities;
 using SharedKernel.Domain.Notification;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Biblioteca.Domain.Services.Autor
 {
@@ -18,15 +17,42 @@ namespace Biblioteca.Domain.Services.Autor
             _autorRepository = autorRepository;
 
         }
-        public AutorDto Post(AutorDto autor)
+
+        public IEnumerable<AutorDto> Get()
         {
-            var autorData = _autorRepository.GetByName(autor.NomeAutor);
+            var autores = _autorRepository.Get();
+
+            return autores.Select(x => new AutorDto
+            {
+                AutorId = x.AutorId,
+                NomeAutor = x.NomeAutor
+                
+            });
+        }
+
+        public AutorDto GetById(int id)
+        {
+            var autor = _autorRepository.GetById(id);
+
+            if (autor == null)
+                return _notification.AddWithReturn<AutorDto>("O autor não pode ser encontrado");
+
+            return new AutorDto
+            {
+                AutorId = autor.AutorId,
+                NomeAutor = autor.NomeAutor
+            };
+        }
+
+        public AutorDto Post(AutorDto autorDto)
+        {
+            var autorData = _autorRepository.GetByName(autorDto.NomeAutor);
             if (autorData != null)
                 return _notification.AddWithReturn<AutorDto>("Ops.. parece que esse autor já existe!");
 
             var autorEntity = _autorRepository.Post(new AutorEntity
             {
-                NomeAutor = autor.NomeAutor,
+                NomeAutor = autorDto.NomeAutor
             });
 
             return new AutorDto
