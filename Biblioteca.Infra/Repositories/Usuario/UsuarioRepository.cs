@@ -1,48 +1,66 @@
-﻿using Biblioteca.Domain.Services.Entidades;
+﻿using Biblioteca.Domain.Common.Criptografia;
+using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Usuario;
+using Biblioteca.Domain.Services.Usuario.Dto;
 using Biblioteca.Infra.Data;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 
 namespace Biblioteca.Infra.Repositories.Usuario
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        public IEnumerable<UsuarioEntity> Get()
+       
+
+        public UsuarioDto GetUser(string username, string password)
         {
             using (var context = new ApplicationContext())
             {
-                var usuarios = context.Usuario;
+                //var usuario = context.Usuario.FirstOrDefault(x => x.NomeUsuario == username && x.Senha == PasswordService.Criptografar(password));
+                var usuario = context.Usuario.FirstOrDefault(x => x.NomeUsuario == username && x.Senha == password);
 
-                return usuarios.ToList();
+                if (usuario == null)
+                    throw new Exception();
+
+                return new UsuarioDto
+                {
+                    UsuarioId = usuario.UsuarioId,
+                    NomeUsuario = usuario.NomeUsuario,
+                    StatusUsuarioId = usuario.StatusUsuarioId,
+                    Email = usuario.Email,
+                    PerfilUsuarioId = usuario.PerfilUsuarioId
+                };
             }
         }
 
-        public UsuarioEntity GetById(int id)
-        {
-            using (var context = new ApplicationContext())
-            {
-                var usuarios = context.Usuario.FirstOrDefault(x => x.UsuarioId == id);
-                return usuarios;
-            }
-        }
+       
 
-        public UsuarioEntity GetByName(string nome)
+        public UsuarioDto PostCadastro(UsuarioEntity usuario)
         {
             using (var context = new ApplicationContext())
             {
-                var usuarios = context.Usuario.FirstOrDefault(x => x.NomeUsuario.Trim().ToLower() == nome.Trim().ToLower());
-                return usuarios;
-            }
-        }
+                var jaExiste = context.Usuario.FirstOrDefault(x => x.NomeUsuario == usuario.NomeUsuario);
+                if (jaExiste == null)
+                {
+                    usuario.Senha = PasswordService.Criptografar(usuario.Senha);
 
-        public UsuarioEntity Post(UsuarioEntity usuario)
-        {
-            using (var context = new ApplicationContext())
-            {
-                context.Usuario.Add(usuario); //para put seria update
-                context.SaveChanges();
-                return usuario;
+                    context.Usuario.Add(usuario);
+                    context.SaveChanges();
+
+                    return new UsuarioDto
+                    {
+                        UsuarioId = usuario.UsuarioId,
+                        NomeUsuario = usuario.NomeUsuario,
+                        StatusUsuarioId = usuario.StatusUsuarioId,
+                        Email = usuario.Email,
+                        PerfilUsuarioId = usuario.PerfilUsuarioId
+                    };
+
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
         }
     }

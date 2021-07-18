@@ -5,7 +5,7 @@ namespace Biblioteca.Domain.Services.Usuario
 {
     public interface IUsuarioService
     {
-        IEnumerable<UsuarioDto> Get();
+        UsuarioDto GetUser(string nome, string senha);
         UsuarioDto GetById(int id);
         UsuarioDto Post(UsuarioDto usuario);
     }

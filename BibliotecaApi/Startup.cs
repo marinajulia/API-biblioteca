@@ -102,7 +102,7 @@ namespace BibliotecaApi
             services.AddScoped<IStatusLivroService, StatusLivroService>();
             services.AddScoped<ILivroService, LivroService>();
             services.AddScoped<IStatusUsuarioService, StatusUsuarioService>();
-            services.AddScoped<IUsuarioService, UsuarioService>();
+             //services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IUsuarioLivrosService, UsuarioLivrosService>();
         }
 
