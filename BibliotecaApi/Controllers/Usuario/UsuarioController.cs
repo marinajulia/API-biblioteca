@@ -1,14 +1,9 @@
 ﻿using Biblioteca.Domain.Common.Token;
 using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Usuario;
-using Biblioteca.Domain.Services.Usuario.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Biblioteca.Api.Controllers.Usuario
 {
@@ -34,7 +29,10 @@ namespace Biblioteca.Api.Controllers.Usuario
             var usuario = _usuarioService.PostLogin(model);
             if (usuario == null)
                 return BadRequest(_notification.GetErrors());
-            return Ok(usuario);
+
+            var token = TokenService.GenerateToken(usuario);
+
+            return Ok(token);
         }
 
         [HttpPost]
@@ -47,6 +45,7 @@ namespace Biblioteca.Api.Controllers.Usuario
             var response = _usuarioService.PostCadastro(usuario);
             if (response == null)
                 return BadRequest(_notification.GetErrors());
+
             return Ok(response);
 
         }
