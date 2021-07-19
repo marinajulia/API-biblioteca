@@ -18,8 +18,10 @@ namespace Biblioteca.Domain.Services.Usuario
 
         public UsuarioDto PostCadastro(UsuarioEntity usuario)
         {
-            var usuarioData = _usuarioRepository.PostCadastro(usuario);
-            if (usuario != null)
+
+            var comparacaoNome = _usuarioRepository.GetByName(usuario.NomeUsuario);
+
+            if (comparacaoNome != null)
                 return _notification.AddWithReturn<UsuarioDto>("Este usuário já existe");
 
             var usuarioEntity = _usuarioRepository.PostCadastro(new UsuarioEntity

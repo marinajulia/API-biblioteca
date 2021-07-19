@@ -6,5 +6,6 @@ namespace Biblioteca.Domain.Services.Usuario
     {
         UsuarioEntity PostCadastro(UsuarioEntity usuario);
         UsuarioEntity GetUser(string username, string password);
+        UsuarioEntity GetByName(string username);
     }
 }

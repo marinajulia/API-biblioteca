@@ -45,9 +45,9 @@ namespace Biblioteca.Api.Controllers.Usuario
         public ActionResult PostCadastro(UsuarioEntity usuario)
         {
             var response = _usuarioService.PostCadastro(usuario);
-            if (response != null)
+            if (response == null)
                 return BadRequest(_notification.GetErrors());
-            return Ok(usuario);
+            return Ok(response);
 
         }
 

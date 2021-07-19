@@ -10,7 +10,14 @@ namespace Biblioteca.Infra.Repositories.Usuario
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-       
+        public UsuarioEntity GetByName(string username)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var usuario = context.Usuario.FirstOrDefault(x => x.NomeUsuario == username);
+                return usuario;
+            }
+        }
 
         public UsuarioEntity GetUser(string username, string password)
         {
@@ -25,21 +32,12 @@ namespace Biblioteca.Infra.Repositories.Usuario
         {
             using (var context = new ApplicationContext())
             {
-                var jaExiste = context.Usuario.FirstOrDefault(x => x.NomeUsuario == usuario.NomeUsuario);
-                if (jaExiste == null)
-                {
-                    usuario.Senha = PasswordService.Criptografar(usuario.Senha);
+                usuario.Senha = PasswordService.Criptografar(usuario.Senha);
 
-                    context.Usuario.Add(usuario);
-                    context.SaveChanges();
+                context.Usuario.Add(usuario);
+                context.SaveChanges();
 
-                    return usuario;
-
-                }
-                else
-                {
-                    throw new Exception();
-                }
+                return usuario;
             }
         }
     }
