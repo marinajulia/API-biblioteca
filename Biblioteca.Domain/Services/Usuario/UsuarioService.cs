@@ -16,9 +16,29 @@ namespace Biblioteca.Domain.Services.Usuario
             _notification = notification;
         }
 
-        public UsuarioDto PostCadastro(UsuarioDto usuario)
+        public UsuarioDto PostCadastro(UsuarioEntity usuario)
         {
-            throw new NotImplementedException();
+            var usuarioData = _usuarioRepository.PostCadastro(usuario);
+            if (usuario != null)
+                return _notification.AddWithReturn<UsuarioDto>("Este usuário já existe");
+
+            var usuarioEntity = _usuarioRepository.PostCadastro(new UsuarioEntity
+            {
+                NomeUsuario = usuario.NomeUsuario,
+                CPF = usuario.CPF,
+                Senha = usuario.Senha,
+                StatusUsuarioId = usuario.StatusUsuarioId,
+                Email = usuario.Email,
+                PerfilUsuarioId = usuario.PerfilUsuarioId
+            });
+            return new UsuarioDto
+            {
+                UsuarioId = usuarioEntity.UsuarioId,
+                NomeUsuario = usuarioEntity.NomeUsuario,
+                StatusUsuarioId = usuarioEntity.StatusUsuarioId,
+                Email = usuarioEntity.Email,
+                PerfilUsuarioId = usuarioEntity.PerfilUsuarioId
+            };
         }
 
         public UsuarioDto PostLogin(UsuarioEntity usuario)

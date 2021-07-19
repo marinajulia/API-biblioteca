@@ -33,15 +33,6 @@ namespace Biblioteca.Infra.Repositories.Usuario
                     context.Usuario.Add(usuario);
                     context.SaveChanges();
 
-                    //return new UsuarioDto
-                    //{
-                    //    UsuarioId = usuario.UsuarioId,
-                    //    NomeUsuario = usuario.NomeUsuario,
-                    //    StatusUsuarioId = usuario.StatusUsuarioId,
-                    //    Email = usuario.Email,
-                    //    PerfilUsuarioId = usuario.PerfilUsuarioId
-                    //};
-
                     return usuario;
 
                 }

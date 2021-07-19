@@ -37,15 +37,19 @@ namespace Biblioteca.Api.Controllers.Usuario
             return Ok(usuario);
         }
 
-        //[HttpPost]
-        //[Route("cadastro")]
-        //[AllowAnonymous]
+        [HttpPost]
+        [Route("cadastro")]
+        [AllowAnonymous]
 
 
-        //public ActionResult PostCadastro(UsuarioEntity usuario)
-        //{
+        public ActionResult PostCadastro(UsuarioEntity usuario)
+        {
+            var response = _usuarioService.PostCadastro(usuario);
+            if (response != null)
+                return BadRequest(_notification.GetErrors());
+            return Ok(usuario);
 
-        //}
+        }
 
     }
 }
