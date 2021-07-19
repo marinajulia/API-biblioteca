@@ -73,6 +73,7 @@ namespace Biblioteca.Domain.Services.Livro
 
             return new LivroDto
             {
+                LivroId = livroEntity.LivroId,
                 Titulo = livroEntity.Titulo,
                 ISBN = livroEntity.ISBN,
                 CategoriaId = livroEntity.CategoriaId,

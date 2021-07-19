@@ -1,7 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Livro;
 using Biblioteca.Infra.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
