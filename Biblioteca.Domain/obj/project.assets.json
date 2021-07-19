@@ -6521,11 +6521,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj",
       "projectName": "Biblioteca.Domain",
-      "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj",
+      "projectPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj",
       "packagesPath": "C:\\Users\\Marina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6546,8 +6546,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj": {
-              "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj"
+            "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj": {
+              "projectPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj"
             }
           }
         }

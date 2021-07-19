@@ -6726,11 +6726,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\Biblioteca.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\BibliotecaApi\\Biblioteca.Api.csproj",
       "projectName": "Biblioteca.Api",
-      "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\Biblioteca.Api.csproj",
+      "projectPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\BibliotecaApi\\Biblioteca.Api.csproj",
       "packagesPath": "C:\\Users\\Marina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\BibliotecaApi\\obj\\",
+      "outputPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\BibliotecaApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6751,14 +6751,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj": {
-              "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj"
+            "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj": {
+              "projectPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj"
             },
-            "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj": {
-              "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj"
+            "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj": {
+              "projectPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.Infra\\Biblioteca.Infra.csproj"
             },
-            "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj": {
-              "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj"
+            "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj": {
+              "projectPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj"
             }
           }
         }

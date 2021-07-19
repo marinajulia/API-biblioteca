@@ -12,30 +12,16 @@ namespace Biblioteca.Infra.Repositories.Usuario
     {
        
 
-        public UsuarioDto GetUser(string username, string password)
+        public UsuarioEntity GetUser(string username, string password)
         {
             using (var context = new ApplicationContext())
             {
-                //var usuario = context.Usuario.FirstOrDefault(x => x.NomeUsuario == username && x.Senha == PasswordService.Criptografar(password));
-                var usuario = context.Usuario.FirstOrDefault(x => x.NomeUsuario == username && x.Senha == password);
-
-                if (usuario == null)
-                    throw new Exception();
-
-                return new UsuarioDto
-                {
-                    UsuarioId = usuario.UsuarioId,
-                    NomeUsuario = usuario.NomeUsuario,
-                    StatusUsuarioId = usuario.StatusUsuarioId,
-                    Email = usuario.Email,
-                    PerfilUsuarioId = usuario.PerfilUsuarioId
-                };
+                var usuario = context.Usuario.FirstOrDefault(x => x.NomeUsuario == username && x.Senha == PasswordService.Criptografar(password));
+                return usuario;
             }
         }
 
-       
-
-        public UsuarioDto PostCadastro(UsuarioEntity usuario)
+        public UsuarioEntity PostCadastro(UsuarioEntity usuario)
         {
             using (var context = new ApplicationContext())
             {
@@ -47,14 +33,16 @@ namespace Biblioteca.Infra.Repositories.Usuario
                     context.Usuario.Add(usuario);
                     context.SaveChanges();
 
-                    return new UsuarioDto
-                    {
-                        UsuarioId = usuario.UsuarioId,
-                        NomeUsuario = usuario.NomeUsuario,
-                        StatusUsuarioId = usuario.StatusUsuarioId,
-                        Email = usuario.Email,
-                        PerfilUsuarioId = usuario.PerfilUsuarioId
-                    };
+                    //return new UsuarioDto
+                    //{
+                    //    UsuarioId = usuario.UsuarioId,
+                    //    NomeUsuario = usuario.NomeUsuario,
+                    //    StatusUsuarioId = usuario.StatusUsuarioId,
+                    //    Email = usuario.Email,
+                    //    PerfilUsuarioId = usuario.PerfilUsuarioId
+                    //};
+
+                    return usuario;
 
                 }
                 else

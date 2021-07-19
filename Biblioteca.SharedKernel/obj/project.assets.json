@@ -6468,11 +6468,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj",
+      "projectUniqueName": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj",
       "projectName": "Biblioteca.SharedKernel",
-      "projectPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj",
+      "projectPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.SharedKernel\\Biblioteca.SharedKernel.csproj",
       "packagesPath": "C:\\Users\\Marina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marina\\source\\repos\\Biblioteca\\Biblioteca.SharedKernel\\obj\\",
+      "outputPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.SharedKernel\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

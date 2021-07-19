@@ -1,12 +1,12 @@
-﻿using Biblioteca.Domain.Services.Usuario.Dto;
-using System.Collections.Generic;
+﻿using Biblioteca.Domain.Services.Entidades;
+using Biblioteca.Domain.Services.Usuario.Dto;
 
 namespace Biblioteca.Domain.Services.Usuario
 {
     public interface IUsuarioService
     {
-        UsuarioDto GetUser(string nome, string senha);
-        UsuarioDto GetById(int id);
-        UsuarioDto Post(UsuarioDto usuario);
+        UsuarioDto PostCadastro(UsuarioDto usuario);
+        UsuarioDto PostLogin(UsuarioEntity usuario);
+
     }
 }

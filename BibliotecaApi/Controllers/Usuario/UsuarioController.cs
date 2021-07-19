@@ -16,86 +16,36 @@ namespace Biblioteca.Api.Controllers.Usuario
     [Route("v1/usuario")]
     public class UsuarioController : ControllerBase
     {
-        //private readonly INotification _notification;
-        //private readonly IUsuarioService _usuarioService;
+        private readonly INotification _notification;
+        private readonly IUsuarioService _usuarioService;
 
-        //public UsuarioController(IUsuarioService usuarioService, INotification notification)
-        //{
-        //    _usuarioService = usuarioService;
-        //    _notification = notification;
-        //}
-
-        private readonly IUsuarioRepository _usuarioRepository;
-
-        public UsuarioController(IUsuarioRepository usuarioRepository)
+        public UsuarioController(IUsuarioService usuarioService, INotification notification)
         {
-            _usuarioRepository = usuarioRepository;
+            _usuarioService = usuarioService;
+            _notification = notification;
         }
 
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
 
-        public IActionResult Post(UsuarioEntity model)
+        public IActionResult PostLogin(UsuarioEntity model)
         {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
-
-                var usuario = _usuarioRepository.GetUser(model.NomeUsuario, model.Senha);
-
-                if (usuario == null)
-                    return NotFound("Usuario e senha não encontrados");
-
-                var token = TokenService.GenerateToken(usuario);
-
-                return Ok(new
-                {
-                    usuario,
-                    token
-                });
-
-            }
-            catch (Exception)
-            {
-                return BadRequest("Usuario ou senha inválidos");
-
-            }
+            var usuario = _usuarioService.PostLogin(model);
+            if (usuario == null)
+                return BadRequest(_notification.GetErrors());
+            return Ok(usuario);
         }
 
-        [HttpPost]
-        [Route("cadastro")]
-        [AllowAnonymous]
+        //[HttpPost]
+        //[Route("cadastro")]
+        //[AllowAnonymous]
 
 
-        public ActionResult PostCadastro(UsuarioEntity usuario)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var usuarios = _usuarioRepository.PostCadastro(usuario);
+        //public ActionResult PostCadastro(UsuarioEntity usuario)
+        //{
 
-                    return Ok(usuario);
-                }
-                else
-                {
-                    return BadRequest(ModelState);
-                }
-            }
-            catch (Exception e)
-            {
-              // return BadRequest(e);
-
-                return BadRequest("Já existe um cadastro com esse nome de usuário");
-            }
-
-
-        }
-
-
-
+        //}
 
     }
 }
