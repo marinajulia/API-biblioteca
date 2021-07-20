@@ -28,6 +28,16 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
             }
         }
 
+        public UsuarioLivrosEntity GetByIdAndName(int idUsuario, int idLivro)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var usuarioLivros = context.UsuarioLivros.FirstOrDefault(x => x.UsuarioId == idUsuario 
+                && x.LivroId == idLivro);
+                return usuarioLivros;
+            }
+        }
+
         public UsuarioLivrosEntity Post(UsuarioLivrosEntity usuarioLivros)
         {
             using (var context = new ApplicationContext())

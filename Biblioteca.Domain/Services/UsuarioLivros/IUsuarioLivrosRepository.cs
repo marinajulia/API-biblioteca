@@ -8,5 +8,7 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         IEnumerable<UsuarioLivrosEntity> Get();
         UsuarioLivrosEntity GetById(int id);
         UsuarioLivrosEntity Post(UsuarioLivrosEntity usuarioLivros);
+        UsuarioLivrosEntity GetByIdAndName(int idUsuario, int idLivro);
+
     }
 }

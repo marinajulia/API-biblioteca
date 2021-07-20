@@ -47,8 +47,9 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
 
         public UsuarioLivrosDto Post(UsuarioLivrosEntity usuarioLivros)
         {
-            var usuarioLivrosData = _usuarioLivrosRepository.Post(usuarioLivros);
-            if (usuarioLivrosData == null)
+            var VerificarSeUsuarioPegouLivro = _usuarioLivrosRepository.GetByIdAndName(usuarioLivros.UsuarioId, usuarioLivros.LivroId);
+
+            if (VerificarSeUsuarioPegouLivro != null)
                 return _notification.AddWithReturn<UsuarioLivrosDto>("Ops.. parece que esse cadastro já foi feito!");
 
             var usuarioLivrosEntity = _usuarioLivrosRepository.Post(new UsuarioLivrosEntity
