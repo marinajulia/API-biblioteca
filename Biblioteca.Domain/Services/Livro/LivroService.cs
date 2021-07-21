@@ -61,35 +61,37 @@ namespace Biblioteca.Domain.Services.Livro
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
-            //if(dadosUsuarioLogado.Id_PerfilUsuario == 4)
+            if(dadosUsuarioLogado.Id_PerfilUsuario == 2)
+                return _notification.AddWithReturn<LivroDto>("Ops.. parece que você não tem permissão para alterar este livro");
 
+            else {
+                var livroData = _livroRepository.GetByName(livro.Titulo);
+                if (livroData != null)
+                    return _notification.AddWithReturn<LivroDto>("Ops.. parece que esse livro já existe!");
 
-            var livroData = _livroRepository.GetByName(livro.Titulo);
-            if (livroData != null)
-                return _notification.AddWithReturn<LivroDto>("Ops.. parece que esse livro já existe!");
+                var livroEntity = _livroRepository.Post(new LivroEntity {
+                    Titulo = livro.Titulo,
+                    ISBN = livro.ISBN,
+                    CategoriaId = livro.CategoriaId,
+                    AutorId = livro.AutorId,
+                    Descrição = livro.Descrição,
+                    EditoraId = livro.EditoraId,
+                    StatusLivroId = livro.StatusLivroId
+                });
 
-            var livroEntity = _livroRepository.Post(new LivroEntity
-            {
-                Titulo = livro.Titulo,
-                ISBN = livro.ISBN,
-                CategoriaId = livro.CategoriaId,
-                AutorId = livro.AutorId,
-                Descrição = livro.Descrição,
-                EditoraId = livro.EditoraId,
-                StatusLivroId = livro.StatusLivroId
-            });
+                return new LivroDto {
+                    LivroId = livroEntity.LivroId,
+                    Titulo = livroEntity.Titulo,
+                    ISBN = livroEntity.ISBN,
+                    CategoriaId = livroEntity.CategoriaId,
+                    AutorId = livroEntity.AutorId,
+                    Descrição = livroEntity.Descrição,
+                    EditoraId = livroEntity.EditoraId,
+                    StatusLivroId = livroEntity.StatusLivroId
+                };
+            }
 
-            return new LivroDto
-            {
-                LivroId = livroEntity.LivroId,
-                Titulo = livroEntity.Titulo,
-                ISBN = livroEntity.ISBN,
-                CategoriaId = livroEntity.CategoriaId,
-                AutorId = livroEntity.AutorId,
-                Descrição = livroEntity.Descrição,
-                EditoraId = livroEntity.EditoraId,
-                StatusLivroId = livroEntity.StatusLivroId
-            };
+           
         }
     }
 }
