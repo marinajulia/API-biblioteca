@@ -19,13 +19,19 @@ namespace Biblioteca.Domain.Services.Usuario
             _userLoggedData = userLoggedData;
         }
 
-        public bool GetPermition(int idUsuario) {
-            throw new NotImplementedException();
+        public bool Allow(int idUser) 
+        {
+            var usuarioData = _usuarioRepository.GetById(idUser);
+            if (usuarioData == null)
+                return _notification.AddWithReturn<bool>("Usuário ou senha incorretos");
+
+            _userLoggedData.Add(usuarioData.UsuarioId, usuarioData.PerfilUsuarioId);
+
+            return true;
         }
 
         public UsuarioDto PostCadastro(UsuarioEntity usuario)
         {
-
             var comparacaoNome = _usuarioRepository.GetByName(usuario.NomeUsuario);
 
             if (comparacaoNome != null)
@@ -55,9 +61,6 @@ namespace Biblioteca.Domain.Services.Usuario
             var usuarioData = _usuarioRepository.GetUser(usuario.NomeUsuario, usuario.Senha);
             if (usuarioData == null)
                 return _notification.AddWithReturn<UsuarioDto>("Usuário ou senha incorretos");
-
-
-            _userLoggedData.Add(usuarioData.UsuarioId, usuarioData.PerfilUsuarioId);
 
             return new UsuarioDto
             {

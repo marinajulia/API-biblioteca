@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Autor.Dto;
 using Biblioteca.Domain.Services.Autor.Entities;
+using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,13 @@ namespace Biblioteca.Domain.Services.Autor
     {
         private readonly INotification _notification;
         private readonly IAutorRepository _autorRepository;
+        private readonly UserLoggedData _userLoggedData;
 
-        public AutorService(INotification notification, IAutorRepository autorRepository)
+        public AutorService(INotification notification, IAutorRepository autorRepository, UserLoggedData userLoggedData)
         {
             _notification = notification;
             _autorRepository = autorRepository;
-
+            _userLoggedData = userLoggedData;
         }
 
         public IEnumerable<AutorDto> Get()
@@ -46,20 +48,26 @@ namespace Biblioteca.Domain.Services.Autor
 
         public AutorDto Post(AutorDto autorDto)
         {
-            var autorData = _autorRepository.GetByName(autorDto.NomeAutor);
-            if (autorData != null)
-                return _notification.AddWithReturn<AutorDto>("Ops.. parece que esse autor já existe!");
+            var dadosUsuariologado = _userLoggedData.GetData();
 
-            var autorEntity = _autorRepository.Post(new AutorEntity
-            {
-                NomeAutor = autorDto.NomeAutor
-            });
+            if(dadosUsuariologado.Id_PerfilUsuario == 1)
+                return _notification.AddWithReturn<AutorDto>("Ops.. parece que você não tem permissão para alterar este livro");
 
-            return new AutorDto
+            else 
             {
-                AutorId = autorEntity.AutorId,
-                NomeAutor = autorEntity.NomeAutor
-            };
+                var autorData = _autorRepository.GetByName(autorDto.NomeAutor);
+                if (autorData != null)
+                    return _notification.AddWithReturn<AutorDto>("Ops.. parece que esse autor já existe!");
+
+                var autorEntity = _autorRepository.Post(new AutorEntity {
+                    NomeAutor = autorDto.NomeAutor
+                });
+
+                return new AutorDto {
+                    AutorId = autorEntity.AutorId,
+                    NomeAutor = autorEntity.NomeAutor
+                };
+            }
         }
     }
 }

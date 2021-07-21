@@ -1,7 +1,6 @@
 ﻿using Biblioteca.Domain.Common.Criptografia;
 using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Usuario;
-using Biblioteca.Domain.Services.Usuario.Dto;
 using Biblioteca.Infra.Data;
 using System;
 using System.Linq;
@@ -10,6 +9,13 @@ namespace Biblioteca.Infra.Repositories.Usuario
 {
     public class UsuarioRepository : IUsuarioRepository
     {
+        public UsuarioEntity GetById(int id) {
+            using (var context = new ApplicationContext()) {
+                var usuario = context.Usuario.FirstOrDefault(x => x.UsuarioId == id);
+                return usuario;
+            }
+        }
+
         public UsuarioEntity GetByName(string username)
         {
             using (var context = new ApplicationContext())

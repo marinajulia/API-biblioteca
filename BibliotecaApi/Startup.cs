@@ -30,8 +30,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SharedKernel.Domain;
 using SharedKernel.Domain.Notification;
+using System.Linq;
+using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BibliotecaApi
 {
@@ -46,7 +50,7 @@ namespace BibliotecaApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<UserLoggedData>();
+            services.AddScoped<UserLoggedData>();
             services.AddScoped<INotification, Notification>();
 
             RegisterRepositories(services);
@@ -62,6 +66,20 @@ namespace BibliotecaApi
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddJwtBearer(x => {
+                x.Events = new JwtBearerEvents 
+                {
+                    OnTokenValidated = context => {
+                        var allClaims = context.Principal.Claims;
+                        var authService = context.HttpContext.RequestServices.GetRequiredService<IUsuarioService>();
+                        var userId = int.Parse((context.Principal.Identity.Name));
+                        var tokenAuth = allClaims.FirstOrDefault(a => a.Type == ClaimTypes.Authentication)?.Value;
+                        var user = authService.Allow(userId);
+                        if (!user)
+                            context.Fail("Unauthorized");
+
+                        return Task.CompletedTask;
+                    }
+                };
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
@@ -71,6 +89,7 @@ namespace BibliotecaApi
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
+                
             });
 
             services.AddSwaggerGen(c =>

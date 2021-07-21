@@ -3,10 +3,6 @@ using Biblioteca.Domain.Services.Livro.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Biblioteca.Api.Controllers.Livro
 {
@@ -23,8 +19,8 @@ namespace Biblioteca.Api.Controllers.Livro
             _notification = notification;
         }
 
+        //usuario comum pode consultar
         [HttpGet]
-        // [Authorize]
         public IActionResult Get()
         {
             var livros = _livroService.Get();
@@ -32,8 +28,8 @@ namespace Biblioteca.Api.Controllers.Livro
             return Ok(livros);
         }
 
+        //usuario comum pode consultar
         [HttpGet("findbyid")]
-        //[Authorize]
         public IActionResult GetById(int id)
         {
             var response = _livroService.GetById(id);
@@ -42,6 +38,7 @@ namespace Biblioteca.Api.Controllers.Livro
 
             return Ok(response);
         }
+
         [Authorize]
         [HttpPost]
         public IActionResult Post(LivroDto livro)

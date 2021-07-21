@@ -19,8 +19,8 @@ namespace Biblioteca.Domain.Common.Token
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, usuario.NomeUsuario.ToString()),
-                    new Claim(ClaimTypes.Email, usuario.Email.ToString())
+                    new Claim(ClaimTypes.Name, usuario.UsuarioId.ToString()),
+                    new Claim(ClaimTypes.Email, usuario.Email.ToString()),
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
