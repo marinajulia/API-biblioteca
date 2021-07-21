@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Livro;
 using Biblioteca.Domain.Services.Livro.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
 using System;
@@ -41,6 +42,7 @@ namespace Biblioteca.Api.Controllers.Livro
 
             return Ok(response);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Post(LivroDto livro)
         {

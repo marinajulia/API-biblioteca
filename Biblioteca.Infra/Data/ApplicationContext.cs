@@ -8,8 +8,9 @@ namespace Biblioteca.Infra.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-TUN7NB2\SQLEXPRESS;Initial Catalog=Biblioteca;Integrated Security=True");
-            
+            //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-TUN7NB2\SQLEXPRESS;Initial Catalog=Biblioteca;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-8024PRG\SERVIDOR;Initial Catalog=Biblioteca;Integrated Security=True");
+
         }
 
         public DbSet<AutorEntity> Autor { get; set; }

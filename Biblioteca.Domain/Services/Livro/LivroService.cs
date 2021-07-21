@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Livro.Dto;
+using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace Biblioteca.Domain.Services.Livro
     {
         private readonly INotification _notification;
         private readonly ILivroRepository _livroRepository;
+        private readonly UserLoggedData _userLoggedData;
 
-        public LivroService(ILivroRepository livroRepository, INotification notification)
+        public LivroService(ILivroRepository livroRepository, INotification notification, UserLoggedData userLoggedData)
         {
             _livroRepository = livroRepository;
             _notification = notification;
+            _userLoggedData = userLoggedData;
         }
 
         public IEnumerable<LivroDto> Get()
@@ -56,6 +59,11 @@ namespace Biblioteca.Domain.Services.Livro
 
         public LivroDto Post(LivroDto livro)
         {
+            var dadosUsuarioLogado = _userLoggedData.GetData();
+
+            //if(dadosUsuarioLogado.Id_PerfilUsuario == 4)
+
+
             var livroData = _livroRepository.GetByName(livro.Titulo);
             if (livroData != null)
                 return _notification.AddWithReturn<LivroDto>("Ops.. parece que esse livro já existe!");

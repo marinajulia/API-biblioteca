@@ -21,6 +21,7 @@ using Biblioteca.Infra.Repositories.RepositoryCategoria;
 using Biblioteca.Infra.Repositories.StatusUsuario;
 using Biblioteca.Infra.Repositories.Usuario;
 using Biblioteca.Infra.Repositories.UsuarioLivros;
+using Biblioteca.SharedKernel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,6 +46,7 @@ namespace BibliotecaApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<UserLoggedData>();
             services.AddScoped<INotification, Notification>();
 
             RegisterRepositories(services);

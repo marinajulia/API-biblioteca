@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Usuario.Dto;
+using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
 using System;
 
@@ -9,11 +10,17 @@ namespace Biblioteca.Domain.Services.Usuario
     {
         private readonly INotification _notification;
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly UserLoggedData _userLoggedData;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, INotification notification)
+        public UsuarioService(IUsuarioRepository usuarioRepository, INotification notification, UserLoggedData userLoggedData)
         {
             _usuarioRepository = usuarioRepository;
             _notification = notification;
+            _userLoggedData = userLoggedData;
+        }
+
+        public bool GetPermition(int idUsuario) {
+            throw new NotImplementedException();
         }
 
         public UsuarioDto PostCadastro(UsuarioEntity usuario)
@@ -48,6 +55,10 @@ namespace Biblioteca.Domain.Services.Usuario
             var usuarioData = _usuarioRepository.GetUser(usuario.NomeUsuario, usuario.Senha);
             if (usuarioData == null)
                 return _notification.AddWithReturn<UsuarioDto>("Usuário ou senha incorretos");
+
+
+            _userLoggedData.Add(usuarioData.UsuarioId, usuarioData.PerfilUsuarioId);
+
             return new UsuarioDto
             {
                 UsuarioId = usuarioData.UsuarioId,
