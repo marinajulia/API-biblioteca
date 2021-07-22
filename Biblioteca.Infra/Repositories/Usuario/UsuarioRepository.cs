@@ -2,13 +2,21 @@
 using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Usuario;
 using Biblioteca.Infra.Data;
-using System;
 using System.Linq;
 
 namespace Biblioteca.Infra.Repositories.Usuario
 {
     public class UsuarioRepository : IUsuarioRepository
     {
+        public UsuarioEntity GetByCpf(string cpf)
+        {
+            using(var context = new ApplicationContext())
+            {
+                var usuarioCpf = context.Usuario.FirstOrDefault(x => x.CPF == cpf);
+                return usuarioCpf;
+            }
+        }
+
         public UsuarioEntity GetById(int id) {
             using (var context = new ApplicationContext()) {
                 var usuario = context.Usuario.FirstOrDefault(x => x.UsuarioId == id);

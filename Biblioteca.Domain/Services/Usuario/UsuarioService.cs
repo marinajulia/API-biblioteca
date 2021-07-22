@@ -58,6 +58,11 @@ namespace Biblioteca.Domain.Services.Usuario
                 return _notification.AddWithReturn<UsuarioDto>
                     ("Ops.. parece que o status de usuário informado não existe");
 
+            var verificaSeCpfJaExiste = _usuarioRepository.GetByCpf(usuario.CPF);
+            if (verificaSeCpfJaExiste != null)
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("Ops.. parece que o CPF inserido já existe");
+
             var usuarioEntity = _usuarioRepository.PostCadastro(new UsuarioEntity
             {
                 NomeUsuario = usuario.NomeUsuario,
