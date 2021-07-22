@@ -1,8 +1,8 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
+using Biblioteca.Domain.Services.Livro;
 using Biblioteca.Domain.Services.UsuarioLivros.Dto;
 using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,15 +13,18 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         private readonly IUsuarioLivrosRepository _usuarioLivrosRepository;
         private readonly INotification _notification;
         private readonly UserLoggedData _userLoggedData;
+        private readonly ILivroRepository _livroRepository;
 
         public UsuarioLivrosService(
             INotification notification,
             IUsuarioLivrosRepository usuarioLivrosRepository,
-            UserLoggedData userLoggedData)
+            UserLoggedData userLoggedData,
+            ILivroRepository livroRepository)
         {
             _notification = notification;
             _usuarioLivrosRepository = usuarioLivrosRepository;
             _userLoggedData = userLoggedData;
+            _livroRepository = livroRepository;
         }
 
         public IEnumerable<UsuarioLivrosDto> Get()
@@ -61,11 +64,20 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                     ("Ops.. parece que você não tem permissão para adicionar esta relação" +
                     " de usuários e livros");
 
-            var VerificarSeUsuarioPegouLivro = _usuarioLivrosRepository.GetByIdAndName(usuarioLivros.UsuarioId, usuarioLivros.LivroId);
 
-            if (VerificarSeUsuarioPegouLivro != null)
+            var verificarSeLivroEstaEmprestado = _livroRepository.GetById(usuarioLivros.LivroId);
+
+            if (verificarSeLivroEstaEmprestado.StatusLivroId == 1)
+                return _notification.AddWithReturn<UsuarioLivrosDto>
+                    ("Ops.. No momento este livro está emprestado, tente novamente mais tarde");
+
+
+            var verificarSeUsuarioPegouLivro = _usuarioLivrosRepository.GetByIdAndName(usuarioLivros.UsuarioId, usuarioLivros.LivroId);
+
+            if (verificarSeUsuarioPegouLivro != null)
                 return _notification.AddWithReturn<UsuarioLivrosDto>
                     ("Ops.. parece que esse cadastro já foi feito!");
+
 
             var usuarioLivrosEntity = _usuarioLivrosRepository.Post(new UsuarioLivrosEntity
             {
