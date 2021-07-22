@@ -51,7 +51,7 @@ namespace Biblioteca.Domain.Services.Autor
             var dadosUsuariologado = _userLoggedData.GetData();
 
             if(dadosUsuariologado.Id_PerfilUsuario == 1)
-                return _notification.AddWithReturn<AutorDto>("Ops.. parece que você não tem permissão para alterar este livro");
+                return _notification.AddWithReturn<AutorDto>("Ops.. parece que você não tem permissão para adicionar este autor");
 
             else 
             {

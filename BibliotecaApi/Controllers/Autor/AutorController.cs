@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services;
 using Biblioteca.Domain.Services.Autor.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
 
@@ -19,7 +20,6 @@ namespace BibliotecaApi.Controllers.Autor
         }
 
         [HttpGet]
-        // [Authorize]
         public IActionResult Get()
         {
             var autor = _autorService.Get();
@@ -28,7 +28,6 @@ namespace BibliotecaApi.Controllers.Autor
         }
 
         [HttpGet("findbyid")]
-        //[Authorize]
         public IActionResult GetById(int id)
         {
             var autor = _autorService.GetById(id);
@@ -39,6 +38,7 @@ namespace BibliotecaApi.Controllers.Autor
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post(AutorDto autor)
         {
             var response = _autorService.Post(autor);

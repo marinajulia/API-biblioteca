@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Editora;
 using Biblioteca.Domain.Services.Editora.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
 
@@ -37,6 +38,7 @@ namespace BibliotecaApi.Controllers.Editora
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post(EditoraDto editora)
         {
             var response = _editoraService.Post(editora);
