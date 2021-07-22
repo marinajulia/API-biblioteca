@@ -89,7 +89,7 @@ namespace Biblioteca.Domain.Services.Livro
             var livroData = _livroRepository.GetByName(livro.Titulo);
             if (livroData != null)
                 return _notification.AddWithReturn<LivroDto>
-                    ("Ops.. parece que esse livro já existe!");
+                    ("Ops.. parece que esse livro já existe");
 
             var verificaSeCategoriaExiste = _categoriaRepository.GetById(livro.CategoriaId);
             if (verificaSeCategoriaExiste == null)

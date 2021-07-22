@@ -9,5 +9,6 @@ namespace Biblioteca.Domain.Services.Livro
         LivroEntity GetById(int id);
         LivroEntity Post(LivroEntity livro);
         LivroEntity GetByName(string nome);
+        LivroEntity Put(int id, LivroEntity livroEntity);
     }
 }

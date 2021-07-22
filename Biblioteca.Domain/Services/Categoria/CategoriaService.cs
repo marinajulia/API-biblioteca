@@ -15,7 +15,7 @@ namespace Biblioteca.Domain.Services.CategoriaService
         private readonly UserLoggedData _userLoggedData;
 
         public CategoriaService(
-            INotification notification, 
+            INotification notification,
             ICategoriaRepository categoriaRepository,
             UserLoggedData userLoggedData)
         {
@@ -60,26 +60,24 @@ namespace Biblioteca.Domain.Services.CategoriaService
                 return _notification.AddWithReturn<CategoriaDto>
                     ("Ops.. parece que você não tem permissão para adicionar esta categoria");
 
-            else
+            var categoriaData = _categoriaRepository.GetByName(categoria.NomeCategoria);
+            if (categoriaData != null)
+                return _notification.AddWithReturn<CategoriaDto>
+                    ("Ops.. parece que essa categoria já existe!");
+
+            var categoriaEntity = _categoriaRepository.Post(new CategoriaEntity
             {
-                var categoriaData = _categoriaRepository.GetByName(categoria.NomeCategoria);
-                if (categoriaData != null)
-                    return _notification.AddWithReturn<CategoriaDto>
-                        ("Ops.. parece que essa categoria já existe!");
+                NomeCategoria = categoria.NomeCategoria,
+                DescriçãoCategoria = categoria.DescriçãoCategoria
+            });
 
-                var categoriaEntity = _categoriaRepository.Post(new CategoriaEntity
-                {
-                    NomeCategoria = categoria.NomeCategoria,
-                    DescriçãoCategoria = categoria.DescriçãoCategoria
-                });
+            return new CategoriaDto
+            {
+                CategoriaId = categoriaEntity.CategoriaId,
+                DescriçãoCategoria = categoriaEntity.DescriçãoCategoria,
+                NomeCategoria = categoriaEntity.NomeCategoria
+            };
 
-                return new CategoriaDto
-                {
-                    CategoriaId = categoriaEntity.CategoriaId,
-                    DescriçãoCategoria = categoriaEntity.DescriçãoCategoria,
-                    NomeCategoria = categoriaEntity.NomeCategoria
-                };
-            }
         }
     }
 }

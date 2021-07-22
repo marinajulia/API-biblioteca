@@ -14,8 +14,8 @@ namespace Biblioteca.Domain.Services.Autor
         private readonly UserLoggedData _userLoggedData;
 
         public AutorService(
-            INotification notification, 
-            IAutorRepository autorRepository, 
+            INotification notification,
+            IAutorRepository autorRepository,
             UserLoggedData userLoggedData)
         {
             _notification = notification;
@@ -31,7 +31,7 @@ namespace Biblioteca.Domain.Services.Autor
             {
                 AutorId = x.AutorId,
                 NomeAutor = x.NomeAutor
-                
+
             });
         }
 
@@ -54,26 +54,25 @@ namespace Biblioteca.Domain.Services.Autor
         {
             var dadosUsuariologado = _userLoggedData.GetData();
 
-            if(dadosUsuariologado.Id_PerfilUsuario == 1)
+            if (dadosUsuariologado.Id_PerfilUsuario == 1)
                 return _notification.AddWithReturn<AutorDto>
                     ("Ops.. parece que você não tem permissão para adicionar este autor");
 
-            else 
+            var autorData = _autorRepository.GetByName(autorDto.NomeAutor);
+            if (autorData != null)
+                return _notification.AddWithReturn<AutorDto>
+                    ("Ops.. parece que esse autor já existe!");
+
+            var autorEntity = _autorRepository.Post(new AutorEntity
             {
-                var autorData = _autorRepository.GetByName(autorDto.NomeAutor);
-                if (autorData != null)
-                    return _notification.AddWithReturn<AutorDto>
-                        ("Ops.. parece que esse autor já existe!");
+                NomeAutor = autorDto.NomeAutor
+            });
 
-                var autorEntity = _autorRepository.Post(new AutorEntity {
-                    NomeAutor = autorDto.NomeAutor
-                });
-
-                return new AutorDto {
-                    AutorId = autorEntity.AutorId,
-                    NomeAutor = autorEntity.NomeAutor
-                };
-            }
+            return new AutorDto
+            {
+                AutorId = autorEntity.AutorId,
+                NomeAutor = autorEntity.NomeAutor
+            };
         }
     }
 }

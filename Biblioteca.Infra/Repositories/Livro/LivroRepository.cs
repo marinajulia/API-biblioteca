@@ -27,6 +27,15 @@ namespace Biblioteca.Infra.Repositories.Livro
             }
         }
 
+        //public LivroEntity GetByIsbn(string isbn)
+        //{
+        //    using(var context = new ApplicationContext())
+        //    {
+        //        var livro = context.Livro.FirstOrDefault(x => x.ISBN == isbn);
+        //        return livro;
+        //    }
+        //}
+
         public LivroEntity GetByName(string nome)
         {
             using (var context = new ApplicationContext())
@@ -43,6 +52,18 @@ namespace Biblioteca.Infra.Repositories.Livro
                 context.Livro.Add(livro); //para put seria update
                 context.SaveChanges();
                 return livro;
+            }
+        }
+
+        public LivroEntity Put(int id, LivroEntity livroEntity)
+        {
+            using (var context = new ApplicationContext())
+            {
+               livroEntity.StatusLivroId = id;
+
+                context.Livro.Update(livroEntity);
+                context.SaveChanges();
+                return livroEntity;
             }
         }
     }

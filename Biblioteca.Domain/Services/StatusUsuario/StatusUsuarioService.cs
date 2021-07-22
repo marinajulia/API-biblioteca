@@ -14,7 +14,7 @@ namespace Biblioteca.Domain.Services.StatusUsuario
         private readonly UserLoggedData _userLoggedData;
 
         public StatusUsuarioService(
-            INotification notification, 
+            INotification notification,
             IStatusUsuarioRepository statusUsuarioRepository,
             UserLoggedData userLoggedData)
         {
@@ -57,24 +57,21 @@ namespace Biblioteca.Domain.Services.StatusUsuario
                 return _notification.AddWithReturn<StatusUsuarioDto>
                     ("Ops.. parece que você não tem permissão para adicionar este status de usuário");
 
-            else
+            var statusUsuarioData = _statusUsuarioRepository.GetByName(statusUsuario.NomeStatus);
+            if (statusUsuarioData != null)
+                return _notification.AddWithReturn<StatusUsuarioDto>
+                    ("Ops.. parece que esse status já existe!");
+
+            var statusUsuarioEntity = _statusUsuarioRepository.Post(new StatusUsuarioEntity
             {
-                var statusUsuarioData = _statusUsuarioRepository.GetByName(statusUsuario.NomeStatus);
-                if (statusUsuarioData != null)
-                    return _notification.AddWithReturn<StatusUsuarioDto>
-                        ("Ops.. parece que esse status já existe!");
+                NomeStatus = statusUsuario.NomeStatus,
+            });
 
-                var statusUsuarioEntity = _statusUsuarioRepository.Post(new StatusUsuarioEntity
-                {
-                    NomeStatus = statusUsuario.NomeStatus,
-                });
-
-                return new StatusUsuarioDto
-                {
-                    StatusUsuarioId = statusUsuarioEntity.StatusUsuarioId,
-                    NomeStatus = statusUsuarioEntity.NomeStatus,
-                };
-            }
+            return new StatusUsuarioDto
+            {
+                StatusUsuarioId = statusUsuarioEntity.StatusUsuarioId,
+                NomeStatus = statusUsuarioEntity.NomeStatus,
+            };
         }
     }
 }

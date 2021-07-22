@@ -14,7 +14,7 @@ namespace Biblioteca.Domain.Services.PerfilUsuario
         private readonly UserLoggedData _userLoggedData;
 
         public PerfilUsuarioService(
-            INotification notification, 
+            INotification notification,
             IPerfilUsuarioRepository perfilUsuarioRepository,
             UserLoggedData userLoggedData)
         {
@@ -56,24 +56,22 @@ namespace Biblioteca.Domain.Services.PerfilUsuario
                 return _notification.AddWithReturn<PerfilUsuarioDto>
                     ("Ops.. parece que você não tem permissão para adicionar este perfil de usuário");
 
-            else
+            var perfilUsuarioData = _perfilUsuario.GetByName(perfilUsuarioDto.Perfil);
+            if (perfilUsuarioData != null)
+                return _notification.AddWithReturn<PerfilUsuarioDto>("Esse perfil já existe");
+
+            var perfilUsuarioEntity = _perfilUsuario.Post(new PerfilUsuarioEntity
             {
-                var perfilUsuarioData = _perfilUsuario.GetByName(perfilUsuarioDto.Perfil);
-                if (perfilUsuarioData != null)
-                    return _notification.AddWithReturn<PerfilUsuarioDto>("Esse perfil já existe");
+                Perfil = perfilUsuarioDto.Perfil
+            });
 
-                var perfilUsuarioEntity = _perfilUsuario.Post(new PerfilUsuarioEntity
-                {
-                    Perfil = perfilUsuarioDto.Perfil
-                });
+            return new PerfilUsuarioDto
+            {
+                PerfilUsuarioId = perfilUsuarioEntity.PerfilUsuarioId,
+                Perfil = perfilUsuarioEntity.Perfil
+            };
 
-                return new PerfilUsuarioDto
-                {
-                    PerfilUsuarioId = perfilUsuarioEntity.PerfilUsuarioId,
-                    Perfil = perfilUsuarioEntity.Perfil
-                };
-            }
-           
+
         }
     }
 }

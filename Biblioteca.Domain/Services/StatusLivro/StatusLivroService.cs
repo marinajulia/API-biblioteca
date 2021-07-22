@@ -1,4 +1,5 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
+using Biblioteca.Domain.Services.Livro;
 using Biblioteca.Domain.Services.StatusLivro.Dto;
 using Biblioteca.Domain.Services.StatusLivro.Entities;
 using Biblioteca.SharedKernel;
@@ -13,15 +14,18 @@ namespace Biblioteca.Domain.Services.StatusLivro
         private readonly INotification _notification;
         private readonly IStatusLivroRepository _statusLivro;
         private readonly UserLoggedData _userLoggedData;
+        private readonly ILivroRepository _livroRepository;
 
         public StatusLivroService(
-            INotification notification, 
+            INotification notification,
             IStatusLivroRepository statusLivro,
-            UserLoggedData userLoggedData)
+            UserLoggedData userLoggedData,
+            ILivroRepository livroRepository)
         {
             _notification = notification;
             _statusLivro = statusLivro;
             _userLoggedData = userLoggedData;
+            _livroRepository = livroRepository;
         }
 
         public IEnumerable<StatusLivroDto> Get()
@@ -57,23 +61,21 @@ namespace Biblioteca.Domain.Services.StatusLivro
                 return _notification.AddWithReturn<StatusLivroDto>
                     ("Ops.. parece que você não tem permissão para adicionar esta categoria");
 
-            else
+            var statusLivroData = _statusLivro.GetByName(statusLivroEntity.NomeStatus);
+            if (statusLivroData != null)
+                return _notification.AddWithReturn<StatusLivroDto>("Esse status já existe");
+
+            var statusLivroEntities = _statusLivro.Post(new StatusLivroEntity
             {
-                var statusLivroData = _statusLivro.GetByName(statusLivroEntity.NomeStatus);
-                if (statusLivroData != null)
-                    return _notification.AddWithReturn<StatusLivroDto>("Esse status já existe");
+                NomeStatus = statusLivroEntity.NomeStatus
+            });
 
-                var statusLivroEntities = _statusLivro.Post(new StatusLivroEntity
-                {
-                    NomeStatus = statusLivroEntity.NomeStatus
-                });
+            return new StatusLivroDto
+            {
+                StatusLivroId = statusLivroEntities.StatusLivroId,
+                NomeStatus = statusLivroEntities.NomeStatus
+            };
 
-                return new StatusLivroDto
-                {
-                    StatusLivroId = statusLivroEntities.StatusLivroId,
-                    NomeStatus = statusLivroEntities.NomeStatus
-                };
-            }
         }
     }
 }

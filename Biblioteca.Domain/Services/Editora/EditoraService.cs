@@ -59,24 +59,23 @@ namespace Biblioteca.Domain.Services.Editora
                 return _notification.AddWithReturn<EditoraDto>
                     ("Ops.. parece que você não tem permissão para adicionar esta editora");
 
-            else
+
+            var editoraData = _editoraRepository.GetByName(editora.NomeEditora);
+            if (editoraData != null)
+                return _notification.AddWithReturn<EditoraDto>
+                    ("Ops.. parece que essa editora já existe!");
+
+            var editoraEntity = _editoraRepository.Post(new EditoraEntity
             {
-                var editoraData = _editoraRepository.GetByName(editora.NomeEditora);
-                if (editoraData != null)
-                    return _notification.AddWithReturn<EditoraDto>
-                        ("Ops.. parece que essa editora já existe!");
+                NomeEditora = editora.NomeEditora,
+            });
 
-                var editoraEntity = _editoraRepository.Post(new EditoraEntity
-                {
-                    NomeEditora = editora.NomeEditora,
-                });
+            return new EditoraDto
+            {
+                EditoraId = editoraEntity.EditoraId,
+                NomeEditora = editoraEntity.NomeEditora
+            };
 
-                return new EditoraDto
-                {
-                    EditoraId = editoraEntity.EditoraId,
-                    NomeEditora = editoraEntity.NomeEditora
-                };
-            }
         }
     }
 }
