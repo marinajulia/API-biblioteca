@@ -19,8 +19,8 @@ namespace Biblioteca.Api.Controllers.Livro
             _notification = notification;
         }
 
-        //usuario comum pode consultar
         [HttpGet]
+        [Authorize]
         public IActionResult Get()
         {
             var livros = _livroService.Get();
@@ -28,8 +28,8 @@ namespace Biblioteca.Api.Controllers.Livro
             return Ok(livros);
         }
 
-        //usuario comum pode consultar
         [HttpGet("findbyid")]
+        [Authorize]
         public IActionResult GetById(int id)
         {
             var response = _livroService.GetById(id);

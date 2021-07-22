@@ -1,7 +1,5 @@
 ﻿using Biblioteca.Domain.Services.StatusUsuario.Dto;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Biblioteca.Domain.Services.StatusUsuario
 {

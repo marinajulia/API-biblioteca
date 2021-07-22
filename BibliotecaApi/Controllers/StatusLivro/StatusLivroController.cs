@@ -3,10 +3,6 @@ using Biblioteca.Domain.Services.StatusLivro.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BibliotecaApi.Controllers.StatusLivro
 {
@@ -24,7 +20,7 @@ namespace BibliotecaApi.Controllers.StatusLivro
         }
 
         [HttpGet]
-        // [Authorize]
+        [Authorize]
         public IActionResult Get()
         {
             var statusLivros = _statusLivroService.Get();
@@ -33,7 +29,7 @@ namespace BibliotecaApi.Controllers.StatusLivro
         }
 
         [HttpGet("findbyid")]
-        //[Authorize]
+        [Authorize]
         public IActionResult GetById(int id)
         {
             var response = _statusLivroService.GetById(id);

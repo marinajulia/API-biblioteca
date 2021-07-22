@@ -13,7 +13,9 @@ namespace Biblioteca.Domain.Services.PerfilUsuario
         private readonly IPerfilUsuarioRepository _perfilUsuario;
         private readonly UserLoggedData _userLoggedData;
 
-        public PerfilUsuarioService(INotification notification, IPerfilUsuarioRepository perfilUsuarioRepository,
+        public PerfilUsuarioService(
+            INotification notification, 
+            IPerfilUsuarioRepository perfilUsuarioRepository,
             UserLoggedData userLoggedData)
         {
             _notification = notification;
@@ -51,7 +53,8 @@ namespace Biblioteca.Domain.Services.PerfilUsuario
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
-                return _notification.AddWithReturn<PerfilUsuarioDto>("Ops.. parece que você não tem permissão para adicionar este perfil de usuário");
+                return _notification.AddWithReturn<PerfilUsuarioDto>
+                    ("Ops.. parece que você não tem permissão para adicionar este perfil de usuário");
 
             else
             {

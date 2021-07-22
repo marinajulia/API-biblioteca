@@ -13,7 +13,10 @@ namespace Biblioteca.Domain.Services.Livro
         private readonly ILivroRepository _livroRepository;
         private readonly UserLoggedData _userLoggedData;
 
-        public LivroService(ILivroRepository livroRepository, INotification notification, UserLoggedData userLoggedData)
+        public LivroService(
+            ILivroRepository livroRepository, 
+            INotification notification, 
+            UserLoggedData userLoggedData)
         {
             _livroRepository = livroRepository;
             _notification = notification;
@@ -42,7 +45,8 @@ namespace Biblioteca.Domain.Services.Livro
             var livro = _livroRepository.GetById(id);
 
             if (livro == null)
-                return _notification.AddWithReturn<LivroDto>("A categoria não pode ser encontrada");
+                return _notification.AddWithReturn<LivroDto>
+                    ("A categoria não pode ser encontrada");
 
             return new LivroDto
             {
@@ -62,12 +66,14 @@ namespace Biblioteca.Domain.Services.Livro
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
             if(dadosUsuarioLogado.Id_PerfilUsuario == 1)
-                return _notification.AddWithReturn<LivroDto>("Ops.. parece que você não tem permissão para adicionar este livro");
+                return _notification.AddWithReturn<LivroDto>
+                    ("Ops.. parece que você não tem permissão para adicionar este livro");
 
             else {
                 var livroData = _livroRepository.GetByName(livro.Titulo);
                 if (livroData != null)
-                    return _notification.AddWithReturn<LivroDto>("Ops.. parece que esse livro já existe!");
+                    return _notification.AddWithReturn<LivroDto>
+                        ("Ops.. parece que esse livro já existe!");
 
                 var livroEntity = _livroRepository.Post(new LivroEntity {
                     Titulo = livro.Titulo,
@@ -90,8 +96,6 @@ namespace Biblioteca.Domain.Services.Livro
                     StatusLivroId = livroEntity.StatusLivroId
                 };
             }
-
-           
         }
     }
 }

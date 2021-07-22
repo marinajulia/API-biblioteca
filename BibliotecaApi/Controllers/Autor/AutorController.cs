@@ -20,6 +20,7 @@ namespace BibliotecaApi.Controllers.Autor
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Get()
         {
             var autor = _autorService.Get();
@@ -28,6 +29,8 @@ namespace BibliotecaApi.Controllers.Autor
         }
 
         [HttpGet("findbyid")]
+        [Authorize]
+
         public IActionResult GetById(int id)
         {
             var autor = _autorService.GetById(id);

@@ -20,7 +20,7 @@ namespace Biblioteca.Api.Controllers.StatusUsuario
         }
 
         [HttpGet]
-        // [Authorize]
+        [Authorize]
         public IActionResult Get()
         {
             var statusUsuarios = _statusUsuario.Get();
@@ -29,7 +29,7 @@ namespace Biblioteca.Api.Controllers.StatusUsuario
         }
 
         [HttpGet("findbyid")]
-        //[Authorize]
+        [Authorize]
         public IActionResult GetById(int id)
         {
             var response = _statusUsuario.GetById(id);

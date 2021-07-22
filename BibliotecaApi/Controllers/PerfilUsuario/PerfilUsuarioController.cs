@@ -20,6 +20,7 @@ namespace BibliotecaApi.Controllers.PerfilUsuario
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Get()
         {
             var perfilUsuarios = _perfilUsuarioService.Get();
@@ -28,6 +29,7 @@ namespace BibliotecaApi.Controllers.PerfilUsuario
         }
 
         [HttpGet("findbyid")]
+        [Authorize]
         public IActionResult GetById(int id)
         {
             var response = _perfilUsuarioService.GetById(id);

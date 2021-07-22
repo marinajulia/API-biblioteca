@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Biblioteca.Domain.Services.Autor.Entities;
-using Biblioteca.Domain.Services.Entidades;
-
 
 namespace Biblioteca.Domain.Services.Autor
 {

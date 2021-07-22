@@ -39,7 +39,8 @@ namespace Biblioteca.Domain.Services.StatusUsuario
             var statusUsuario = _statusUsuarioRepository.GetById(id);
 
             if (statusUsuario == null)
-                return _notification.AddWithReturn<StatusUsuarioDto>("O status não pode ser encontrado");
+                return _notification.AddWithReturn<StatusUsuarioDto>
+                    ("O status não pode ser encontrado");
 
             return new StatusUsuarioDto
             {

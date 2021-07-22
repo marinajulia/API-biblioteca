@@ -1,13 +1,8 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.UsuarioLivros;
-using Biblioteca.Domain.Services.UsuarioLivros.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Biblioteca.Api.Controllers.UsuarioLivro
 {
@@ -25,6 +20,7 @@ namespace Biblioteca.Api.Controllers.UsuarioLivro
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Get()
         {
             var usuarioLivros = _usuarioLivrosService.Get();
@@ -32,6 +28,7 @@ namespace Biblioteca.Api.Controllers.UsuarioLivro
         }
 
         [HttpGet("findbyid")]
+        [Authorize]
         public IActionResult GetById(int id)
         {
             var response = _usuarioLivrosService.GetById(id);

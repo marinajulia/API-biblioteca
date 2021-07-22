@@ -20,6 +20,7 @@ namespace BibliotecaApi.Controllers.Editora
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Get()
         {
             var editoras = _editoraService.Get();
@@ -28,6 +29,7 @@ namespace BibliotecaApi.Controllers.Editora
         }
 
         [HttpGet("findbyid")]
+        [Authorize]
         public IActionResult GetById(int id)
         {
             var response = _editoraService.GetById(id);

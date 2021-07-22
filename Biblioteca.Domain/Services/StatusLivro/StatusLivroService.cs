@@ -14,7 +14,9 @@ namespace Biblioteca.Domain.Services.StatusLivro
         private readonly IStatusLivroRepository _statusLivro;
         private readonly UserLoggedData _userLoggedData;
 
-        public StatusLivroService(INotification notification, IStatusLivroRepository statusLivro,
+        public StatusLivroService(
+            INotification notification, 
+            IStatusLivroRepository statusLivro,
             UserLoggedData userLoggedData)
         {
             _notification = notification;
@@ -52,7 +54,8 @@ namespace Biblioteca.Domain.Services.StatusLivro
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
-                return _notification.AddWithReturn<StatusLivroDto>("Ops.. parece que você não tem permissão para adicionar esta categoria");
+                return _notification.AddWithReturn<StatusLivroDto>
+                    ("Ops.. parece que você não tem permissão para adicionar esta categoria");
 
             else
             {

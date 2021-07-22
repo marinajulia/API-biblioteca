@@ -13,7 +13,10 @@ namespace Biblioteca.Domain.Services.Editora
         private readonly IEditoraRepository _editoraRepository;
         private readonly UserLoggedData _userLoggedData;
 
-        public EditoraService(INotification notification, IEditoraRepository editoraRepository, UserLoggedData userLoggedData)
+        public EditoraService(
+            INotification notification,
+            IEditoraRepository editoraRepository,
+            UserLoggedData userLoggedData)
         {
             _notification = notification;
             _editoraRepository = editoraRepository;
@@ -38,7 +41,8 @@ namespace Biblioteca.Domain.Services.Editora
             var editora = _editoraRepository.GetById(id);
 
             if (editora == null)
-                return _notification.AddWithReturn<EditoraDto>("A editora não pode ser encontrada");
+                return _notification.AddWithReturn<EditoraDto>
+                    ("A editora não pode ser encontrada");
 
             return new EditoraDto
             {
@@ -52,13 +56,15 @@ namespace Biblioteca.Domain.Services.Editora
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
-                return _notification.AddWithReturn<EditoraDto>("Ops.. parece que você não tem permissão para adicionar esta editora");
+                return _notification.AddWithReturn<EditoraDto>
+                    ("Ops.. parece que você não tem permissão para adicionar esta editora");
 
             else
             {
                 var editoraData = _editoraRepository.GetByName(editora.NomeEditora);
                 if (editoraData != null)
-                    return _notification.AddWithReturn<EditoraDto>("Ops.. parece que essa editora já existe!");
+                    return _notification.AddWithReturn<EditoraDto>
+                        ("Ops.. parece que essa editora já existe!");
 
                 var editoraEntity = _editoraRepository.Post(new EditoraEntity
                 {

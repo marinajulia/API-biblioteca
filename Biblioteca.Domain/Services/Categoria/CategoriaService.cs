@@ -14,7 +14,9 @@ namespace Biblioteca.Domain.Services.CategoriaService
         private readonly ICategoriaRepository _categoriaRepository;
         private readonly UserLoggedData _userLoggedData;
 
-        public CategoriaService(INotification notification, ICategoriaRepository categoriaRepository,
+        public CategoriaService(
+            INotification notification, 
+            ICategoriaRepository categoriaRepository,
             UserLoggedData userLoggedData)
         {
             _notification = notification;
@@ -39,7 +41,8 @@ namespace Biblioteca.Domain.Services.CategoriaService
             var categoria = _categoriaRepository.GetById(id);
 
             if (categoria == null)
-                return _notification.AddWithReturn<CategoriaDto>("A categoria não pode ser encontrada");
+                return _notification.AddWithReturn<CategoriaDto>
+                    ("A categoria não pode ser encontrada");
 
             return new CategoriaDto
             {
@@ -54,13 +57,15 @@ namespace Biblioteca.Domain.Services.CategoriaService
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
-                return _notification.AddWithReturn<CategoriaDto>("Ops.. parece que você não tem permissão para adicionar esta categoria");
+                return _notification.AddWithReturn<CategoriaDto>
+                    ("Ops.. parece que você não tem permissão para adicionar esta categoria");
 
             else
             {
                 var categoriaData = _categoriaRepository.GetByName(categoria.NomeCategoria);
                 if (categoriaData != null)
-                    return _notification.AddWithReturn<CategoriaDto>("Ops.. parece que essa categoria já existe!");
+                    return _notification.AddWithReturn<CategoriaDto>
+                        ("Ops.. parece que essa categoria já existe!");
 
                 var categoriaEntity = _categoriaRepository.Post(new CategoriaEntity
                 {

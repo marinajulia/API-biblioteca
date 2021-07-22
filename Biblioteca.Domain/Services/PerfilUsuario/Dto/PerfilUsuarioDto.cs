@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Biblioteca.Domain.Services.PerfilUsuario.Dto
+﻿namespace Biblioteca.Domain.Services.PerfilUsuario.Dto
 {
     public class PerfilUsuarioDto
     {

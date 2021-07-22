@@ -12,7 +12,10 @@ namespace Biblioteca.Domain.Services.Usuario
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly UserLoggedData _userLoggedData;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, INotification notification, UserLoggedData userLoggedData)
+        public UsuarioService(
+            IUsuarioRepository usuarioRepository, 
+            INotification notification, 
+            UserLoggedData userLoggedData)
         {
             _usuarioRepository = usuarioRepository;
             _notification = notification;
