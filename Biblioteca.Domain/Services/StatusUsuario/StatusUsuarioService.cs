@@ -1,7 +1,7 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.StatusUsuario.Dto;
+using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,11 +11,16 @@ namespace Biblioteca.Domain.Services.StatusUsuario
     {
         private readonly INotification _notification;
         private readonly IStatusUsuarioRepository _statusUsuarioRepository;
+        private readonly UserLoggedData _userLoggedData;
 
-        public StatusUsuarioService(INotification notification, IStatusUsuarioRepository statusUsuarioRepository)
+        public StatusUsuarioService(
+            INotification notification, 
+            IStatusUsuarioRepository statusUsuarioRepository,
+            UserLoggedData userLoggedData)
         {
             _notification = notification;
             _statusUsuarioRepository = statusUsuarioRepository;
+            _userLoggedData = userLoggedData;
         }
 
         public IEnumerable<StatusUsuarioDto> Get()
@@ -45,20 +50,30 @@ namespace Biblioteca.Domain.Services.StatusUsuario
 
         public StatusUsuarioDto Post(StatusUsuarioDto statusUsuario)
         {
-            var statusUsuarioData = _statusUsuarioRepository.GetByName(statusUsuario.NomeStatus);
-            if (statusUsuarioData != null)
-                return _notification.AddWithReturn<StatusUsuarioDto>("Ops.. parece que esse status já existe!");
+            var dadosUsuarioLogado = _userLoggedData.GetData();
 
-            var statusUsuarioEntity = _statusUsuarioRepository.Post(new StatusUsuarioEntity
-            {
-                NomeStatus = statusUsuario.NomeStatus,
-            });
+            if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
+                return _notification.AddWithReturn<StatusUsuarioDto>
+                    ("Ops.. parece que você não tem permissão para adicionar este status de usuário");
 
-            return new StatusUsuarioDto
+            else
             {
-                StatusUsuarioId = statusUsuarioEntity.StatusUsuarioId,
-                NomeStatus = statusUsuarioEntity.NomeStatus,
-            };
+                var statusUsuarioData = _statusUsuarioRepository.GetByName(statusUsuario.NomeStatus);
+                if (statusUsuarioData != null)
+                    return _notification.AddWithReturn<StatusUsuarioDto>
+                        ("Ops.. parece que esse status já existe!");
+
+                var statusUsuarioEntity = _statusUsuarioRepository.Post(new StatusUsuarioEntity
+                {
+                    NomeStatus = statusUsuario.NomeStatus,
+                });
+
+                return new StatusUsuarioDto
+                {
+                    StatusUsuarioId = statusUsuarioEntity.StatusUsuarioId,
+                    NomeStatus = statusUsuarioEntity.NomeStatus,
+                };
+            }
         }
     }
 }

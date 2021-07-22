@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.PerfilUsuario;
 using Biblioteca.Domain.Services.PerfilUsuario.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
 
@@ -37,6 +38,7 @@ namespace BibliotecaApi.Controllers.PerfilUsuario
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post(PerfilUsuarioDto perfil)
         {
             var response = _perfilUsuarioService.Post(perfil);

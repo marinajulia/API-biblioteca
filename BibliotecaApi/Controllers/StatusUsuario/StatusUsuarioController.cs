@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.StatusUsuario;
 using Biblioteca.Domain.Services.StatusUsuario.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
 
@@ -39,6 +40,7 @@ namespace Biblioteca.Api.Controllers.StatusUsuario
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post(StatusUsuarioDto statusUsuario)
         {
             var response = _statusUsuario.Post(statusUsuario);

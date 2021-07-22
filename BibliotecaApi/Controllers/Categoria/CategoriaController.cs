@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Categoria.Dto;
 using Biblioteca.Domain.Services.CategoriaService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
 
@@ -19,7 +20,6 @@ namespace BibliotecaApi.Controllers.Categoria
         }
 
         [HttpGet]
-        // [Authorize]
         public IActionResult Get()
         {
             var categorias = _categoriaService.Get();
@@ -28,7 +28,6 @@ namespace BibliotecaApi.Controllers.Categoria
         }
 
         [HttpGet("findbyid")]
-        //[Authorize]
         public IActionResult GetById(int id)
         {
             var response = _categoriaService.GetById(id);
@@ -37,7 +36,9 @@ namespace BibliotecaApi.Controllers.Categoria
 
             return Ok(response);
         }
+
         [HttpPost]
+        [Authorize]
         public IActionResult Post(CategoriaDto categoria)
         {
             var response = _categoriaService.Post(categoria);

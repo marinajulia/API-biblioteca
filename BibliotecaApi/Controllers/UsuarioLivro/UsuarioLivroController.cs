@@ -1,6 +1,7 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.UsuarioLivros;
 using Biblioteca.Domain.Services.UsuarioLivros.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
 using System;
@@ -41,6 +42,7 @@ namespace Biblioteca.Api.Controllers.UsuarioLivro
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post(UsuarioLivrosEntity usuarioLivros)
         {
             var response = _usuarioLivrosService.Post(usuarioLivros);
