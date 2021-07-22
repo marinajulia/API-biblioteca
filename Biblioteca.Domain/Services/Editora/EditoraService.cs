@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Editora.Dto;
 using Biblioteca.Domain.Services.Entidades;
+using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace Biblioteca.Domain.Services.Editora
     {
         private readonly INotification _notification;
         private readonly IEditoraRepository _editoraRepository;
+        private readonly UserLoggedData _userLoggedData;
 
-        public EditoraService(INotification notification, IEditoraRepository editoraRepository)
+        public EditoraService(INotification notification, IEditoraRepository editoraRepository, UserLoggedData userLoggedData)
         {
             _notification = notification;
             _editoraRepository = editoraRepository;
+            _userLoggedData = userLoggedData;
         }
 
 
@@ -46,20 +49,25 @@ namespace Biblioteca.Domain.Services.Editora
 
         public EditoraDto Post(EditoraDto editora)
         {
-            var editoraData = _editoraRepository.GetByName(editora.NomeEditora);
-            if (editoraData != null)
-                return _notification.AddWithReturn<EditoraDto>("Ops.. parece que essa editora já existe!");
+            var dadosUsuarioLogado = _userLoggedData.GetData();
 
-            var editoraEntity = _editoraRepository.Post(new EditoraEntity
-            {
-                NomeEditora = editora.NomeEditora,
-            });
+            if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
+                return _notification.AddWithReturn<EditoraDto>("Ops.. parece que você não tem permissão para adicionar esta editora");
 
-            return new EditoraDto
-            {
-                EditoraId = editoraEntity.EditoraId,
-                NomeEditora = editoraEntity.NomeEditora
-            };
+            else {
+                var editoraData = _editoraRepository.GetByName(editora.NomeEditora);
+                if (editoraData != null)
+                    return _notification.AddWithReturn<EditoraDto>("Ops.. parece que essa editora já existe!");
+
+                var editoraEntity = _editoraRepository.Post(new EditoraEntity {
+                    NomeEditora = editora.NomeEditora,
+                });
+
+                return new EditoraDto {
+                    EditoraId = editoraEntity.EditoraId,
+                    NomeEditora = editoraEntity.NomeEditora
+                };
+            }
         }
     }
 }

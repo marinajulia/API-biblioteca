@@ -62,7 +62,7 @@ namespace Biblioteca.Domain.Services.Livro
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
             if(dadosUsuarioLogado.Id_PerfilUsuario == 1)
-                return _notification.AddWithReturn<LivroDto>("Ops.. parece que você não tem permissão para alterar este livro");
+                return _notification.AddWithReturn<LivroDto>("Ops.. parece que você não tem permissão para adicionar este livro");
 
             else {
                 var livroData = _livroRepository.GetByName(livro.Titulo);
