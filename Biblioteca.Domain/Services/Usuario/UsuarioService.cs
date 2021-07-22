@@ -1,4 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
+using Biblioteca.Domain.Services.PerfilUsuario;
+using Biblioteca.Domain.Services.StatusUsuario;
 using Biblioteca.Domain.Services.Usuario.Dto;
 using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
@@ -11,15 +13,21 @@ namespace Biblioteca.Domain.Services.Usuario
         private readonly INotification _notification;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly UserLoggedData _userLoggedData;
+        private readonly IPerfilUsuarioRepository _perfilUsuarioRepository;
+        private readonly IStatusUsuarioRepository _statusUsuarioRepository;
 
         public UsuarioService(
             IUsuarioRepository usuarioRepository, 
             INotification notification, 
-            UserLoggedData userLoggedData)
+            UserLoggedData userLoggedData,
+            IPerfilUsuarioRepository perfilUsuarioRepository,
+            IStatusUsuarioRepository statusUsuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
             _notification = notification;
             _userLoggedData = userLoggedData;
+            _perfilUsuarioRepository = perfilUsuarioRepository;
+            _statusUsuarioRepository = statusUsuarioRepository;
         }
 
         public bool Allow(int idUser) 
@@ -36,9 +44,19 @@ namespace Biblioteca.Domain.Services.Usuario
         public UsuarioDto PostCadastro(UsuarioEntity usuario)
         {
             var comparacaoNome = _usuarioRepository.GetByName(usuario.NomeUsuario);
-
             if (comparacaoNome != null)
-                return _notification.AddWithReturn<UsuarioDto>("Este usuário já existe");
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("Ops.. parece que o usuário informado já existe");
+
+            var verifificaSePerfilUsuarioExiste = _perfilUsuarioRepository.GetById(usuario.PerfilUsuarioId);
+            if (verifificaSePerfilUsuarioExiste == null)
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("Ops.. parece que o perfil de usuário informado não existe");
+
+            var verificaSeStatusUsuarioExiste = _statusUsuarioRepository.GetById(usuario.StatusUsuarioId);
+            if (verificaSeStatusUsuarioExiste == null)
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("Ops.. parece que o status de usuário informado não existe");
 
             var usuarioEntity = _usuarioRepository.PostCadastro(new UsuarioEntity
             {
