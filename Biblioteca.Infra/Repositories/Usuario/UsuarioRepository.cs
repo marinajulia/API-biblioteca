@@ -54,5 +54,15 @@ namespace Biblioteca.Infra.Repositories.Usuario
                 return usuario;
             }
         }
+
+        public UsuarioEntity Put(UsuarioEntity usuarioEntity)
+        {
+            using (var context = new ApplicationContext())
+            {
+                context.Usuario.Update(usuarioEntity);
+                context.SaveChanges();
+                return usuarioEntity;
+            }
+        }
     }
 }

@@ -83,20 +83,23 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                     ("Ops.. No momento este livro está emprestado, tente novamente mais tarde");
 
 
-            var verificarSeUsuarioPegouLivro = _usuarioLivrosRepository.GetByIdAndName(usuarioLivros.UsuarioId, usuarioLivros.LivroId);
+            //var verificarSeUsuarioPegouLivro = _usuarioLivrosRepository.GetByIdAndName(usuarioLivros.UsuarioId, usuarioLivros.LivroId);
 
-            if (verificarSeUsuarioPegouLivro != null)
-                return _notification.AddWithReturn<UsuarioLivrosDto>
-                    ("Ops.. parece que esse cadastro já foi feito!");
+            //if (verificarSeUsuarioPegouLivro != null)
+            //    return _notification.AddWithReturn<UsuarioLivrosDto>
+            //        ("Ops.. parece que esse cadastro já foi feito!");
 
 
-            var verificaSeUsuarioExiste = _usuarioRepository.GetById(usuarioLivros.UsuarioId);
-            if (verificaSeUsuarioExiste == null)
+            var usuario = _usuarioRepository.GetById(usuarioLivros.UsuarioId);
+            if (usuario == null)
                 return _notification.AddWithReturn<UsuarioLivrosDto>
                     ("Ops.. parece que o usuario informado não existe");
 
             livro.StatusLivroId = 1;
             var alterandoStatusLivro = _livroRepository.Put(livro);
+
+            usuario.StatusUsuarioId = 2;
+            var alterandoStatusDoUsuario = _usuarioRepository.Put(usuario);
 
             var usuarioLivrosEntity = _usuarioLivrosRepository.Post(new UsuarioLivrosEntity
             {
