@@ -60,6 +60,52 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
             };
         }
 
+
+        public UsuarioLivrosDto PostDevolucao(UsuarioLivrosEntity usuarioLivros)
+        {
+            var dadosUsuarioLogado = _userLoggedData.GetData();
+
+            if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
+                return _notification.AddWithReturn<UsuarioLivrosDto>
+                    ("Ops.. parece que você não tem permissão para alterar esta relação" +
+                    " de usuários e livros");
+
+            var livro = _livroRepository.GetById(usuarioLivros.LivroId);
+            if (livro == null)
+                return _notification.AddWithReturn<UsuarioLivrosDto>
+                    ("Ops.. parece que o livro informado não existe");
+
+            var usuario = _usuarioRepository.GetById(usuarioLivros.UsuarioId);
+            if (usuario == null)
+                return _notification.AddWithReturn<UsuarioLivrosDto>
+                    ("Ops.. parece que o usuario informado não existe");
+
+            var usuarioLivrosData = _usuarioLivrosRepository.GetByIdUsuario(usuarioLivros.UsuarioId);
+
+            livro.StatusLivroId = 2;
+            var alterandoStatusLivro = _livroRepository.Put(livro);
+
+            var idUsuarioLivro = _usuarioLivrosRepository.GetById(usuarioLivros.UsuarioLivrosId);
+
+            if (usuarioLivrosData != null)
+            {
+                usuario.StatusUsuarioId = 1;
+                var alterandoStatusDoUsuario = _usuarioRepository.Put(usuario);
+                return _notification.AddWithReturn<UsuarioLivrosDto>
+                        ("O usuário ainda está com mais livros");
+            }
+
+
+
+            return new UsuarioLivrosDto
+            {
+                UsuarioLivrosId = idUsuarioLivro.UsuarioLivrosId,
+                UsuarioId = idUsuarioLivro.UsuarioId,
+                LivroId = idUsuarioLivro.LivroId
+            };
+
+        }
+
         public UsuarioLivrosDto Post(UsuarioLivrosEntity usuarioLivros)
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();
@@ -69,26 +115,16 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                     ("Ops.. parece que você não tem permissão para adicionar esta relação" +
                     " de usuários e livros");
 
-
             var livro = _livroRepository.GetById(usuarioLivros.LivroId);
             if (livro == null)
                 return _notification.AddWithReturn<UsuarioLivrosDto>
                     ("Ops.. parece que o livro informado não existe");
-
 
             var verificarSeLivroEstaEmprestado = _livroRepository.GetById(usuarioLivros.LivroId);
 
             if (verificarSeLivroEstaEmprestado.StatusLivroId == 1)
                 return _notification.AddWithReturn<UsuarioLivrosDto>
                     ("Ops.. No momento este livro está emprestado, tente novamente mais tarde");
-
-
-            //var verificarSeUsuarioPegouLivro = _usuarioLivrosRepository.GetByIdAndName(usuarioLivros.UsuarioId, usuarioLivros.LivroId);
-
-            //if (verificarSeUsuarioPegouLivro != null)
-            //    return _notification.AddWithReturn<UsuarioLivrosDto>
-            //        ("Ops.. parece que esse cadastro já foi feito!");
-
 
             var usuario = _usuarioRepository.GetById(usuarioLivros.UsuarioId);
             if (usuario == null)

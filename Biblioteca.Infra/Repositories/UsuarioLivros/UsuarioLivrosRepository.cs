@@ -1,7 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.UsuarioLivros;
 using Biblioteca.Infra.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,7 +22,8 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
         {
             using(var context = new ApplicationContext())
             {
-                var usuarioLivros = context.UsuarioLivros.FirstOrDefault(x => x.UsuarioLivrosId == id);
+                var usuarioLivros = context.UsuarioLivros.FirstOrDefault
+                    (x => x.UsuarioLivrosId == id);
                 return usuarioLivros;
             }
         }
@@ -32,8 +32,19 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
         {
             using (var context = new ApplicationContext())
             {
-                var usuarioLivros = context.UsuarioLivros.FirstOrDefault(x => x.UsuarioId == idUsuario 
+                var usuarioLivros = context.UsuarioLivros.FirstOrDefault
+                    (x => x.UsuarioId == idUsuario 
                 && x.LivroId == idLivro);
+                return usuarioLivros;
+            }
+        }
+
+        public UsuarioLivrosEntity GetByIdUsuario(int id)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var usuarioLivros = context.UsuarioLivros.FirstOrDefault
+                    (x => x.UsuarioId == id);
                 return usuarioLivros;
             }
         }

@@ -49,5 +49,18 @@ namespace Biblioteca.Api.Controllers.UsuarioLivro
 
             return Ok(response);
         }
+
+
+        [HttpPost("devolucao")]
+        [Authorize]
+        public IActionResult PostDevolucao(UsuarioLivrosEntity usuarioLivros)
+        {
+            var response = _usuarioLivrosService.PostDevolucao(usuarioLivros);
+
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+        }
     }
 }
