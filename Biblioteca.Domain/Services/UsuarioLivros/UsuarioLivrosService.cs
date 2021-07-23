@@ -80,12 +80,13 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                 return _notification.AddWithReturn<UsuarioLivrosDto>
                     ("Ops.. parece que o usuario informado não existe");
 
-            var usuarioLivrosData = _usuarioLivrosRepository.GetByIdUsuario(usuarioLivros.UsuarioId);
-
             livro.StatusLivroId = 2;
             var alterandoStatusLivro = _livroRepository.Put(livro);
 
             var idUsuarioLivro = _usuarioLivrosRepository.GetById(usuarioLivros.UsuarioLivrosId);
+
+
+            var usuarioLivrosData = _usuarioLivrosRepository.GetByIdUsuario(usuarioLivros.UsuarioId);
 
             if (usuarioLivrosData != null)
             {
@@ -95,8 +96,7 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                         ("O usuário ainda está com mais livros");
             }
 
-
-
+   
             return new UsuarioLivrosDto
             {
                 UsuarioLivrosId = idUsuarioLivro.UsuarioLivrosId,
