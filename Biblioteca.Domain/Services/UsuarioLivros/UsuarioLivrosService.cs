@@ -16,7 +16,7 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         private readonly UserLoggedData _userLoggedData;
         private readonly ILivroRepository _livroRepository;
         private readonly IUsuarioRepository _usuarioRepository;
-        
+
 
         public UsuarioLivrosService(
             INotification notification,
@@ -70,8 +70,8 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                     " de usuários e livros");
 
 
-            var vefificaSeLivroExiste = _livroRepository.GetById(usuarioLivros.LivroId);
-            if (vefificaSeLivroExiste == null)
+            var livro = _livroRepository.GetById(usuarioLivros.LivroId);
+            if (livro == null)
                 return _notification.AddWithReturn<UsuarioLivrosDto>
                     ("Ops.. parece que o livro informado não existe");
 
@@ -95,11 +95,13 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                 return _notification.AddWithReturn<UsuarioLivrosDto>
                     ("Ops.. parece que o usuario informado não existe");
 
+            livro.StatusLivroId = 1;
+            var alterandoStatusLivro = _livroRepository.Put(livro);
+
             var usuarioLivrosEntity = _usuarioLivrosRepository.Post(new UsuarioLivrosEntity
             {
                 UsuarioId = usuarioLivros.UsuarioId,
                 LivroId = usuarioLivros.LivroId
-
             });
 
             return new UsuarioLivrosDto

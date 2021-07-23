@@ -55,12 +55,10 @@ namespace Biblioteca.Infra.Repositories.Livro
             }
         }
 
-        public LivroEntity Put(int id, LivroEntity livroEntity)
+        public LivroEntity Put(LivroEntity livroEntity)
         {
             using (var context = new ApplicationContext())
             {
-               livroEntity.StatusLivroId = id;
-
                 context.Livro.Update(livroEntity);
                 context.SaveChanges();
                 return livroEntity;
