@@ -31,7 +31,8 @@ namespace Biblioteca.Infra.Repositories.RepositoryCategoria
         {
             using (var context = new ApplicationContext())
             {
-                var categoria = context.Categoria.FirstOrDefault(x => x.NomeCategoria.Trim().ToLower() == nome.Trim().ToLower());
+                var categoria = context.Categoria.FirstOrDefault(
+                    x => x.NomeCategoria.Trim().ToLower() == nome.Trim().ToLower());
                 return categoria;
             }
         }

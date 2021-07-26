@@ -65,6 +65,14 @@ namespace Biblioteca.Domain.Services.CategoriaService
                 return _notification.AddWithReturn<CategoriaDto>
                     ("Ops.. parece que essa categoria já existe!");
 
+            if (categoria.NomeCategoria == "" || categoria.DescriçãoCategoria == "") 
+                return _notification.AddWithReturn<CategoriaDto>
+                    ("Você não pode inserir um campo vazio");
+
+            if (categoria.DescriçãoCategoria == null)
+                return _notification.AddWithReturn<CategoriaDto>
+                    ("Você não pode inserir uma descrição nula");
+
             var categoriaEntity = _categoriaRepository.Post(new CategoriaEntity
             {
                 NomeCategoria = categoria.NomeCategoria,
