@@ -57,8 +57,8 @@ namespace Biblioteca.Api.Controllers.UsuarioLivro
         {
             var response = _usuarioLivrosService.PostDevolucao(usuarioLivros);
 
-            if (response == null)
-                return BadRequest(_notification.GetErrors());
+           if (response == null)
+                return Ok(_notification.GetErrors());
 
             return Ok(response);
         }

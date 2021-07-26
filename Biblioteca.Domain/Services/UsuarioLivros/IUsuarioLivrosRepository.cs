@@ -9,7 +9,9 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         UsuarioLivrosEntity GetById(int id);
         UsuarioLivrosEntity GetByIdUsuario(int id);
         UsuarioLivrosEntity Post(UsuarioLivrosEntity usuarioLivros);
-        UsuarioLivrosEntity GetByIdAndName(int idUsuario, int idLivro);
+        UsuarioLivrosEntity GetByLivro(int idLivro);
+        void Delete(UsuarioLivrosEntity usuarioLivros);
+
 
     }
 }

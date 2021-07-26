@@ -10,5 +10,6 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         UsuarioLivrosDto GetById(int id);
         UsuarioLivrosDto Post(UsuarioLivrosEntity usuarioLivros);
         UsuarioLivrosDto PostDevolucao(UsuarioLivrosEntity usuarioLivros);
+
     }
 }

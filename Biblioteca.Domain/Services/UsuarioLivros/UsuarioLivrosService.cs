@@ -83,11 +83,12 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
             livro.StatusLivroId = 2;
             var alterandoStatusLivro = _livroRepository.Put(livro);
 
-            var idUsuarioLivro = _usuarioLivrosRepository.GetById(usuarioLivros.UsuarioLivrosId);
+            var buscaPorLivro = _usuarioLivrosRepository.GetByLivro(usuarioLivros.LivroId);
+
+            _usuarioLivrosRepository.Delete(buscaPorLivro);
 
             return _notification.AddWithReturn<UsuarioLivrosDto>
-                    ("teste eu certo");
-
+                    ("O livro foi devolvido com sucesso");
         }
 
         public UsuarioLivrosDto Post(UsuarioLivrosEntity usuarioLivros)

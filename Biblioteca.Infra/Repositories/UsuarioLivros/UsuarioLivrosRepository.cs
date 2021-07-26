@@ -8,9 +8,18 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
 {
     public class UsuarioLivrosRepository : IUsuarioLivrosRepository
     {
+        public void Delete(UsuarioLivrosEntity usuarioLivros)
+        {
+            using (var context = new ApplicationContext())
+            {
+                context.UsuarioLivros.Remove(usuarioLivros);
+                context.SaveChanges();
+            }
+        }
+
         public IEnumerable<UsuarioLivrosEntity> Get()
         {
-            using(var context = new ApplicationContext())
+            using (var context = new ApplicationContext())
             {
                 var usuarioLivros = context.UsuarioLivros;
 
@@ -20,7 +29,7 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
 
         public UsuarioLivrosEntity GetById(int id)
         {
-            using(var context = new ApplicationContext())
+            using (var context = new ApplicationContext())
             {
                 var usuarioLivros = context.UsuarioLivros.FirstOrDefault
                     (x => x.UsuarioLivrosId == id);
@@ -28,13 +37,12 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
             }
         }
 
-        public UsuarioLivrosEntity GetByIdAndName(int idUsuario, int idLivro)
+        public UsuarioLivrosEntity GetByLivro(int idLivro)
         {
             using (var context = new ApplicationContext())
             {
                 var usuarioLivros = context.UsuarioLivros.FirstOrDefault
-                    (x => x.UsuarioId == idUsuario 
-                && x.LivroId == idLivro);
+                    (x => x.LivroId == idLivro);
                 return usuarioLivros;
             }
         }
@@ -53,7 +61,7 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
         {
             using (var context = new ApplicationContext())
             {
-                context.UsuarioLivros.Add(usuarioLivros); 
+                context.UsuarioLivros.Add(usuarioLivros);
                 context.SaveChanges();
                 return usuarioLivros;
             }
