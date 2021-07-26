@@ -85,24 +85,8 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
 
             var idUsuarioLivro = _usuarioLivrosRepository.GetById(usuarioLivros.UsuarioLivrosId);
 
-
-            var usuarioLivrosData = _usuarioLivrosRepository.GetByIdUsuario(usuarioLivros.UsuarioId);
-
-            if (usuarioLivrosData != null)
-            {
-                usuario.StatusUsuarioId = 1;
-                var alterandoStatusDoUsuario = _usuarioRepository.Put(usuario);
-                return _notification.AddWithReturn<UsuarioLivrosDto>
-                        ("O usuário ainda está com mais livros");
-            }
-
-   
-            return new UsuarioLivrosDto
-            {
-                UsuarioLivrosId = idUsuarioLivro.UsuarioLivrosId,
-                UsuarioId = idUsuarioLivro.UsuarioId,
-                LivroId = idUsuarioLivro.LivroId
-            };
+            return _notification.AddWithReturn<UsuarioLivrosDto>
+                    ("teste eu certo");
 
         }
 
@@ -134,7 +118,7 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
             livro.StatusLivroId = 1;
             var alterandoStatusLivro = _livroRepository.Put(livro);
 
-            usuario.StatusUsuarioId = 2;
+            usuario.StatusUsuarioId = 6;
             var alterandoStatusDoUsuario = _usuarioRepository.Put(usuario);
 
             var usuarioLivrosEntity = _usuarioLivrosRepository.Post(new UsuarioLivrosEntity
