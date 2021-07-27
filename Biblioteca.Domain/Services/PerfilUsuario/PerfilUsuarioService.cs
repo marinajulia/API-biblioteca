@@ -1,9 +1,9 @@
-﻿using Biblioteca.Domain.Services.PerfilUsuario.Dto;
+﻿using Biblioteca.Domain.Services.Entidades;
+using Biblioteca.Domain.Services.PerfilUsuario.Dto;
+using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
 using System.Collections.Generic;
 using System.Linq;
-using Biblioteca.Domain.Services.Entidades;
-using Biblioteca.SharedKernel;
 
 namespace Biblioteca.Domain.Services.PerfilUsuario
 {
@@ -58,7 +58,12 @@ namespace Biblioteca.Domain.Services.PerfilUsuario
 
             var perfilUsuarioData = _perfilUsuario.GetByName(perfilUsuarioDto.Perfil);
             if (perfilUsuarioData != null)
-                return _notification.AddWithReturn<PerfilUsuarioDto>("Esse perfil já existe");
+                return _notification.AddWithReturn<PerfilUsuarioDto>
+                    ("Esse perfil já existe");
+
+            if (perfilUsuarioDto.Perfil == "")
+                return _notification.AddWithReturn<PerfilUsuarioDto>
+                    ("Ops.. você não pode inserir um campo vazio");
 
             var perfilUsuarioEntity = _perfilUsuario.Post(new PerfilUsuarioEntity
             {
@@ -70,8 +75,6 @@ namespace Biblioteca.Domain.Services.PerfilUsuario
                 PerfilUsuarioId = perfilUsuarioEntity.PerfilUsuarioId,
                 Perfil = perfilUsuarioEntity.Perfil
             };
-
-
         }
     }
 }

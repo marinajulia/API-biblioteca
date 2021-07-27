@@ -4,7 +4,6 @@ using Biblioteca.Domain.Services.StatusUsuario;
 using Biblioteca.Domain.Services.Usuario.Dto;
 using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
-using System;
 
 namespace Biblioteca.Domain.Services.Usuario
 {
@@ -17,8 +16,8 @@ namespace Biblioteca.Domain.Services.Usuario
         private readonly IStatusUsuarioRepository _statusUsuarioRepository;
 
         public UsuarioService(
-            IUsuarioRepository usuarioRepository, 
-            INotification notification, 
+            IUsuarioRepository usuarioRepository,
+            INotification notification,
             UserLoggedData userLoggedData,
             IPerfilUsuarioRepository perfilUsuarioRepository,
             IStatusUsuarioRepository statusUsuarioRepository)
@@ -30,7 +29,7 @@ namespace Biblioteca.Domain.Services.Usuario
             _statusUsuarioRepository = statusUsuarioRepository;
         }
 
-        public bool Allow(int idUser) 
+        public bool Allow(int idUser)
         {
             var usuarioData = _usuarioRepository.GetById(idUser);
             if (usuarioData == null)
@@ -63,6 +62,17 @@ namespace Biblioteca.Domain.Services.Usuario
                 return _notification.AddWithReturn<UsuarioDto>
                     ("Ops.. parece que o CPF inserido já existe");
 
+            if (usuario.CPF == "" || usuario.Email == "" || usuario.NomeUsuario == "" || usuario.Senha == "")
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("Ops.. você não pode inserir um campo vazio");
+
+            var tamanhoCpf = usuario.CPF.Length;
+
+            if (tamanhoCpf != 11)
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("O CPF está com tamanho incorreto");
+
+
             var usuarioEntity = _usuarioRepository.PostCadastro(new UsuarioEntity
             {
                 NomeUsuario = usuario.NomeUsuario,
@@ -84,9 +94,15 @@ namespace Biblioteca.Domain.Services.Usuario
 
         public UsuarioDto PostLogin(UsuarioEntity usuario)
         {
+
+            if (usuario.NomeUsuario == "" || usuario.Senha == "")
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("Existem campos vazios no login!");
+
             var usuarioData = _usuarioRepository.GetUser(usuario.NomeUsuario, usuario.Senha);
             if (usuarioData == null)
-                return _notification.AddWithReturn<UsuarioDto>("Usuário ou senha incorretos");
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("Usuário ou senha incorretos");
 
             return new UsuarioDto
             {

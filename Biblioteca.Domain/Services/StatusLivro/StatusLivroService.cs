@@ -65,6 +65,10 @@ namespace Biblioteca.Domain.Services.StatusLivro
             if (statusLivroData != null)
                 return _notification.AddWithReturn<StatusLivroDto>("Esse status já existe");
 
+            if (statusLivroEntity.NomeStatus == "")
+                return _notification.AddWithReturn<StatusLivroDto>
+                    ("Ops.. você não pode inserir um campo vazio");
+
             var statusLivroEntities = _statusLivro.Post(new StatusLivroEntity
             {
                 NomeStatus = statusLivroEntity.NomeStatus

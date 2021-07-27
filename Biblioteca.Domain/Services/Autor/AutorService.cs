@@ -63,6 +63,10 @@ namespace Biblioteca.Domain.Services.Autor
                 return _notification.AddWithReturn<AutorDto>
                     ("Ops.. parece que esse autor já existe!");
 
+            if (!string.IsNullOrEmpty(autorDto.NomeAutor))
+                return _notification.AddWithReturn<AutorDto>
+                    ("Você não pode inserir um campo vazio");
+
             var autorEntity = _autorRepository.Post(new AutorEntity
             {
                 NomeAutor = autorDto.NomeAutor

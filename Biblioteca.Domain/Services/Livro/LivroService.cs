@@ -111,6 +111,15 @@ namespace Biblioteca.Domain.Services.Livro
                 return _notification.AddWithReturn<LivroDto>
                     ("Ops.. parece que o status do livro informado não existe");
 
+            if(livro.CategoriaId < 1 || livro.AutorId < 1 || livro.EditoraId < 1 ||
+                livro.StatusLivroId < 1)
+                return _notification.AddWithReturn<LivroDto>
+                    ("Você não pode inserir um campo vazio");
+
+            if (livro.Descrição == "" || livro.ISBN == "" ||livro.Titulo == "")
+                return _notification.AddWithReturn<LivroDto>
+                    ("Você não pode inserir um campo vazio");
+
             var livroEntity = _livroRepository.Post(new LivroEntity
             {
                 Titulo = livro.Titulo,

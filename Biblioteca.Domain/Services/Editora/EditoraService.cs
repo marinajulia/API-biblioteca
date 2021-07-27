@@ -65,6 +65,10 @@ namespace Biblioteca.Domain.Services.Editora
                 return _notification.AddWithReturn<EditoraDto>
                     ("Ops.. parece que essa editora já existe!");
 
+            if (editora.NomeEditora == "")
+                return _notification.AddWithReturn<EditoraDto>
+                    ("Você não pode inserir um campo vazio");
+
             var editoraEntity = _editoraRepository.Post(new EditoraEntity
             {
                 NomeEditora = editora.NomeEditora,

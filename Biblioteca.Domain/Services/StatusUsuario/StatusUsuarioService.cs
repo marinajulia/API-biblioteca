@@ -62,6 +62,10 @@ namespace Biblioteca.Domain.Services.StatusUsuario
                 return _notification.AddWithReturn<StatusUsuarioDto>
                     ("Ops.. parece que esse status já existe!");
 
+            if (statusUsuario.NomeStatus == "")
+                return _notification.AddWithReturn<StatusUsuarioDto>
+                    ("Ops.. você não pode inserir um campo vazio");
+
             var statusUsuarioEntity = _statusUsuarioRepository.Post(new StatusUsuarioEntity
             {
                 NomeStatus = statusUsuario.NomeStatus,
