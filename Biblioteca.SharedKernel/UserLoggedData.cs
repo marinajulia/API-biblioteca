@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Biblioteca.SharedKernel {
+namespace Biblioteca.SharedKernel
+{
     public class UserLoggedData
     {
         private readonly List<DataToken> _data;

@@ -9,6 +9,7 @@ namespace Biblioteca.Domain.Services.Usuario
         UsuarioEntity GetByName(string username);
         UsuarioEntity GetById(int id);
         UsuarioEntity GetByCpf(string cpf);
+        bool ValidaCpf(string cpf);
         UsuarioEntity Put(UsuarioEntity usuarioEntity);
 
     }

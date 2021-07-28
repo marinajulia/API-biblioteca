@@ -10,15 +10,17 @@ namespace Biblioteca.Infra.Repositories.Usuario
     {
         public UsuarioEntity GetByCpf(string cpf)
         {
-            using(var context = new ApplicationContext())
+            using (var context = new ApplicationContext())
             {
                 var usuarioCpf = context.Usuario.FirstOrDefault(x => x.CPF == cpf);
                 return usuarioCpf;
             }
         }
 
-        public UsuarioEntity GetById(int id) {
-            using (var context = new ApplicationContext()) {
+        public UsuarioEntity GetById(int id)
+        {
+            using (var context = new ApplicationContext())
+            {
                 var usuario = context.Usuario.FirstOrDefault(x => x.UsuarioId == id);
                 return usuario;
             }
@@ -62,6 +64,69 @@ namespace Biblioteca.Infra.Repositories.Usuario
                 context.Usuario.Update(usuarioEntity);
                 context.SaveChanges();
                 return usuarioEntity;
+            }
+        }
+
+        public bool ValidaCpf(string cpf)
+        {
+            using (new ApplicationContext())
+            {
+              
+                int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+                int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+                string auxCpf, digito;
+                int soma, resto;
+
+                cpf = cpf.Trim();
+                cpf = cpf.Replace(".", "").Replace("-", "");
+
+                if (cpf.Length != 11)
+                    return false;
+
+                auxCpf = cpf.Substring(0, 9);
+
+                soma = 0;
+
+                for (int i = 0; i < 9; i++)
+                {
+                    soma += int.Parse(auxCpf[i].ToString()) * multiplicador1[i];
+                }
+
+                resto = soma % 11;
+
+                if (resto < 2)
+                    resto = 0;
+
+                else
+                    resto = 11 - resto;
+
+
+                digito = resto.ToString();
+                auxCpf = auxCpf + digito;
+
+                soma = 0;
+
+                for (int i = 0; i < 10; i++)
+                {
+                    soma += int.Parse(auxCpf[i].ToString()) * multiplicador2[i];
+                }
+
+                resto = soma % 11;
+
+                if (resto < 2)
+                    resto = 0;
+
+                else
+                    resto = 11 - resto;
+
+                auxCpf = auxCpf + resto;
+
+                if (cpf == auxCpf)
+                    return true;
+                else
+                    return false;
+
             }
         }
     }

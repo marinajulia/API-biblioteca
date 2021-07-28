@@ -67,68 +67,11 @@ namespace Biblioteca.Domain.Services.Usuario
                     ("Ops.. você não pode inserir um campo vazio");
 
 
-            if (usuario.CPF.Length != 11)
+            var validaCpf = _usuarioRepository.ValidaCpf(usuario.CPF);
+            if (validaCpf == false)
                 return _notification.AddWithReturn<UsuarioDto>
-                    ("O CPF está com tamanho incorreto");
-
-
-            //int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-            //int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-
-            //string cpf = usuario.CPF;
-            //string auxCpf, digito;
-            //int soma, resto;
-
-            //cpf = cpf.Trim();
-
-            //auxCpf = cpf.Substring(0, 9);
-
-            //soma = 0;
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    soma += int.Parse(auxCpf[i].ToString()) * multiplicador1[i];
-            //}
-
-            //resto = soma % 11;
-
-            //if (resto < 2)
-            //    resto = 0;
-
-            //else
-            //{
-            //    resto = 11 - resto;
-            //}
-
-            //digito = resto.ToString();
-            //auxCpf = auxCpf + digito;
-
-            //soma = 0;
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    soma += int.Parse(auxCpf[i].ToString()) * multiplicador2[i];
-            //}
-
-            //resto = soma % 11;
-
-            //if (resto < 2)
-            //    resto = 0;
-
-            //else
-            //{
-            //    resto = 11 - resto;
-            //}
-
-            //auxCpf = auxCpf + resto;
-
-            //if (cpf == auxCpf)
-            //    return _notification.AddWithReturn<UsuarioDto>
-            //        ("O CPF foi verificado com sucesso");
-            //else
-            //    return _notification.AddWithReturn<UsuarioDto>
-            //        ("O CPF é inválido");
-
+                    ("O CPF é inválido");
+           
 
             var usuarioEntity = _usuarioRepository.PostCadastro(new UsuarioEntity
             {
