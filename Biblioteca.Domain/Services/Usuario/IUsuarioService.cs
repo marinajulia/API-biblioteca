@@ -7,6 +7,7 @@ namespace Biblioteca.Domain.Services.Usuario
     {
         UsuarioDto PostCadastro(UsuarioEntity usuario);
         UsuarioDto PostLogin(UsuarioEntity usuario);
+        UsuarioDto PostBloqueio(int id);
         bool Allow(int idUser);
     }
 }

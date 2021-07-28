@@ -9,12 +9,13 @@ namespace Biblioteca.Domain.Services.Entidades
         public int LivroId { get; set; }
         public string Titulo { get; set; }
         public string ISBN { get; set; }
+
         public int CategoriaId { get; set; }
-
         public CategoriaEntity Categoria { get; set; }
-        public int AutorId { get; set; }
 
+        public int AutorId { get; set; }
         public AutorEntity Autor { get; set; }
+
         public string Descrição { get; set; }
 
         public int EditoraId { get; set; }

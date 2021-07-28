@@ -23,7 +23,6 @@ namespace Biblioteca.Api.Controllers.Usuario
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-
         public IActionResult PostLogin(UsuarioEntity model)
         {
             var usuario = _usuarioService.PostLogin(model);
@@ -35,14 +34,23 @@ namespace Biblioteca.Api.Controllers.Usuario
             return Ok(token);
         }
 
-        [HttpPost]
-        [Route("cadastro")]
+        [HttpPost("cadastro")]
         [AllowAnonymous]
-
-
         public ActionResult PostCadastro(UsuarioEntity usuario)
         {
             var response = _usuarioService.PostCadastro(usuario);
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+
+        }
+
+        [HttpPost("bloquear")]
+        [Authorize]
+        public ActionResult PostBloqueio(int id)
+        {
+            var response = _usuarioService.PostBloqueio(id);
             if (response == null)
                 return BadRequest(_notification.GetErrors());
 

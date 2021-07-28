@@ -26,6 +26,7 @@ C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\SharedKernel.Domain.dll
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\Biblioteca.Domain.pdb
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\bin\Debug\netcoreapp3.1\Biblioteca.SharedKernel.pdb
+C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.csprojAssemblyReference.cache
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.AssemblyInfoInputs.cache
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.AssemblyInfo.cs
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.csproj.CoreCompileInputs.cache
@@ -33,4 +34,3 @@ C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.dll
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.pdb
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.genruntimeconfig.cache
-C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.Infra\obj\Debug\netcoreapp3.1\Biblioteca.Infra.csprojAssemblyReference.cache

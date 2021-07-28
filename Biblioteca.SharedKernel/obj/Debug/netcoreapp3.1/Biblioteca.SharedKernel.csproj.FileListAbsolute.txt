@@ -21,4 +21,3 @@ C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.SharedKernel\obj\Debug\netcore
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.dll
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.pdb
 C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.genruntimeconfig.cache
-C:\Users\Marina\Desktop\API-biblioteca\Biblioteca.SharedKernel\obj\Debug\netcoreapp3.1\Biblioteca.SharedKernel.csprojAssemblyReference.cache

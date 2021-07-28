@@ -40,6 +40,25 @@ namespace Biblioteca.Domain.Services.Usuario
             return true;
         }
 
+        public UsuarioDto PostBloqueio(int id)
+        {
+            var usuario = _usuarioRepository.GetById(id);
+            if (usuario == null)
+                return _notification.AddWithReturn<UsuarioDto>("O usuário informado não existe");
+
+            var statusUsuario = _usuarioRepository.GetByStatus(usuario.UsuarioId);
+            if (statusUsuario != null)  
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("Ops.. parece que esse usuário já está bloqueado");
+
+            usuario.StatusUsuarioId = 5;
+            var alterandoStatusUsuario = _usuarioRepository.Put(usuario);
+
+            return _notification.AddWithReturn<UsuarioDto>
+                ("O usuário foi bloqueado com sucesso");
+
+        }
+
         public UsuarioDto PostCadastro(UsuarioEntity usuario)
         {
             var comparacaoNome = _usuarioRepository.GetByName(usuario.NomeUsuario);
@@ -113,5 +132,7 @@ namespace Biblioteca.Domain.Services.Usuario
                 PerfilUsuarioId = usuarioData.PerfilUsuarioId
             };
         }
+
+       
     }
 }
