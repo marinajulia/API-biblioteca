@@ -9,7 +9,7 @@ namespace Biblioteca.Domain.Services.Categoria
         CategoriaEntity GetById(int id);
         CategoriaEntity Post(CategoriaEntity categoria);
         CategoriaEntity GetByName(string nome);
-
+        bool Delete(CategoriaEntity categoriaEntity);
     }
 }
 

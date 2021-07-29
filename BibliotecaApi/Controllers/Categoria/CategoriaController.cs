@@ -51,16 +51,16 @@ namespace BibliotecaApi.Controllers.Categoria
             return Ok(response);
         }
 
-        [HttpGet("getbyname")]
+        [HttpDelete("delete")]
         [Authorize]
-        public IActionResult GetNome(CategoriaDto categoria)
+        public IActionResult Delete(CategoriaDto categoria)
         {
-            var response = _categoriaService.GetNome(categoria);
+            var response = _categoriaService.Delete(categoria);
 
-            if (response == null)
+            if (!response)
                 return BadRequest(_notification.GetErrors());
 
-            return Ok(response);
+            return Ok(_notification.GetErrors());
         }
     }
 }

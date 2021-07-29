@@ -8,6 +8,17 @@ namespace Biblioteca.Infra.Repositories.RepositoryCategoria
 {
     public class CategoriaRepository : ICategoriaRepository
     {
+        public bool Delete(CategoriaEntity categoriaEntity)
+        {
+            using (var context = new ApplicationContext())
+            {
+                context.Categoria.Remove(categoriaEntity);
+                context.SaveChanges();
+
+                return true;
+            }
+        }
+
         public IEnumerable<CategoriaEntity> Get()
         {
             using (var context = new ApplicationContext())

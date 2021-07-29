@@ -9,6 +9,7 @@ namespace Biblioteca.Domain.Services.Livro
         LivroEntity GetById(int id);
         LivroEntity Post(LivroEntity livro);
         LivroEntity GetByName(string nome);
+        bool GetByCategoria(int categoria);
         LivroEntity Put(LivroEntity livroEntity);
     }
 }

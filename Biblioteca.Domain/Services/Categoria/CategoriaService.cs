@@ -1,6 +1,7 @@
 ﻿using Biblioteca.Domain.Services.Categoria;
 using Biblioteca.Domain.Services.Categoria.Dto;
 using Biblioteca.Domain.Services.Entidades;
+using Biblioteca.Domain.Services.Livro;
 using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
 using System.Collections.Generic;
@@ -13,15 +14,39 @@ namespace Biblioteca.Domain.Services.CategoriaService
         private readonly INotification _notification;
         private readonly ICategoriaRepository _categoriaRepository;
         private readonly UserLoggedData _userLoggedData;
+        private readonly ILivroRepository _livroRepository;
 
         public CategoriaService(
             INotification notification,
             ICategoriaRepository categoriaRepository,
-            UserLoggedData userLoggedData)
+            UserLoggedData userLoggedData,
+            ILivroRepository livroRepository)
         {
             _notification = notification;
             _categoriaRepository = categoriaRepository;
             _userLoggedData = userLoggedData;
+            _livroRepository = livroRepository;
+        }
+
+        public bool Delete(CategoriaDto categoria)
+        {
+
+            var categoriaData = _categoriaRepository.GetById(categoria.CategoriaId);
+
+            if (categoriaData == null)
+                return _notification.AddWithReturn<bool>("A categoria não pode ser encontrada!");
+
+            var livro = _livroRepository.GetByCategoria(categoria.CategoriaId);
+            if (livro)
+                return _notification.AddWithReturn<bool>
+                    ("Você não pode concluir esta operação pois existe(m) livro(s) com esta categoria");
+
+
+            var deleteCategoria = _categoriaRepository.Delete(categoriaData);
+
+            _notification.Add("A categoria foi deletada com sucesso!");
+
+            return true;
         }
 
         public IEnumerable<CategoriaDto> Get()
@@ -101,5 +126,6 @@ namespace Biblioteca.Domain.Services.CategoriaService
                 NomeCategoria = categoriaEntity.NomeCategoria
             };
         }
+
     }
 }

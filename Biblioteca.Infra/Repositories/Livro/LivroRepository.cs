@@ -18,6 +18,18 @@ namespace Biblioteca.Infra.Repositories.Livro
             }
         }
 
+        public bool GetByCategoria(int categoria)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var livro = context.Livro.Any(x => x.CategoriaId == categoria);
+
+                if (!livro)
+                    return false;
+                return true;
+            }
+        }
+
         public LivroEntity GetById(int id)
         {
             using (var context = new ApplicationContext())
