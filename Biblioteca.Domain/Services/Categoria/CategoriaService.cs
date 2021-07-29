@@ -42,7 +42,7 @@ namespace Biblioteca.Domain.Services.CategoriaService
 
             if (categoria == null)
                 return _notification.AddWithReturn<CategoriaDto>
-                    ("A categoria não pode ser encontrada");
+                    ("A categoria não pode ser encontrada!");
 
             return new CategoriaDto
             {
@@ -58,7 +58,7 @@ namespace Biblioteca.Domain.Services.CategoriaService
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
                 return _notification.AddWithReturn<CategoriaDto>
-                    ("Ops.. parece que você não tem permissão para adicionar esta categoria");
+                    ("Ops.. parece que você não tem permissão para adicionar esta categoria!");
 
             var categoriaData = _categoriaRepository.GetByName(categoria.NomeCategoria);
             if (categoriaData != null)
@@ -67,11 +67,11 @@ namespace Biblioteca.Domain.Services.CategoriaService
 
             if (categoria.NomeCategoria == "" || categoria.DescriçãoCategoria == "") 
                 return _notification.AddWithReturn<CategoriaDto>
-                    ("Você não pode inserir um campo vazio");
+                    ("Você não pode inserir um campo vazio!");
 
             if (categoria.DescriçãoCategoria == null)
                 return _notification.AddWithReturn<CategoriaDto>
-                    ("Você não pode inserir uma descrição nula");
+                    ("Você não pode inserir uma descrição nula!");
 
             var categoriaEntity = _categoriaRepository.Post(new CategoriaEntity
             {

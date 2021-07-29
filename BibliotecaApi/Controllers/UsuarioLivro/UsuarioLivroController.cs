@@ -1,5 +1,5 @@
-﻿using Biblioteca.Domain.Services.Entidades;
-using Biblioteca.Domain.Services.UsuarioLivros;
+﻿using Biblioteca.Domain.Services.UsuarioLivros;
+using Biblioteca.Domain.Services.UsuarioLivros.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
@@ -40,7 +40,7 @@ namespace Biblioteca.Api.Controllers.UsuarioLivro
 
         [HttpPost]
         [Authorize]
-        public IActionResult Post(UsuarioLivrosEntity usuarioLivros)
+        public IActionResult Post(UsuarioLivrosDto usuarioLivros)
         {
             var response = _usuarioLivrosService.Post(usuarioLivros);
 
@@ -53,14 +53,14 @@ namespace Biblioteca.Api.Controllers.UsuarioLivro
 
         [HttpPost("devolucao")]
         [Authorize]
-        public IActionResult PostDevolucao(UsuarioLivrosEntity usuarioLivros)
+        public IActionResult PostDevolucao(UsuarioLivrosDto usuarioLivros)
         {
             var response = _usuarioLivrosService.PostDevolucao(usuarioLivros);
 
-           if (response == null)
-                return Ok(_notification.GetErrors());
+           if (!response)
+                return BadRequest(_notification.GetErrors());
 
-            return Ok(response);
+            return Ok(_notification.GetErrors());
         }
     }
 }

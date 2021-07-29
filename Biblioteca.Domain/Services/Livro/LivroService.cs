@@ -84,41 +84,41 @@ namespace Biblioteca.Domain.Services.Livro
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
                 return _notification.AddWithReturn<LivroDto>
-                    ("Ops.. parece que você não tem permissão para adicionar este livro");
+                    ("Ops.. parece que você não tem permissão para adicionar este livro!");
 
             var livroData = _livroRepository.GetByName(livro.Titulo);
             if (livroData != null)
                 return _notification.AddWithReturn<LivroDto>
-                    ("Ops.. parece que esse livro já existe");
+                    ("Ops.. parece que esse livro já existe!");
 
             var verificaSeCategoriaExiste = _categoriaRepository.GetById(livro.CategoriaId);
             if (verificaSeCategoriaExiste == null)
                 return _notification.AddWithReturn<LivroDto>
-                    ("Ops.. parece que a categoria informada não existe");
+                    ("Ops.. parece que a categoria informada não existe!");
 
             var verificaSeEditoraExiste = _editoraRepository.GetById(livro.EditoraId);
             if (verificaSeEditoraExiste == null)
                 return _notification.AddWithReturn<LivroDto>
-                    ("Ops.. parece que a editora informada não existe");
+                    ("Ops.. parece que a editora informada não existe!");
 
             var verificaSeAutorExiste = _autorRepository.GetById(livro.AutorId);
             if (verificaSeAutorExiste == null)
                 return _notification.AddWithReturn<LivroDto>
-                    ("Ops.. parece que o autor informado não existe");
+                    ("Ops.. parece que o autor informado não existe!");
 
             var verificaSeStatusLivroExiste = _statusLivroRepository.GetById(livro.StatusLivroId);
             if (verificaSeStatusLivroExiste == null)
                 return _notification.AddWithReturn<LivroDto>
-                    ("Ops.. parece que o status do livro informado não existe");
+                    ("Ops.. parece que o status do livro informado não existe!");
 
             if(livro.CategoriaId < 1 || livro.AutorId < 1 || livro.EditoraId < 1 ||
                 livro.StatusLivroId < 1)
                 return _notification.AddWithReturn<LivroDto>
-                    ("Você não pode inserir um campo vazio");
+                    ("Você não pode inserir um campo vazio!");
 
             if (livro.Descrição == "" || livro.ISBN == "" ||livro.Titulo == "")
                 return _notification.AddWithReturn<LivroDto>
-                    ("Você não pode inserir um campo vazio");
+                    ("Você não pode inserir um campo vazio!");
 
             var livroEntity = _livroRepository.Post(new LivroEntity
             {

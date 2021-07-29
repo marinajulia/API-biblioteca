@@ -1,5 +1,4 @@
-﻿using Biblioteca.Domain.Services.Entidades;
-using Biblioteca.Domain.Services.UsuarioLivros.Dto;
+﻿using Biblioteca.Domain.Services.UsuarioLivros.Dto;
 using System.Collections.Generic;
 
 namespace Biblioteca.Domain.Services.UsuarioLivros
@@ -8,8 +7,8 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
     {
         IEnumerable<UsuarioLivrosDto> Get();
         UsuarioLivrosDto GetById(int id);
-        UsuarioLivrosDto Post(UsuarioLivrosEntity usuarioLivros);
-        UsuarioLivrosDto PostDevolucao(UsuarioLivrosEntity usuarioLivros);
+        UsuarioLivrosDto Post(UsuarioLivrosDto usuarioLivros);
+        bool PostDevolucao(UsuarioLivrosDto usuarioLivros);
 
     }
 }

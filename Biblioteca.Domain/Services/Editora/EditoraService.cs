@@ -42,7 +42,7 @@ namespace Biblioteca.Domain.Services.Editora
 
             if (editora == null)
                 return _notification.AddWithReturn<EditoraDto>
-                    ("A editora não pode ser encontrada");
+                    ("A editora não pode ser encontrada!");
 
             return new EditoraDto
             {
@@ -57,7 +57,7 @@ namespace Biblioteca.Domain.Services.Editora
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
                 return _notification.AddWithReturn<EditoraDto>
-                    ("Ops.. parece que você não tem permissão para adicionar esta editora");
+                    ("Ops.. parece que você não tem permissão para adicionar esta editora!");
 
 
             var editoraData = _editoraRepository.GetByName(editora.NomeEditora);
@@ -67,7 +67,7 @@ namespace Biblioteca.Domain.Services.Editora
 
             if (editora.NomeEditora == "")
                 return _notification.AddWithReturn<EditoraDto>
-                    ("Você não pode inserir um campo vazio");
+                    ("Você não pode inserir um campo vazio!");
 
             var editoraEntity = _editoraRepository.Post(new EditoraEntity
             {

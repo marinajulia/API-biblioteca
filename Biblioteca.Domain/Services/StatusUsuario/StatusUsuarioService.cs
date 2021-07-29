@@ -55,7 +55,7 @@ namespace Biblioteca.Domain.Services.StatusUsuario
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
                 return _notification.AddWithReturn<StatusUsuarioDto>
-                    ("Ops.. parece que você não tem permissão para adicionar este status de usuário");
+                    ("Ops.. parece que você não tem permissão para adicionar este status de usuário!");
 
             var statusUsuarioData = _statusUsuarioRepository.GetByName(statusUsuario.NomeStatus);
             if (statusUsuarioData != null)
@@ -64,7 +64,7 @@ namespace Biblioteca.Domain.Services.StatusUsuario
 
             if (statusUsuario.NomeStatus == "")
                 return _notification.AddWithReturn<StatusUsuarioDto>
-                    ("Ops.. você não pode inserir um campo vazio");
+                    ("Ops.. você não pode inserir um campo vazio!");
 
             var statusUsuarioEntity = _statusUsuarioRepository.Post(new StatusUsuarioEntity
             {

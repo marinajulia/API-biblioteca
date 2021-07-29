@@ -39,7 +39,7 @@ namespace Biblioteca.Domain.Services.PerfilUsuario
             var perfilUsuario = _perfilUsuario.GetById(id);
 
             if (perfilUsuario == null)
-                return _notification.AddWithReturn<PerfilUsuarioDto>("O perfil não existe");
+                return _notification.AddWithReturn<PerfilUsuarioDto>("O perfil não existe!");
 
             return new PerfilUsuarioDto
             {
@@ -54,16 +54,16 @@ namespace Biblioteca.Domain.Services.PerfilUsuario
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
                 return _notification.AddWithReturn<PerfilUsuarioDto>
-                    ("Ops.. parece que você não tem permissão para adicionar este perfil de usuário");
+                    ("Ops.. parece que você não tem permissão para adicionar este perfil de usuário!");
 
             var perfilUsuarioData = _perfilUsuario.GetByName(perfilUsuarioDto.Perfil);
             if (perfilUsuarioData != null)
                 return _notification.AddWithReturn<PerfilUsuarioDto>
-                    ("Esse perfil já existe");
+                    ("Esse perfil já existe!");
 
             if (perfilUsuarioDto.Perfil == "")
                 return _notification.AddWithReturn<PerfilUsuarioDto>
-                    ("Ops.. você não pode inserir um campo vazio");
+                    ("Ops.. você não pode inserir um campo vazio!");
 
             var perfilUsuarioEntity = _perfilUsuario.Post(new PerfilUsuarioEntity
             {

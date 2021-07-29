@@ -44,7 +44,7 @@ namespace Biblioteca.Domain.Services.StatusLivro
             var statusLivro = _statusLivro.GetById(id);
 
             if (statusLivro == null)
-                return _notification.AddWithReturn<StatusLivroDto>("O status não existe");
+                return _notification.AddWithReturn<StatusLivroDto>("O status não existe!");
 
             return new StatusLivroDto
             {

@@ -61,24 +61,23 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         }
 
 
-        public UsuarioLivrosDto PostDevolucao(UsuarioLivrosEntity usuarioLivros)
+        public bool PostDevolucao(UsuarioLivrosDto usuarioLivros)
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
-                return _notification.AddWithReturn<UsuarioLivrosDto>
-                    ("Ops.. parece que você não tem permissão para alterar esta relação" +
-                    " de usuários e livros");
+                return _notification.AddWithReturn<bool>
+                    ("Ops.. parece que você não tem permissão " +
+                    "para alterar esta relação de usuários e livros!");
 
             var livro = _livroRepository.GetById(usuarioLivros.LivroId);
             if (livro == null)
-                return _notification.AddWithReturn<UsuarioLivrosDto>
-                    ("Ops.. parece que o livro informado não existe");
+                return _notification.AddWithReturn<bool>
+                    ("Ops.. parece que o livro informado não existe!");
 
             var usuario = _usuarioRepository.GetById(usuarioLivros.UsuarioId);
             if (usuario == null)
-                return _notification.AddWithReturn<UsuarioLivrosDto>
-                    ("Ops.. parece que o usuario informado não existe");
+                return _notification.AddWithReturn<bool>("Ops.. parece que o usuario informado não existe!");
 
             livro.StatusLivroId = 2;
             var alterandoStatusLivro = _livroRepository.Put(livro);
@@ -87,11 +86,12 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
 
             _usuarioLivrosRepository.Delete(buscaPorLivro);
 
-            return _notification.AddWithReturn<UsuarioLivrosDto>
-                    ("O livro foi devolvido com sucesso");
+            _notification.Add("O livro foi devolvido com sucesso!");
+
+            return true;
         }
 
-        public UsuarioLivrosDto Post(UsuarioLivrosEntity usuarioLivros)
+        public UsuarioLivrosDto Post(UsuarioLivrosDto usuarioLivros)
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
