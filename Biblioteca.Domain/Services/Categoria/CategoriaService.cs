@@ -52,6 +52,21 @@ namespace Biblioteca.Domain.Services.CategoriaService
             };
         }
 
+        public CategoriaDto GetNome(CategoriaDto categoria)
+        {
+            var categoriaData = _categoriaRepository.GetByName(categoria.NomeCategoria);
+
+            if (categoriaData == null)
+                return _notification.AddWithReturn<CategoriaDto>("Este nome não existe!");
+
+            return new CategoriaDto
+            {
+                CategoriaId = categoriaData.CategoriaId,
+                DescriçãoCategoria = categoriaData.DescriçãoCategoria,
+                NomeCategoria = categoriaData.NomeCategoria
+            };
+        }
+
         public CategoriaDto Post(CategoriaDto categoria)
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();
@@ -85,7 +100,6 @@ namespace Biblioteca.Domain.Services.CategoriaService
                 DescriçãoCategoria = categoriaEntity.DescriçãoCategoria,
                 NomeCategoria = categoriaEntity.NomeCategoria
             };
-
         }
     }
 }

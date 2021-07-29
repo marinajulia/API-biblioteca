@@ -50,5 +50,17 @@ namespace BibliotecaApi.Controllers.Categoria
 
             return Ok(response);
         }
+
+        [HttpGet("getbyname")]
+        [Authorize]
+        public IActionResult GetNome(CategoriaDto categoria)
+        {
+            var response = _categoriaService.GetNome(categoria);
+
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+        }
     }
 }

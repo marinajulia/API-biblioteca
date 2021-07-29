@@ -6,6 +6,7 @@ namespace Biblioteca.Domain.Services.CategoriaService
     public interface ICategoriaService
     {
         CategoriaDto Post(CategoriaDto categoria);
+        CategoriaDto GetNome(CategoriaDto categoria);
         IEnumerable<CategoriaDto> Get();
         CategoriaDto GetById(int id);
 
