@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Editora.Dto;
 using Biblioteca.Domain.Services.Entidades;
+using Biblioteca.Domain.Services.Livro;
 using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
 using System.Collections.Generic;
@@ -12,17 +13,39 @@ namespace Biblioteca.Domain.Services.Editora
         private readonly INotification _notification;
         private readonly IEditoraRepository _editoraRepository;
         private readonly UserLoggedData _userLoggedData;
+        private readonly ILivroRepository _livroRepository;
 
         public EditoraService(
             INotification notification,
             IEditoraRepository editoraRepository,
-            UserLoggedData userLoggedData)
+            UserLoggedData userLoggedData,
+            ILivroRepository livroRepository)
         {
             _notification = notification;
             _editoraRepository = editoraRepository;
             _userLoggedData = userLoggedData;
+            _livroRepository = livroRepository;
         }
 
+        public bool Delete(EditoraDto editora)
+        {
+            var editoraData = _editoraRepository.GetById(editora.EditoraId);
+
+            if (editoraData == null)
+                return _notification.AddWithReturn<bool>("A editora não pode ser encontrada!");
+
+            var livro = _livroRepository.GetByCategoria(editora.EditoraId);
+            if (livro)
+                return _notification.AddWithReturn<bool>
+                    ("Você não pode concluir esta operação pois existe(m) livro(s) com esta editora");
+
+
+            var deleteEditora = _editoraRepository.Delete(editoraData);
+
+            _notification.Add("A editora foi deletada com sucesso!");
+
+            return true;
+        }
 
         public IEnumerable<EditoraDto> Get()
         {

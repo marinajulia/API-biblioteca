@@ -9,6 +9,8 @@ namespace Biblioteca.Domain.Services.Editora
         EditoraEntity GetById(int id);
         EditoraEntity Post(EditoraEntity editoraEntity);
         EditoraEntity GetByName(string nome);
+        bool Delete(EditoraEntity editoraEntity);
+
 
     }
 }

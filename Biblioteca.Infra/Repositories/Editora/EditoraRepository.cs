@@ -8,6 +8,17 @@ namespace Biblioteca.Infra.Repositories.Editora
 {
     public class EditoraRepository : IEditoraRepository
     {
+        public bool Delete(EditoraEntity editoraEntity)
+        {
+            using (var context = new ApplicationContext())
+            {
+                context.Editora.Remove(editoraEntity);
+                context.SaveChanges();
+
+                return true;
+            }
+        }
+
         public IEnumerable<EditoraEntity> Get()
         {
             using (var context = new ApplicationContext())

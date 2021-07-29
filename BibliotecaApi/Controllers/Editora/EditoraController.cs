@@ -50,5 +50,17 @@ namespace BibliotecaApi.Controllers.Editora
 
             return Ok(response);
         }
+
+        [HttpDelete("delete")]
+        [Authorize]
+        public IActionResult Delete(EditoraDto editora)
+        {
+            var response = _editoraService.Delete(editora);
+
+            if (!response)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(_notification.GetErrors());
+        }
     }
 }
