@@ -40,9 +40,9 @@ namespace Biblioteca.Domain.Services.Usuario
             return true;
         }
 
-        public UsuarioDto PostBloqueio(int id)
+        public UsuarioDto PostBloqueio(UsuarioEntity usuarioEntity)
         {
-            var usuario = _usuarioRepository.GetById(id);
+            var usuario = _usuarioRepository.GetById(usuarioEntity.UsuarioId);
             if (usuario == null)
                 return _notification.AddWithReturn<UsuarioDto>("O usuário informado não existe");
 

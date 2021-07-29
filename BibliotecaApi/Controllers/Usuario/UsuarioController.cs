@@ -36,7 +36,7 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         [HttpPost("cadastro")]
         [AllowAnonymous]
-        public ActionResult PostCadastro(UsuarioEntity usuario)
+        public IActionResult PostCadastro(UsuarioEntity usuario)
         {
             var response = _usuarioService.PostCadastro(usuario);
             if (response == null)
@@ -46,11 +46,11 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         }
 
-        [HttpPost("bloquear")]
-        [Authorize]
-        public ActionResult PostBloqueio(int id)
+        [HttpPost("bloqueio")]
+        [AllowAnonymous]
+        public IActionResult PostBloqueio(UsuarioEntity usuario)
         {
-            var response = _usuarioService.PostBloqueio(id);
+            var response = _usuarioService.PostBloqueio(usuario);
             if (response == null)
                 return BadRequest(_notification.GetErrors());
 
