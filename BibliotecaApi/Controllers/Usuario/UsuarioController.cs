@@ -1,6 +1,7 @@
 ﻿using Biblioteca.Domain.Common.Token;
 using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Usuario;
+using Biblioteca.Domain.Services.Usuario.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Domain.Notification;
@@ -48,13 +49,24 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         [HttpPost("bloqueio")]
         [AllowAnonymous]
-        public IActionResult PostBloqueio(UsuarioEntity usuario)
+        public IActionResult PostBloqueio(UsuarioDto usuario)
         {
             var response = _usuarioService.PostBloqueio(usuario);
-            if (response == null)
+            if (!response)
                 return BadRequest(_notification.GetErrors());
 
-            return Ok(response);
+            return Ok(_notification.GetErrors());
+
+        }
+
+        [HttpPost("desbloqueio")]
+        public IActionResult PostDesbloqueio(UsuarioDto usuario)
+        {
+            var response = _usuarioService.PostDesbloqueio(usuario);
+            if (!response)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(_notification.GetErrors());
 
         }
 

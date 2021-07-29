@@ -40,23 +40,42 @@ namespace Biblioteca.Domain.Services.Usuario
             return true;
         }
 
-        public UsuarioDto PostBloqueio(UsuarioEntity usuarioEntity)
+        public bool PostBloqueio(UsuarioDto usuarioDto)
         {
-            var usuario = _usuarioRepository.GetById(usuarioEntity.UsuarioId);
+            var usuario = _usuarioRepository.GetById(usuarioDto.UsuarioId);
             if (usuario == null)
-                return _notification.AddWithReturn<UsuarioDto>("O usuário informado não existe");
+                return _notification.AddWithReturn<bool>("O usuário informado não existe");
 
             var statusUsuario = _usuarioRepository.GetByStatus(usuario.UsuarioId);
             if (statusUsuario != null)  
-                return _notification.AddWithReturn<UsuarioDto>
+                return _notification.AddWithReturn<bool>
                     ("Ops.. parece que esse usuário já está bloqueado");
 
             usuario.StatusUsuarioId = 5;
             var alterandoStatusUsuario = _usuarioRepository.Put(usuario);
 
-            return _notification.AddWithReturn<UsuarioDto>
-                ("O usuário foi bloqueado com sucesso");
+            _notification.Add("O usuário foi bloqueado com sucesso");
 
+            return true;
+
+        }
+
+        public bool PostDesbloqueio(UsuarioDto usuarioDto)
+        {
+            var usuario = _usuarioRepository.GetById(usuarioDto.UsuarioId);
+            if (usuario == null)
+                return _notification.AddWithReturn<bool>("O usuário informado não existe");
+
+            var statusUsuario = _usuarioRepository.GetByStatus(usuario.UsuarioId);
+            if (statusUsuario == null)
+                return _notification.AddWithReturn<bool>("Ops.. parece que esse usuário já está desbloqueado");
+
+            usuario.StatusUsuarioId = 6;
+            var alterandoStatusUsuario = _usuarioRepository.Put(usuario);
+
+             _notification.Add("O usuário foi desbloqueado com sucesso");
+
+            return true;
         }
 
         public UsuarioDto PostCadastro(UsuarioEntity usuario)
@@ -110,6 +129,8 @@ namespace Biblioteca.Domain.Services.Usuario
                 PerfilUsuarioId = usuarioEntity.PerfilUsuarioId
             };
         }
+
+        
 
         public UsuarioDto PostLogin(UsuarioEntity usuario)
         {
