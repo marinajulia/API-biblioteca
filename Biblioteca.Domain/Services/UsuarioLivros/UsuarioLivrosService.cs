@@ -36,7 +36,6 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         {
             var usuario = _usuarioLivrosRepository.Get();
 
-
             return usuario.Select(x => new UsuarioLivrosDto
             {
                 UsuarioLivrosId = x.UsuarioLivrosId,
@@ -57,7 +56,10 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
             {
                 UsuarioLivrosId = usuario.UsuarioLivrosId,
                 UsuarioId = usuario.UsuarioId,
-                LivroId = usuario.LivroId
+                LivroId = usuario.LivroId,
+                Livro = usuario.Livro,
+                Usuario = usuario.Usuario,
+
             };
         }
 

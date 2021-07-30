@@ -23,8 +23,8 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
             using (var context = new ApplicationContext())
             {
                 var usuarioLivros = context.UsuarioLivros
-                    .Include(x=> x.Usuario)
-                    .Include(x=> x.Livro)
+                    .Include(x => x.Usuario)
+                    .Include(x => x.Livro)
                     .AsNoTracking();
 
                 return usuarioLivros.ToList();
@@ -35,8 +35,13 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
         {
             using (var context = new ApplicationContext())
             {
-                var usuarioLivros = context.UsuarioLivros.FirstOrDefault
-                    (x => x.UsuarioLivrosId == id);
+
+                var usuarioLivros = context.UsuarioLivros
+                    .Include(x => x.Usuario)
+                    .Include(x => x.Livro)
+                    .AsNoTracking()
+                    .FirstOrDefault(x => x.UsuarioLivrosId == id);
+
                 return usuarioLivros;
             }
         }
