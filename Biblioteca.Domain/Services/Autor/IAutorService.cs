@@ -8,6 +8,8 @@ namespace Biblioteca.Domain.Services
         AutorDto Post(AutorDto autorDto);
         IEnumerable<AutorDto> Get();
         AutorDto GetById(int id);
+        bool Delete(AutorDto autor);
+
 
     }
 }

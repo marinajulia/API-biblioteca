@@ -10,6 +10,8 @@ namespace Biblioteca.Domain.Services.Livro
         LivroEntity Post(LivroEntity livro);
         LivroEntity GetByName(string nome);
         bool GetByCategoria(int categoria);
+        bool GetByEditora(int editora);
+        bool GetByAutor(int autor);
         LivroEntity Put(LivroEntity livroEntity);
     }
 }

@@ -8,6 +8,17 @@ namespace Biblioteca.Infra.Repositories.Autor
 {
     public class AutorRepository : IAutorRepository
     {
+        public bool Delete(AutorEntity autorEntity)
+        {
+            using(var context = new ApplicationContext())
+            {
+                context.Autor.Remove(autorEntity);
+                context.SaveChanges();
+
+                return true;
+            }
+        }
+
         public IEnumerable<AutorEntity> Get()
         {
             using (var context = new ApplicationContext())

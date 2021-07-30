@@ -34,7 +34,7 @@ namespace Biblioteca.Domain.Services.Editora
             if (editoraData == null)
                 return _notification.AddWithReturn<bool>("A editora não pode ser encontrada!");
 
-            var livro = _livroRepository.GetByCategoria(editora.EditoraId);
+            var livro = _livroRepository.GetByEditora(editora.EditoraId);
             if (livro)
                 return _notification.AddWithReturn<bool>
                     ("Você não pode concluir esta operação pois existe(m) livro(s) com esta editora");

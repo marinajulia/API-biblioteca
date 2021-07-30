@@ -18,11 +18,35 @@ namespace Biblioteca.Infra.Repositories.Livro
             }
         }
 
+        public bool GetByAutor(int autor)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var livro = context.Livro.Any(x => x.AutorId == autor);
+
+                if (!livro)
+                    return false;
+                return true;
+            }
+        }
+
         public bool GetByCategoria(int categoria)
         {
             using (var context = new ApplicationContext())
             {
                 var livro = context.Livro.Any(x => x.CategoriaId == categoria);
+
+                if (!livro)
+                    return false;
+                return true;
+            }
+        }
+
+        public bool GetByEditora(int editora)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var livro = context.Livro.Any(x => x.EditoraId == editora);
 
                 if (!livro)
                     return false;

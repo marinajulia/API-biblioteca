@@ -1,5 +1,6 @@
 ﻿using Biblioteca.Domain.Services.Autor.Dto;
 using Biblioteca.Domain.Services.Autor.Entities;
+using Biblioteca.Domain.Services.Livro;
 using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
 using System.Collections.Generic;
@@ -12,15 +13,18 @@ namespace Biblioteca.Domain.Services.Autor
         private readonly INotification _notification;
         private readonly IAutorRepository _autorRepository;
         private readonly UserLoggedData _userLoggedData;
+        private readonly ILivroRepository _livroRepository;
 
         public AutorService(
             INotification notification,
             IAutorRepository autorRepository,
-            UserLoggedData userLoggedData)
+            UserLoggedData userLoggedData,
+            ILivroRepository livroRepository)
         {
             _notification = notification;
             _autorRepository = autorRepository;
             _userLoggedData = userLoggedData;
+            _livroRepository = livroRepository;
         }
 
         public IEnumerable<AutorDto> Get()
@@ -33,6 +37,27 @@ namespace Biblioteca.Domain.Services.Autor
                 NomeAutor = x.NomeAutor
 
             });
+        }
+
+
+        public bool Delete(AutorDto autor)
+        {
+            var autorData = _autorRepository.GetById(autor.AutorId);
+
+            if (autorData == null)
+                return _notification.AddWithReturn<bool>("O autor não pode ser encontrado!");
+
+            var livro = _livroRepository.GetByAutor(autor.AutorId);
+            if (livro)
+                return _notification.AddWithReturn<bool>
+                    ("Você não pode concluir esta operação pois existe(m) livro(s) com este autor");
+
+
+            var deleteAutor = _autorRepository.Delete(autorData);
+
+            _notification.Add("O autor foi deletado com sucesso!");
+
+            return true;
         }
 
         public AutorDto GetById(int id)
