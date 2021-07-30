@@ -53,8 +53,13 @@ namespace Biblioteca.Domain.Services.Livro
                 AutorId = x.AutorId,
                 Descrição = x.Descrição,
                 EditoraId = x.EditoraId,
-                StatusLivroId = x.StatusLivroId
-            });
+                StatusLivroId = x.StatusLivroId,
+                Categoria = x.Categoria,
+                Autor = x.Autor,
+                Editora = x.Editora,
+                StatusLivro = x.StatusLivro
+                
+            }).ToList();
         }
 
         public LivroDto GetById(int id)
@@ -63,7 +68,7 @@ namespace Biblioteca.Domain.Services.Livro
 
             if (livro == null)
                 return _notification.AddWithReturn<LivroDto>
-                    ("A categoria não pode ser encontrada");
+                    ("O livro não pode ser encontrado");
 
             return new LivroDto
             {
@@ -74,7 +79,11 @@ namespace Biblioteca.Domain.Services.Livro
                 AutorId = livro.AutorId,
                 Descrição = livro.Descrição,
                 EditoraId = livro.EditoraId,
-                StatusLivroId = livro.StatusLivroId
+                StatusLivroId = livro.StatusLivroId,
+                Categoria = livro.Categoria,
+                Autor = livro.Autor,
+                Editora = livro.Editora,
+                StatusLivro = livro.StatusLivro
             };
         }
 

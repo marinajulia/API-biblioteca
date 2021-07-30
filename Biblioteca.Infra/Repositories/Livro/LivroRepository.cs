@@ -1,6 +1,7 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Livro;
 using Biblioteca.Infra.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,7 +13,12 @@ namespace Biblioteca.Infra.Repositories.Livro
         {
             using (var context = new ApplicationContext())
             {
-                var livros = context.Livro;
+                var livros = context.Livro
+                    .Include(x => x.Categoria)
+                    .Include(x => x.Autor)
+                    .Include(x => x.Editora)
+                    .Include(x => x.StatusLivro)
+                    .AsNoTracking();
 
                 return livros.ToList();
             }
@@ -58,7 +64,12 @@ namespace Biblioteca.Infra.Repositories.Livro
         {
             using (var context = new ApplicationContext())
             {
-                var livro = context.Livro.FirstOrDefault(x => x.LivroId == id);
+                var livro = context.Livro
+                    .Include(x => x.Categoria)
+                    .Include(x => x.Autor)
+                    .Include(x => x.Editora)
+                    .Include(x => x.StatusLivro)
+                    .FirstOrDefault(x => x.LivroId == id);
                 return livro;
             }
         }
