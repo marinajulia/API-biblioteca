@@ -36,12 +36,13 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         {
             var usuario = _usuarioLivrosRepository.Get();
 
+
             return usuario.Select(x => new UsuarioLivrosDto
             {
                 UsuarioLivrosId = x.UsuarioLivrosId,
-                UsuarioId = x.UsuarioId,
-                LivroId = x.LivroId
-            });
+                Usuario = x.Usuario,
+                Livro = x.Livro,
+            }).ToList();
         }
 
         public UsuarioLivrosDto GetById(int id)

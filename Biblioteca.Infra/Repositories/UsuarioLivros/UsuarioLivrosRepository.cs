@@ -1,6 +1,7 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.UsuarioLivros;
 using Biblioteca.Infra.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,7 +22,10 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
         {
             using (var context = new ApplicationContext())
             {
-                var usuarioLivros = context.UsuarioLivros;
+                var usuarioLivros = context.UsuarioLivros
+                    .Include(x=> x.Usuario)
+                    .Include(x=> x.Livro)
+                    .AsNoTracking();
 
                 return usuarioLivros.ToList();
             }
