@@ -4,6 +4,8 @@ using Biblioteca.Domain.Services.StatusUsuario;
 using Biblioteca.Domain.Services.Usuario.Dto;
 using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Biblioteca.Domain.Services.Usuario
 {
@@ -38,6 +40,43 @@ namespace Biblioteca.Domain.Services.Usuario
             _userLoggedData.Add(usuarioData.UsuarioId, usuarioData.PerfilUsuarioId);
 
             return true;
+        }
+
+        public IEnumerable<UsuarioDto> Get()
+        {
+            var usuarios = _usuarioRepository.Get();
+
+            return usuarios.Select(x => new UsuarioDto
+            {
+                UsuarioId = x.UsuarioId,
+                NomeUsuario = x.NomeUsuario,
+                StatusUsuarioId = x.StatusUsuarioId,
+                StatusUsuario = x.StatusUsuario,
+                Email = x.Email,
+                PerfilUsuarioId = x.PerfilUsuarioId,
+                PerfilUsuario = x.PerfilUsuario
+
+            }).ToList();
+        }
+
+        public UsuarioDto GetById(int id)
+        {
+            var usuario = _usuarioRepository.GetById(id);
+
+            if (usuario == null)
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("O usuario não pode ser encontrado");
+
+            return new UsuarioDto
+            {
+                UsuarioId = usuario.UsuarioId,
+                NomeUsuario = usuario.NomeUsuario,
+                StatusUsuarioId = usuario.StatusUsuarioId,
+                StatusUsuario = usuario.StatusUsuario,
+                Email = usuario.Email,
+                PerfilUsuarioId = usuario.PerfilUsuarioId,
+                PerfilUsuario = usuario.PerfilUsuario
+            };
         }
 
         public bool PostBloqueio(UsuarioDto usuarioDto)

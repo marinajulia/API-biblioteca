@@ -21,6 +21,29 @@ namespace Biblioteca.Api.Controllers.Usuario
             _notification = notification;
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Get()
+        {
+            var usuario = _usuarioService.Get();
+            if (usuario == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(usuario);
+        }
+
+        [HttpGet]
+        [Route("getbyid")]
+        [AllowAnonymous]
+        public IActionResult GetById(int id)
+        {
+            var usuario = _usuarioService.GetById(id);
+            if (usuario == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(usuario);
+        }
+
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]

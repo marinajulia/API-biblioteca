@@ -2,12 +2,29 @@
 using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Usuario;
 using Biblioteca.Infra.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Biblioteca.Infra.Repositories.Usuario
 {
     public class UsuarioRepository : IUsuarioRepository
     {
+
+        IEnumerable<UsuarioEntity> IUsuarioRepository.Get()
+        {
+            using (var context = new ApplicationContext())
+            {
+                var usuarios = context.Usuario
+                    .Include(x => x.PerfilUsuario)
+                    .Include(x => x.StatusUsuario)
+                    .AsNoTracking();
+
+                return usuarios.ToList();
+            }
+        }
+
+
         public UsuarioEntity GetByCpf(string cpf)
         {
             using (var context = new ApplicationContext())
@@ -21,7 +38,10 @@ namespace Biblioteca.Infra.Repositories.Usuario
         {
             using (var context = new ApplicationContext())
             {
-                var usuario = context.Usuario.FirstOrDefault(x => x.UsuarioId == id);
+                var usuario = context.Usuario
+                    .Include(x => x.PerfilUsuario)
+                    .Include(x => x.StatusUsuario)
+                    .FirstOrDefault(x => x.UsuarioId == id);
                 return usuario;
             }
         }
@@ -131,5 +151,7 @@ namespace Biblioteca.Infra.Repositories.Usuario
 
             return cpf == auxCpf;
         }
+
+
     }
 }
