@@ -101,6 +101,26 @@ namespace Biblioteca.Domain.Services.Livro
             };
         }
 
+        public LivroDto GetNome(LivroDto livro)
+        {
+            var livroData = _livroRepository.GetByName(livro.Titulo);
+
+            if (livroData == null)
+                return _notification.AddWithReturn<LivroDto>("Este nome não existe!");
+
+            return new LivroDto
+            {
+                LivroId = livroData.LivroId,
+                Titulo = livroData.Titulo,
+                ISBN = livroData.ISBN,
+                CategoriaId = livroData.CategoriaId,
+                AutorId = livroData.AutorId,
+                Descrição = livroData.Descrição,
+                EditoraId = livroData.EditoraId,
+                StatusLivroId = livroData.StatusLivroId
+            };
+        }
+
         public LivroDto Post(LivroDto livro)
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();

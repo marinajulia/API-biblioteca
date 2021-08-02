@@ -62,5 +62,16 @@ namespace Biblioteca.Api.Controllers.Livro
 
             return Ok(_notification.GetErrors());
         }
+
+        [HttpGet("getnome")]
+        [Authorize]
+        public IActionResult GetNome(LivroDto livro)
+        {
+            var response = _livroService.GetNome(livro);
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+        }
     }
 }
