@@ -63,10 +63,10 @@ namespace Biblioteca.Api.Controllers.Usuario
         public IActionResult PostCadastro(UsuarioEntity usuario)
         {
             var response = _usuarioService.PostCadastro(usuario);
-            if (response == null)
+            if (!response)
                 return BadRequest(_notification.GetErrors());
 
-            return Ok(response);
+            return Ok(_notification.GetErrors());
         }
 
         [HttpPost("alterarsenha")]

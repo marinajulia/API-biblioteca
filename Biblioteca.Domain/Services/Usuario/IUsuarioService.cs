@@ -6,7 +6,7 @@ namespace Biblioteca.Domain.Services.Usuario
 {
     public interface IUsuarioService
     {
-        UsuarioDto PostCadastro(UsuarioEntity usuario);
+        bool PostCadastro(UsuarioEntity usuario);
         UsuarioDto PostLogin(UsuarioEntity usuario);
         bool PostAlterarSenha(UsuarioEntity usuario);
         UsuarioDto GetById(int id);

@@ -117,27 +117,23 @@ namespace Biblioteca.Domain.Services.Usuario
             return true;
         }
 
-        public UsuarioDto PostCadastro(UsuarioEntity usuario)
+        public bool PostCadastro(UsuarioEntity usuario)
         {
             var comparacaoNome = _usuarioRepository.GetByName(usuario.NomeUsuario);
             if (comparacaoNome != null)
-                return _notification.AddWithReturn<UsuarioDto>
-                    ("Ops.. parece que o usuário informado já existe");
+                return _notification.AddWithReturn<bool>("Ops.. parece que o usuário informado já existe");
 
             var verificaSeCpfJaExiste = _usuarioRepository.GetByCpf(usuario.CPF);
             if (verificaSeCpfJaExiste != null)
-                return _notification.AddWithReturn<UsuarioDto>
-                    ("Ops.. parece que o CPF inserido já existe");
+                return _notification.AddWithReturn<bool>("Ops.. parece que o CPF inserido já existe");
 
             if (usuario.CPF == "" || usuario.Email == "" || usuario.NomeUsuario == "" || usuario.Senha == "")
-                return _notification.AddWithReturn<UsuarioDto>
-                    ("Ops.. você não pode inserir um campo vazio");
+                return _notification.AddWithReturn<bool>("Ops.. você não pode inserir um campo vazio");
 
 
             var validaCpf = _usuarioRepository.ValidaCpf(usuario.CPF);
             if (validaCpf == false)
-                return _notification.AddWithReturn<UsuarioDto>
-                    ("O CPF é inválido");
+                return _notification.AddWithReturn<bool>("O CPF é inválido");
 
 
             var usuarioEntity = _usuarioRepository.PostCadastro(new UsuarioEntity
@@ -149,14 +145,9 @@ namespace Biblioteca.Domain.Services.Usuario
                 Email = usuario.Email,
                 PerfilUsuarioId = 1
             });
-            return new UsuarioDto
-            {
-                UsuarioId = usuarioEntity.UsuarioId,
-                NomeUsuario = usuarioEntity.NomeUsuario,
-                StatusUsuarioId = usuarioEntity.StatusUsuarioId,
-                Email = usuarioEntity.Email,
-                PerfilUsuarioId = usuarioEntity.PerfilUsuarioId
-            };
+            _notification.Add("Usuário cadastrado com sucesso");
+
+            return true;
         }
 
         public UsuarioDto PostLogin(UsuarioEntity usuario)
