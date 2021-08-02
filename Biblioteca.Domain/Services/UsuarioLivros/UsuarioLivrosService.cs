@@ -87,9 +87,9 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
             livro.StatusLivroId = 2;
             _livroRepository.Put(livro);
 
-            var buscaPorLivro = _usuarioLivrosRepository.GetByLivro(usuarioLivros.LivroId);
+            var relacaoUsuarioLivro = _usuarioLivrosRepository.GetByLivro(usuarioLivros.LivroId);
 
-            _usuarioLivrosRepository.Delete(buscaPorLivro);
+            _usuarioLivrosRepository.Delete(relacaoUsuarioLivro);
 
             _notification.Add("O livro foi devolvido com sucesso!");
 

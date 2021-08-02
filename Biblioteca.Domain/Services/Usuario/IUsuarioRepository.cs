@@ -16,5 +16,7 @@ namespace Biblioteca.Domain.Services.Usuario
         bool ValidaCpf(string cpf);
         UsuarioEntity Put(UsuarioEntity usuarioEntity);
 
+        void UpdateStatus(int idUsuario, int idStatus);
+
     }
 }

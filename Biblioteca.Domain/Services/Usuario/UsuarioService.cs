@@ -82,8 +82,7 @@ namespace Biblioteca.Domain.Services.Usuario
                 return _notification.AddWithReturn<bool>
                     ("Ops.. parece que esse usuário já está bloqueado!");
 
-            usuario.StatusUsuarioId = 5;
-            var alterandoStatusUsuario = _usuarioRepository.Put(usuario);
+            _usuarioRepository.UpdateStatus(usuario.UsuarioId, 5);
 
             _notification.Add("O usuário foi bloqueado com sucesso!");
 
@@ -101,8 +100,7 @@ namespace Biblioteca.Domain.Services.Usuario
             if (statusUsuario == null)
                 return _notification.AddWithReturn<bool>("Ops.. parece que esse usuário já está desbloqueado!");
 
-            usuario.StatusUsuarioId = 6;
-            var alterandoStatusUsuario = _usuarioRepository.Put(usuario);
+            _usuarioRepository.UpdateStatus(usuario.UsuarioId, 6);
 
             _notification.Add("O usuário foi desbloqueado com sucesso!");
 
@@ -128,7 +126,7 @@ namespace Biblioteca.Domain.Services.Usuario
                 return _notification.AddWithReturn<bool>("O CPF é inválido");
 
 
-            var usuarioEntity = _usuarioRepository.PostCadastro(new UsuarioEntity
+            _usuarioRepository.PostCadastro(new UsuarioEntity
             {
                 NomeUsuario = usuario.NomeUsuario,
                 CPF = usuario.CPF,

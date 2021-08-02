@@ -46,7 +46,6 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         [HttpPost]
         [Route("login")]
-        [AllowAnonymous]
         public IActionResult PostLogin(UsuarioEntity model)
         {
             var usuario = _usuarioService.PostLogin(model);
@@ -103,7 +102,6 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         [HttpGet]
         [Route("getnome")]
-        [AllowAnonymous]
         public IActionResult GetNome(UsuarioDto usuario)
         {
             var response = _usuarioService.GetNome(usuario);

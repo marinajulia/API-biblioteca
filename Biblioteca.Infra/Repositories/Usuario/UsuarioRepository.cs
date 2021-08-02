@@ -168,6 +168,16 @@ namespace Biblioteca.Infra.Repositories.Usuario
             return cpf == auxCpf;
         }
 
+        public void UpdateStatus(int idUsuario, int idStatus)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var usuario = context.Usuario.FirstOrDefault(x => x.UsuarioId == idUsuario);
 
+                usuario.StatusUsuarioId = idStatus;
+
+                context.SaveChanges();
+            }
+        }
     }
 }
