@@ -40,6 +40,20 @@ namespace Biblioteca.Domain.Services.Livro
             _statusLivroRepository = statusLivroRepository;
         }
 
+        public bool Delete(LivroDto livro)
+        {
+            var livroData = _livroRepository.GetById(livro.LivroId);
+
+            if (livroData == null)
+                return _notification.AddWithReturn<bool>("O livro não pode ser encontrado!");
+
+            _livroRepository.Delete(livroData);
+
+            _notification.Add("O livro foi deletado com sucesso!");
+
+            return true;
+        }
+
         public IEnumerable<LivroDto> Get()
         {
             var livros = _livroRepository.Get();
@@ -151,6 +165,8 @@ namespace Biblioteca.Domain.Services.Livro
                 EditoraId = livroEntity.EditoraId,
                 StatusLivroId = livroEntity.StatusLivroId
             };
+
+
 
         }
     }

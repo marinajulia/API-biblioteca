@@ -39,8 +39,8 @@ namespace Biblioteca.Api.Controllers.Livro
             return Ok(response);
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize]
         public IActionResult Post(LivroDto livro)
         {
             var response = _livroService.Post(livro);
@@ -49,6 +49,18 @@ namespace Biblioteca.Api.Controllers.Livro
                 return BadRequest(_notification.GetErrors());
 
             return Ok(response);
+        }
+
+        [HttpDelete("delete")]
+        [Authorize]
+        public IActionResult Delete(LivroDto livro)
+        {
+            var response = _livroService.Delete(livro);
+
+            if (!response)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(_notification.GetErrors());
         }
     }
 }

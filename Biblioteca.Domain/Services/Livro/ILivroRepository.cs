@@ -13,5 +13,6 @@ namespace Biblioteca.Domain.Services.Livro
         bool GetByEditora(int editora);
         bool GetByAutor(int autor);
         LivroEntity Put(LivroEntity livroEntity);
+        bool Delete(LivroEntity livroEntity);
     }
 }

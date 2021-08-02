@@ -42,7 +42,7 @@ namespace Biblioteca.Domain.Services.CategoriaService
                     ("Você não pode concluir esta operação pois existe(m) livro(s) com esta categoria");
 
 
-            var deleteCategoria = _categoriaRepository.Delete(categoriaData);
+            _categoriaRepository.Delete(categoriaData);
 
             _notification.Add("A categoria foi deletada com sucesso!");
 
