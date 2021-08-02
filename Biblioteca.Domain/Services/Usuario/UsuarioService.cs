@@ -200,7 +200,9 @@ namespace Biblioteca.Domain.Services.Usuario
                 NomeUsuario = usuarioData.NomeUsuario,
                 StatusUsuarioId = usuarioData.StatusUsuarioId,
                 Email = usuarioData.Email,
-                PerfilUsuarioId = usuarioData.PerfilUsuarioId
+                PerfilUsuarioId = usuarioData.PerfilUsuarioId,
+                PerfilUsuario = usuarioData.PerfilUsuario,
+                StatusUsuario = usuarioData.StatusUsuario
             };
         }
     }

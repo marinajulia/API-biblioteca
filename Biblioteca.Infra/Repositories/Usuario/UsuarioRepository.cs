@@ -50,7 +50,10 @@ namespace Biblioteca.Infra.Repositories.Usuario
         {
             using (var context = new ApplicationContext())
             {
-                var usuario = context.Usuario.FirstOrDefault(x => x.NomeUsuario == username);
+                var usuario = context.Usuario
+                    .Include(x => x.PerfilUsuario)
+                    .Include(x => x.StatusUsuario)
+                    .FirstOrDefault(x => x.NomeUsuario == username);
                 return usuario;
             }
         }
