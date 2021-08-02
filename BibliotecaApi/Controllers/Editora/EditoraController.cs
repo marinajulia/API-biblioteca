@@ -62,5 +62,17 @@ namespace BibliotecaApi.Controllers.Editora
 
             return Ok(_notification.GetErrors());
         }
+
+        [HttpGet("getnome")]
+        [Authorize]
+        public IActionResult GetNome(EditoraDto editora)
+        {
+            var response = _editoraService.GetNome(editora);
+
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+        }
     }
 }

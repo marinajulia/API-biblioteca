@@ -74,6 +74,21 @@ namespace Biblioteca.Domain.Services.Editora
             };
         }
 
+        public EditoraDto GetNome(EditoraDto editora)
+        {
+            var editoraData = _editoraRepository.GetByName(editora.NomeEditora);
+
+            if (editoraData == null)
+                return _notification.AddWithReturn<EditoraDto>("Este nome não existe!");
+
+            return new EditoraDto
+            {
+                EditoraId = editoraData.EditoraId,
+                NomeEditora = editoraData.NomeEditora
+            };
+        }
+
+
         public EditoraDto Post(EditoraDto editora)
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();

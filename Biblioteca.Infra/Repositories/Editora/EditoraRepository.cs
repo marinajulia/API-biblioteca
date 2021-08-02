@@ -41,7 +41,8 @@ namespace Biblioteca.Infra.Repositories.Editora
         {
             using(var context = new ApplicationContext())
             {
-                var editora = context.Editora.FirstOrDefault(x => x.NomeEditora.Trim().ToLower() == nome.Trim().ToLower());
+                var editora = context.Editora.FirstOrDefault(x => x.NomeEditora.Trim()
+                .ToLower() == nome.Trim().ToLower());
                 return editora;
             }
         }
