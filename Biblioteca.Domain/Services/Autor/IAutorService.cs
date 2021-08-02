@@ -9,7 +9,6 @@ namespace Biblioteca.Domain.Services
         IEnumerable<AutorDto> Get();
         AutorDto GetById(int id);
         bool Delete(AutorDto autor);
-
-
+        AutorDto GetNome(AutorDto autor);
     }
 }

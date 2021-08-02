@@ -103,6 +103,20 @@ namespace Biblioteca.Domain.Services.Autor
                 NomeAutor = autorEntity.NomeAutor
             };
         }
+
+        public AutorDto GetNome(AutorDto autor)
+        {
+            var autorData = _autorRepository.GetByName(autor.NomeAutor);
+
+            if (autorData == null)
+                return _notification.AddWithReturn<AutorDto>("Este nome não existe!");
+
+            return new AutorDto
+            {
+                AutorId = autorData.AutorId,
+                NomeAutor = autorData.NomeAutor
+            };
+        }
     }
 }
 
