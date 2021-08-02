@@ -86,7 +86,7 @@ namespace Biblioteca.Domain.Services.Usuario
                 return _notification.AddWithReturn<bool>("O usuário informado não existe!");
 
             var statusUsuario = _usuarioRepository.GetByStatus(usuario.UsuarioId);
-            if (statusUsuario != null)  
+            if (statusUsuario != null)
                 return _notification.AddWithReturn<bool>
                     ("Ops.. parece que esse usuário já está bloqueado!");
 
@@ -112,7 +112,7 @@ namespace Biblioteca.Domain.Services.Usuario
             usuario.StatusUsuarioId = 6;
             var alterandoStatusUsuario = _usuarioRepository.Put(usuario);
 
-             _notification.Add("O usuário foi desbloqueado com sucesso!");
+            _notification.Add("O usuário foi desbloqueado com sucesso!");
 
             return true;
         }
@@ -148,7 +148,7 @@ namespace Biblioteca.Domain.Services.Usuario
             if (validaCpf == false)
                 return _notification.AddWithReturn<UsuarioDto>
                     ("O CPF é inválido");
-           
+
 
             var usuarioEntity = _usuarioRepository.PostCadastro(new UsuarioEntity
             {
@@ -191,6 +191,22 @@ namespace Biblioteca.Domain.Services.Usuario
             };
         }
 
-       
+        public bool PostAlterarSenha(UsuarioEntity usuario)
+        {
+            if (usuario.NomeUsuario == "" || usuario.Senha == "")
+                return _notification.AddWithReturn<bool>("Existem campos vazios!");
+
+            var nome = _usuarioRepository.GetByName(usuario.NomeUsuario);
+            if (nome == null)
+                return _notification.AddWithReturn<bool>("Ops.. parece que este usuário não existe");
+
+            nome.Senha = usuario.Senha;
+            _usuarioRepository.PutAlterarSenha(nome);
+
+            _notification.Add("Sua senha foi alterada com sucesso!");
+
+            return true;
+        }
+
     }
 }

@@ -67,11 +67,21 @@ namespace Biblioteca.Api.Controllers.Usuario
                 return BadRequest(_notification.GetErrors());
 
             return Ok(response);
+        }
 
+        [HttpPost("alterarsenha")]
+        [AllowAnonymous]
+        public IActionResult PostAlterarSenha(UsuarioEntity usuario)
+        {
+            var response = _usuarioService.PostAlterarSenha(usuario);
+            if (!response)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(_notification.GetErrors());
         }
 
         [HttpPost("bloqueio")]
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult PostBloqueio(UsuarioDto usuario)
         {
             var response = _usuarioService.PostBloqueio(usuario);
@@ -79,7 +89,6 @@ namespace Biblioteca.Api.Controllers.Usuario
                 return BadRequest(_notification.GetErrors());
 
             return Ok(_notification.GetErrors());
-
         }
 
         [HttpPost("desbloqueio")]
@@ -90,7 +99,6 @@ namespace Biblioteca.Api.Controllers.Usuario
                 return BadRequest(_notification.GetErrors());
 
             return Ok(_notification.GetErrors());
-
         }
 
     }

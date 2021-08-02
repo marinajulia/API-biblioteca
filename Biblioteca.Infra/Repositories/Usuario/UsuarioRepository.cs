@@ -68,7 +68,8 @@ namespace Biblioteca.Infra.Repositories.Usuario
         {
             using (var context = new ApplicationContext())
             {
-                var usuario = context.Usuario.FirstOrDefault(x => x.NomeUsuario == username && x.Senha == PasswordService.Criptografar(password));
+                var usuario = context.Usuario.FirstOrDefault(x => x.NomeUsuario == username &&
+                x.Senha == PasswordService.Criptografar(password));
                 return usuario;
             }
         }
@@ -80,6 +81,18 @@ namespace Biblioteca.Infra.Repositories.Usuario
                 usuario.Senha = PasswordService.Criptografar(usuario.Senha);
 
                 context.Usuario.Add(usuario);
+                context.SaveChanges();
+
+                return usuario;
+            }
+        }
+
+        public UsuarioEntity PutAlterarSenha(UsuarioEntity usuario)
+        {
+            using (var context = new ApplicationContext())
+            {
+                usuario.Senha = PasswordService.Criptografar(usuario.Senha);
+                context.Usuario.Update(usuario);
                 context.SaveChanges();
 
                 return usuario;

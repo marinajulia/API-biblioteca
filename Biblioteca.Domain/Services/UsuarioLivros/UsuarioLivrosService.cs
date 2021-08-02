@@ -85,7 +85,7 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                 return _notification.AddWithReturn<bool>("Ops.. parece que o usuario informado não existe!");
 
             livro.StatusLivroId = 2;
-            var alterandoStatusLivro = _livroRepository.Put(livro);
+            _livroRepository.Put(livro);
 
             var buscaPorLivro = _usuarioLivrosRepository.GetByLivro(usuarioLivros.LivroId);
 
@@ -122,10 +122,10 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                     ("Ops.. parece que o usuario informado não existe");
 
             livro.StatusLivroId = 1;
-            var alterandoStatusLivro = _livroRepository.Put(livro);
+            _livroRepository.Put(livro);
 
             usuario.StatusUsuarioId = 6;
-            var alterandoStatusDoUsuario = _usuarioRepository.Put(usuario);
+            _usuarioRepository.Put(usuario);
 
             var usuarioLivrosEntity = _usuarioLivrosRepository.Post(new UsuarioLivrosEntity
             {

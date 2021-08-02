@@ -8,6 +8,7 @@ namespace Biblioteca.Domain.Services.Usuario
     {
         UsuarioDto PostCadastro(UsuarioEntity usuario);
         UsuarioDto PostLogin(UsuarioEntity usuario);
+        bool PostAlterarSenha(UsuarioEntity usuario);
         UsuarioDto GetById(int id);
         bool PostBloqueio(UsuarioDto usuarioDto);
         bool PostDesbloqueio(UsuarioDto usuarioDto);
