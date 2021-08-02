@@ -140,5 +140,26 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                 LivroId = usuarioLivrosEntity.LivroId
             };
         }
+
+        //public UsuarioLivrosDto GetByUsuario(int id)
+        //{
+        //    var usuario = _usuarioRepository.GetById(id);
+
+        //    if (usuario == null)
+        //        return _notification.AddWithReturn<UsuarioLivrosDto>
+        //            ("Não foi encontrado nenhum registro com esse ID");
+
+        //    var usuarioLivros = _usuarioLivrosRepository.GetById(id);
+
+        //    return new UsuarioLivrosDto
+        //    {
+        //        UsuarioLivrosId = usuario.UsuarioLivrosId,
+        //        UsuarioId = usuario.UsuarioId,
+        //        LivroId = usuario.LivroId,
+        //        Livro = usuario.Livro,
+        //        Usuario = usuario.Usuario,
+
+        //    };
+        //}
     }
 }
