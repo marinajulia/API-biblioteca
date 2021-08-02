@@ -39,8 +39,10 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
             return usuario.Select(x => new UsuarioLivrosDto
             {
                 UsuarioLivrosId = x.UsuarioLivrosId,
-                Usuario = x.Usuario,
+                UsuarioId = x.UsuarioId,
+                LivroId = x.LivroId,
                 Livro = x.Livro,
+                Usuario = x.Usuario,
             }).ToList();
         }
 
