@@ -97,7 +97,7 @@ namespace Biblioteca.Domain.Services.Livro
                 Categoria = livro.Categoria,
                 Autor = livro.Autor,
                 Editora = livro.Editora,
-                StatusLivro = livro.StatusLivro
+                StatusLivro = livro.StatusLivro,
             };
         }
 
@@ -117,7 +117,11 @@ namespace Biblioteca.Domain.Services.Livro
                 AutorId = livroData.AutorId,
                 Descrição = livroData.Descrição,
                 EditoraId = livroData.EditoraId,
-                StatusLivroId = livroData.StatusLivroId
+                StatusLivroId = livroData.StatusLivroId,
+                Categoria = livroData.Categoria,
+                Autor = livroData.Autor,
+                Editora = livroData.Editora,
+                StatusLivro = livroData.StatusLivro,
             };
         }
 

@@ -89,7 +89,12 @@ namespace Biblioteca.Infra.Repositories.Livro
         {
             using (var context = new ApplicationContext())
             {
-                var livro = context.Livro.FirstOrDefault(x => x.Titulo.Trim().ToLower() == nome.Trim().ToLower());
+                var livro = context.Livro
+                    .Include(x => x.Categoria)
+                    .Include(x => x.Autor)
+                    .Include(x => x.Editora)
+                    .Include(x => x.StatusLivro)
+                    .FirstOrDefault(x => x.Titulo.Trim().ToLower() == nome.Trim().ToLower());
                 return livro;
             }
         }
