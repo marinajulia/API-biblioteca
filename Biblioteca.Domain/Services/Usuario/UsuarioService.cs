@@ -117,6 +117,10 @@ namespace Biblioteca.Domain.Services.Usuario
             if (verificaSeCpfJaExiste != null)
                 return _notification.AddWithReturn<bool>("Ops.. parece que o CPF inserido já existe");
 
+            var verificaSeEmailJaExiste = _usuarioRepository.GetByEmail(usuario.Email);
+            if (verificaSeEmailJaExiste != null)
+                return _notification.AddWithReturn<bool>("Ops.. parece que o email inserido já existe");
+
             if (usuario.CPF == "" || usuario.Email == "" || usuario.NomeUsuario == "" || usuario.Senha == "")
                 return _notification.AddWithReturn<bool>("Ops.. você não pode inserir um campo vazio");
 
@@ -202,6 +206,23 @@ namespace Biblioteca.Domain.Services.Usuario
                 PerfilUsuario = usuarioData.PerfilUsuario,
                 StatusUsuario = usuarioData.StatusUsuario
             };
+        }
+
+        public bool PostAlterarEmail(UsuarioEntity usuario)
+        {
+            if (usuario.NomeUsuario == "" || usuario.Email == "")
+                return _notification.AddWithReturn<bool>("Existem campos vazios!");
+
+            var usuarioData = _usuarioRepository.GetByName(usuario.NomeUsuario);
+            if (usuarioData == null)
+                return _notification.AddWithReturn<bool>("Ops.. parece que este usuário não existe");
+
+            usuarioData.Email = usuario.Email;
+            _usuarioRepository.PutAlteraremail(usuarioData);
+
+            _notification.Add("Seu email foi alterado com sucesso!");
+
+            return true;
         }
     }
 }

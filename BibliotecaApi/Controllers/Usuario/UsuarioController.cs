@@ -69,7 +69,7 @@ namespace Biblioteca.Api.Controllers.Usuario
         }
 
         [HttpPost("alterarsenha")]
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult PostAlterarSenha(UsuarioEntity usuario)
         {
             var response = _usuarioService.PostAlterarSenha(usuario);
@@ -109,6 +109,17 @@ namespace Biblioteca.Api.Controllers.Usuario
                 return BadRequest(_notification.GetErrors());
 
             return Ok(response);
+        }
+
+        [HttpPost("alteraremail")]
+        [Authorize]
+        public IActionResult PostAlterarEmail(UsuarioEntity usuario)
+        {
+            var response = _usuarioService.PostAlterarEmail(usuario);
+            if (!response)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(_notification.GetErrors());
         }
     }
 }

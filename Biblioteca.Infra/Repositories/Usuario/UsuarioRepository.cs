@@ -34,6 +34,15 @@ namespace Biblioteca.Infra.Repositories.Usuario
             }
         }
 
+        public UsuarioEntity GetByEmail(string email)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var usuarioEmail = context.Usuario.FirstOrDefault(x => x.Email == email);
+                return usuarioEmail;
+            }
+        }
+
         public UsuarioEntity GetById(int id)
         {
             using (var context = new ApplicationContext())
@@ -177,6 +186,17 @@ namespace Biblioteca.Infra.Repositories.Usuario
                 usuario.StatusUsuarioId = idStatus;
 
                 context.SaveChanges();
+            }
+        }
+
+        public UsuarioEntity PutAlteraremail(UsuarioEntity usuario)
+        {
+            using (var context = new ApplicationContext())
+            {
+                context.Usuario.Update(usuario);
+                context.SaveChanges();
+
+                return usuario;
             }
         }
     }
