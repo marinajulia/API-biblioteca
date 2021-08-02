@@ -124,16 +124,6 @@ namespace Biblioteca.Domain.Services.Usuario
                 return _notification.AddWithReturn<UsuarioDto>
                     ("Ops.. parece que o usuário informado já existe");
 
-            var verifificaSePerfilUsuarioExiste = _perfilUsuarioRepository.GetById(usuario.PerfilUsuarioId);
-            if (verifificaSePerfilUsuarioExiste == null)
-                return _notification.AddWithReturn<UsuarioDto>
-                    ("Ops.. parece que o perfil de usuário informado não existe");
-
-            var verificaSeStatusUsuarioExiste = _statusUsuarioRepository.GetById(usuario.StatusUsuarioId);
-            if (verificaSeStatusUsuarioExiste == null)
-                return _notification.AddWithReturn<UsuarioDto>
-                    ("Ops.. parece que o status de usuário informado não existe");
-
             var verificaSeCpfJaExiste = _usuarioRepository.GetByCpf(usuario.CPF);
             if (verificaSeCpfJaExiste != null)
                 return _notification.AddWithReturn<UsuarioDto>
@@ -155,9 +145,9 @@ namespace Biblioteca.Domain.Services.Usuario
                 NomeUsuario = usuario.NomeUsuario,
                 CPF = usuario.CPF,
                 Senha = usuario.Senha,
-                StatusUsuarioId = usuario.StatusUsuarioId,
+                StatusUsuarioId = 6,
                 Email = usuario.Email,
-                PerfilUsuarioId = usuario.PerfilUsuarioId
+                PerfilUsuarioId = 1
             });
             return new UsuarioDto
             {
