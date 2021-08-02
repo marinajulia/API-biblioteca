@@ -101,5 +101,16 @@ namespace Biblioteca.Api.Controllers.Usuario
             return Ok(_notification.GetErrors());
         }
 
+        [HttpGet]
+        [Route("getnome")]
+        [AllowAnonymous]
+        public IActionResult GetNome(UsuarioDto usuario)
+        {
+            var response = _usuarioService.GetNome(usuario);
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+        }
     }
 }

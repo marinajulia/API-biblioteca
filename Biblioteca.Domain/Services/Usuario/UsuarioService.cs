@@ -1,6 +1,4 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
-using Biblioteca.Domain.Services.PerfilUsuario;
-using Biblioteca.Domain.Services.StatusUsuario;
 using Biblioteca.Domain.Services.Usuario.Dto;
 using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
@@ -14,21 +12,15 @@ namespace Biblioteca.Domain.Services.Usuario
         private readonly INotification _notification;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly UserLoggedData _userLoggedData;
-        private readonly IPerfilUsuarioRepository _perfilUsuarioRepository;
-        private readonly IStatusUsuarioRepository _statusUsuarioRepository;
 
         public UsuarioService(
             IUsuarioRepository usuarioRepository,
             INotification notification,
-            UserLoggedData userLoggedData,
-            IPerfilUsuarioRepository perfilUsuarioRepository,
-            IStatusUsuarioRepository statusUsuarioRepository)
+            UserLoggedData userLoggedData)
         {
             _usuarioRepository = usuarioRepository;
             _notification = notification;
             _userLoggedData = userLoggedData;
-            _perfilUsuarioRepository = perfilUsuarioRepository;
-            _statusUsuarioRepository = statusUsuarioRepository;
         }
 
         public bool Allow(int idUser)
@@ -189,5 +181,27 @@ namespace Biblioteca.Domain.Services.Usuario
             return true;
         }
 
+        public UsuarioDto GetNome(UsuarioDto usuario)
+        {
+            var dadosUsuarioLogado = _userLoggedData.GetData();
+
+            if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
+                return _notification.AddWithReturn<UsuarioDto>
+                    ("Ops.. parece que você não tem permissão para listar os usuários");
+
+            var usuarioData = _usuarioRepository.GetByName(usuario.NomeUsuario);
+
+            if (usuarioData == null)
+                return _notification.AddWithReturn<UsuarioDto>("Este nome não existe!");
+
+            return new UsuarioDto
+            {
+                UsuarioId = usuarioData.UsuarioId,
+                NomeUsuario = usuarioData.NomeUsuario,
+                StatusUsuarioId = usuarioData.StatusUsuarioId,
+                Email = usuarioData.Email,
+                PerfilUsuarioId = usuarioData.PerfilUsuarioId
+            };
+        }
     }
 }
