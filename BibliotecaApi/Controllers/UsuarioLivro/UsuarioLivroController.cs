@@ -62,5 +62,17 @@ namespace Biblioteca.Api.Controllers.UsuarioLivro
 
             return Ok(_notification.GetErrors());
         }
+
+        [HttpGet("livrosUsuario")]
+        [Authorize]
+        public IActionResult GetUser(UsuarioLivrosDto usuarioLivros)
+        {
+            var response = _usuarioLivrosService.GetUser(usuarioLivros.UsuarioId);
+
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+        }
     }
 }

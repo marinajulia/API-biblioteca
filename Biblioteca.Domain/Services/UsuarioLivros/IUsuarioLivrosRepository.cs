@@ -11,7 +11,6 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         UsuarioLivrosEntity Post(UsuarioLivrosEntity usuarioLivros);
         UsuarioLivrosEntity GetByLivro(int idLivro);
         void Delete(UsuarioLivrosEntity usuarioLivros);
-
-
+        IEnumerable <UsuarioLivrosEntity> GetLivros(int id);
     }
 }

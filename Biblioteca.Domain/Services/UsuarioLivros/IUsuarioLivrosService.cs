@@ -9,6 +9,6 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
         UsuarioLivrosDto GetById(int id);
         UsuarioLivrosDto Post(UsuarioLivrosDto usuarioLivros);
         bool PostDevolucao(UsuarioLivrosDto usuarioLivros);
-        UsuarioLivrosDto GetByUsuario(int id);
+        IEnumerable<UsuarioLivrosDto> GetUser(int id);
     }
 }

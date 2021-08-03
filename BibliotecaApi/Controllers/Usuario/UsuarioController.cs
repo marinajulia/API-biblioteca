@@ -46,6 +46,7 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         [HttpPost]
         [Route("login")]
+
         public IActionResult PostLogin(UsuarioEntity model)
         {
             var usuario = _usuarioService.PostLogin(model);
@@ -91,6 +92,7 @@ namespace Biblioteca.Api.Controllers.Usuario
         }
 
         [HttpPost("desbloqueio")]
+        [Authorize]
         public IActionResult PostDesbloqueio(UsuarioDto usuario)
         {
             var response = _usuarioService.PostDesbloqueio(usuario);
@@ -102,6 +104,7 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         [HttpGet]
         [Route("getnome")]
+        [Authorize]
         public IActionResult GetNome(UsuarioDto usuario)
         {
             var response = _usuarioService.GetNome(usuario);
@@ -114,7 +117,7 @@ namespace Biblioteca.Api.Controllers.Usuario
         [HttpPost("alteraremail")]
         [Authorize]
         public IActionResult PostAlterarEmail(UsuarioEntity usuario)
-        {
+        {   
             var response = _usuarioService.PostAlterarEmail(usuario);
             if (!response)
                 return BadRequest(_notification.GetErrors());

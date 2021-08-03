@@ -141,25 +141,17 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
             };
         }
 
-        //public UsuarioLivrosDto GetByUsuario(int id)
-        //{
-        //    var usuario = _usuarioRepository.GetById(id);
+        public IEnumerable<UsuarioLivrosDto> GetUser(int id)
+        {
+            var usuario = _usuarioLivrosRepository.GetLivros(id);
 
-        //    if (usuario == null)
-        //        return _notification.AddWithReturn<UsuarioLivrosDto>
-        //            ("Não foi encontrado nenhum registro com esse ID");
-
-        //    var usuarioLivros = _usuarioLivrosRepository.GetById(id);
-
-        //    return new UsuarioLivrosDto
-        //    {
-        //        UsuarioLivrosId = usuario.UsuarioLivrosId,
-        //        UsuarioId = usuario.UsuarioId,
-        //        LivroId = usuario.LivroId,
-        //        Livro = usuario.Livro,
-        //        Usuario = usuario.Usuario,
-
-        //    };
-        //}
+            return usuario.Select(x => new UsuarioLivrosDto
+            {
+                UsuarioLivrosId = x.UsuarioLivrosId,
+                UsuarioId = x.UsuarioId,
+                LivroId = x.LivroId,
+                Livro = x.Livro,
+            }).ToList();
+        }
     }
 }

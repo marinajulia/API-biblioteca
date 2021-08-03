@@ -75,5 +75,18 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
                 return usuarioLivros;
             }
         }
+        
+        public IEnumerable<UsuarioLivrosEntity> GetLivros(int userId)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var usuarioLivros = context.UsuarioLivros
+                    .Include(x => x.Livro)
+                    .AsNoTracking()
+                    .Where(x => x.UsuarioId == userId);
+
+                return usuarioLivros.ToList();
+            }
+        }
     }
 }
