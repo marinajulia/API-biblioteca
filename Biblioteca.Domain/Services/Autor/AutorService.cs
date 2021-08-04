@@ -79,6 +79,10 @@ namespace Biblioteca.Domain.Services.Autor
         {
             var dadosUsuariologado = _userLoggedData.GetData();
 
+            if (autorDto.NomeAutor == "")
+                return _notification.AddWithReturn<AutorDto>
+                    ("Você não pode inserir um campo vazio!");
+
             if (dadosUsuariologado.Id_PerfilUsuario == 1)
                 return _notification.AddWithReturn<AutorDto>
                     ("Ops.. parece que você não tem permissão para adicionar este autor!");
@@ -87,10 +91,6 @@ namespace Biblioteca.Domain.Services.Autor
             if (autorData != null)
                 return _notification.AddWithReturn<AutorDto>
                     ("Ops.. parece que esse autor já existe!");
-
-            if (!string.IsNullOrEmpty(autorDto.NomeAutor))
-                return _notification.AddWithReturn<AutorDto>
-                    ("Você não pode inserir um campo vazio!");
 
             var autorEntity = _autorRepository.Post(new AutorEntity
             {
