@@ -22,7 +22,7 @@ namespace Biblioteca.Api.Controllers.Usuario
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult Get()
         {
             var usuario = _usuarioService.Get();
@@ -34,7 +34,7 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         [HttpGet]
         [Route("getbyid")]
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult GetById(int id)
         {
             var usuario = _usuarioService.GetById(id);
@@ -46,7 +46,6 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         [HttpPost]
         [Route("login")]
-
         public IActionResult PostLogin(UsuarioEntity model)
         {
             var usuario = _usuarioService.PostLogin(model);

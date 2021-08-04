@@ -30,7 +30,6 @@ namespace BibliotecaApi.Controllers.Autor
 
         [HttpGet("findbyid")]
         [Authorize]
-
         public IActionResult GetById(int id)
         {
             var autor = _autorService.GetById(id);
