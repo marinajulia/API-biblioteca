@@ -35,6 +35,22 @@ namespace Biblioteca.Infra.Repositories.Livro
             }
         }
 
+        public IEnumerable<LivroEntity> Get(string nome)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var livros = context.Livro
+                    .Include(x => x.Categoria)
+                    .Include(x => x.Autor)
+                    .Include(x => x.Editora)
+                    .Include(x => x.StatusLivro)
+                    .Where(x => x.Titulo.Trim().ToLower().Contains(nome))
+                    .AsNoTracking();
+
+                return livros.ToList();
+            }
+        }
+
         public bool GetByAutor(int autor)
         {
             using (var context = new ApplicationContext())

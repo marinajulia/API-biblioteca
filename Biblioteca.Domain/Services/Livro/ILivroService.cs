@@ -9,7 +9,7 @@ namespace Biblioteca.Domain.Services.Livro
         LivroDto GetById(int id);
         LivroDto Post(LivroDto livro);
         bool Delete(LivroDto livro);
-        LivroDto GetNome(LivroDto livro);
+        IEnumerable<LivroDto> GetNome(string nome);
 
     }
 }

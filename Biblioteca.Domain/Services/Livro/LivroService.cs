@@ -72,7 +72,7 @@ namespace Biblioteca.Domain.Services.Livro
                 Autor = x.Autor,
                 Editora = x.Editora,
                 StatusLivro = x.StatusLivro
-                
+
             }).ToList();
         }
 
@@ -101,28 +101,27 @@ namespace Biblioteca.Domain.Services.Livro
             };
         }
 
-        public LivroDto GetNome(LivroDto livro)
+        public IEnumerable<LivroDto> GetNome(string nome)
         {
-            var livroData = _livroRepository.GetByName(livro.Titulo);
+            var livros = _livroRepository.Get(nome);
 
-            if (livroData == null)
-                return _notification.AddWithReturn<LivroDto>("Este nome não existe!");
 
-            return new LivroDto
+            return livros.Select(x => new LivroDto
             {
-                LivroId = livroData.LivroId,
-                Titulo = livroData.Titulo,
-                ISBN = livroData.ISBN,
-                CategoriaId = livroData.CategoriaId,
-                AutorId = livroData.AutorId,
-                Descrição = livroData.Descrição,
-                EditoraId = livroData.EditoraId,
-                StatusLivroId = livroData.StatusLivroId,
-                Categoria = livroData.Categoria,
-                Autor = livroData.Autor,
-                Editora = livroData.Editora,
-                StatusLivro = livroData.StatusLivro,
-            };
+                LivroId = x.LivroId,
+                Titulo = x.Titulo,
+                ISBN = x.ISBN,
+                CategoriaId = x.CategoriaId,
+                AutorId = x.AutorId,
+                Descrição = x.Descrição,
+                EditoraId = x.EditoraId,
+                StatusLivroId = x.StatusLivroId,
+                Categoria = x.Categoria,
+                Autor = x.Autor,
+                Editora = x.Editora,
+                StatusLivro = x.StatusLivro
+
+            }).ToList();
         }
 
         public LivroDto Post(LivroDto livro)
@@ -158,12 +157,12 @@ namespace Biblioteca.Domain.Services.Livro
                 return _notification.AddWithReturn<LivroDto>
                     ("Ops.. parece que o status do livro informado não existe!");
 
-            if(livro.CategoriaId < 1 || livro.AutorId < 1 || livro.EditoraId < 1 ||
+            if (livro.CategoriaId < 1 || livro.AutorId < 1 || livro.EditoraId < 1 ||
                 livro.StatusLivroId < 1)
                 return _notification.AddWithReturn<LivroDto>
                     ("Você não pode inserir um campo vazio!");
 
-            if (livro.Descrição == "" || livro.ISBN == "" ||livro.Titulo == "")
+            if (livro.Descrição == "" || livro.ISBN == "" || livro.Titulo == "")
                 return _notification.AddWithReturn<LivroDto>
                     ("Você não pode inserir um campo vazio!");
 

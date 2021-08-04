@@ -1,6 +1,7 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Usuario.Dto;
 using Biblioteca.SharedKernel;
+using SharedKernel.Domain;
 using SharedKernel.Domain.Notification;
 using System.Collections.Generic;
 using System.Linq;
@@ -124,6 +125,8 @@ namespace Biblioteca.Domain.Services.Usuario
             if (usuario.CPF == "" || usuario.Email == "" || usuario.NomeUsuario == "" || usuario.Senha == "")
                 return _notification.AddWithReturn<bool>("Ops.. você não pode inserir um campo vazio");
 
+            if (!usuario.Email.IsValidMail())
+                return _notification.AddWithReturn<bool>("Ops.. O email inserido é inválido");
 
             var validaCpf = _usuarioRepository.ValidaCpf(usuario.CPF);
             if (validaCpf == false)

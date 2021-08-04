@@ -14,5 +14,6 @@ namespace Biblioteca.Domain.Services.Livro
         bool GetByAutor(int autor);
         LivroEntity Put(LivroEntity livroEntity);
         bool Delete(LivroEntity livroEntity);
+        IEnumerable<LivroEntity> Get(string nome);
     }
 }
