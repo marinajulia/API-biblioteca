@@ -48,6 +48,18 @@ namespace Biblioteca.Domain.Services.PerfilUsuario
             };
         }
 
+        public IEnumerable<PerfilUsuarioDto> GetNome(string nome)
+        {
+            var perfilUsuarios = _perfilUsuario.Get(nome);
+
+
+            return perfilUsuarios.Select(x => new PerfilUsuarioDto
+            {
+                PerfilUsuarioId = x.PerfilUsuarioId,
+                Perfil = x.Perfil
+            }).ToList();
+        }
+
         public PerfilUsuarioDto Post(PerfilUsuarioDto perfilUsuarioDto)
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();

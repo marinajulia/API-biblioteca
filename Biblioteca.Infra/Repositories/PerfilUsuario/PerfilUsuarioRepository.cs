@@ -17,6 +17,16 @@ namespace Biblioteca.Infra.Repositories.PerfilUsuario
             }
         }
 
+        public IEnumerable<PerfilUsuarioEntity> Get(string nome)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var perfilUsuarios = context.PerfilUsuario
+                    .Where(x => x.Perfil.Trim().ToLower().Contains(nome));
+                return perfilUsuarios.ToList();
+            }
+        }
+
         public PerfilUsuarioEntity GetById(int id)
         {
             using (var context = new ApplicationContext())

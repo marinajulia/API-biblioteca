@@ -50,5 +50,16 @@ namespace BibliotecaApi.Controllers.PerfilUsuario
 
             return Ok(response);
         }
+
+        [HttpGet("getnome")]
+        [Authorize]
+        public IActionResult GetNome(string nome)
+        {
+            var response = _perfilUsuarioService.GetNome(nome);
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+        }
     }
 }
