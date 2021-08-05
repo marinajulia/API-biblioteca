@@ -29,6 +29,17 @@ namespace Biblioteca.Infra.Repositories.RepositoryCategoria
             }
         }
 
+        public IEnumerable<CategoriaEntity> Get(string nome)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var categorias = context.Categoria
+                    .Where(x => x.NomeCategoria.Trim().ToLower().Contains(nome));
+
+                return categorias.ToList();
+            }
+        }
+
         public CategoriaEntity GetById(int id)
         {
             using (var context = new ApplicationContext())

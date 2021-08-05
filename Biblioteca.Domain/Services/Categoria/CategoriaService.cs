@@ -58,7 +58,7 @@ namespace Biblioteca.Domain.Services.CategoriaService
                 CategoriaId = x.CategoriaId,
                 NomeCategoria = x.NomeCategoria,
                 DescriçãoCategoria = x.DescriçãoCategoria
-            });
+            }).ToList();
         }
 
         public CategoriaDto GetById(int id)
@@ -77,19 +77,19 @@ namespace Biblioteca.Domain.Services.CategoriaService
             };
         }
 
-        public CategoriaDto GetNome(CategoriaDto categoria)
+        public IEnumerable<CategoriaDto> GetNome(string nome)
         {
-            var categoriaData = _categoriaRepository.GetByName(categoria.NomeCategoria);
+            var categorias = _categoriaRepository.Get(nome);
 
-            if (categoriaData == null)
-                return _notification.AddWithReturn<CategoriaDto>("Este nome não existe!");
+            if (categorias == null)
+                return _notification.AddWithReturn<IEnumerable<CategoriaDto>>("Este nome não existe!");
 
-            return new CategoriaDto
+            return categorias.Select(x => new CategoriaDto
             {
-                CategoriaId = categoriaData.CategoriaId,
-                DescriçãoCategoria = categoriaData.DescriçãoCategoria,
-                NomeCategoria = categoriaData.NomeCategoria
-            };
+                CategoriaId = x.CategoriaId,
+                NomeCategoria = x.NomeCategoria,
+                DescriçãoCategoria = x.DescriçãoCategoria
+            }).ToList(); 
         }
 
         public CategoriaDto Post(CategoriaDto categoria)

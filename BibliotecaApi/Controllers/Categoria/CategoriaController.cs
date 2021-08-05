@@ -65,7 +65,7 @@ namespace BibliotecaApi.Controllers.Categoria
 
         [HttpGet("getnome")]
         [Authorize]
-        public IActionResult GetNome(CategoriaDto categoria)
+        public IActionResult GetNome(string categoria)
         {
             var response = _categoriaService.GetNome(categoria);
             if (response == null)
