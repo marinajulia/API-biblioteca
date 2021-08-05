@@ -1,10 +1,8 @@
 ﻿using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.StatusLivro.Entities;
 using Biblioteca.Infra.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Biblioteca.Infra.Repositories.StatusUsuario
 {
@@ -15,6 +13,16 @@ namespace Biblioteca.Infra.Repositories.StatusUsuario
             using (var context = new ApplicationContext())
             {
                 var statusLivros = context.StatusLivro;
+                return statusLivros.ToList();
+            }
+        }
+
+        public IEnumerable<StatusLivroEntity> Get(string nome)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var statusLivros = context.StatusLivro
+                    .Where(x => x.NomeStatus.Trim().ToLower().Contains(nome));
                 return statusLivros.ToList();
             }
         }

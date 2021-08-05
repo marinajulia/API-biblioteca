@@ -50,5 +50,16 @@ namespace BibliotecaApi.Controllers.StatusLivro
 
             return Ok(response);
         }
+
+        [HttpGet("getnome")]
+        [Authorize]
+        public IActionResult GetNome(string nome)
+        {
+            var response = _statusLivroService.GetNome(nome);
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+        }
     }
 }

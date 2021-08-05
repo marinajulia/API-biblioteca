@@ -18,6 +18,17 @@ namespace Biblioteca.Infra.Repositories
             }
         }
 
+        public IEnumerable<StatusUsuarioEntity> Get(string nome)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var statusUsuario = context.StatusUsuario
+                    .Where(x => x.NomeStatus.Trim().ToLower().Contains(nome));
+
+                return statusUsuario.ToList();
+            }
+        }
+
         public StatusUsuarioEntity GetById(int id)
         {
             using (var context = new ApplicationContext())

@@ -51,6 +51,16 @@ namespace Biblioteca.Api.Controllers.StatusUsuario
             return Ok(response);
         }
 
+        [HttpGet("getnome")]
+        [Authorize]
+        public IActionResult GetNome(string nome)
+        {
+            var response = _statusUsuario.GetNome(nome);
+            if (response == null)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(response);
+        }
 
     }
 }

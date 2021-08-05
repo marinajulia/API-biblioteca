@@ -53,6 +53,18 @@ namespace Biblioteca.Domain.Services.StatusLivro
             };
         }
 
+        public IEnumerable<StatusLivroDto> GetNome(string nome)
+        {
+
+            var statusLivro = _statusLivro.Get(nome);
+
+            return statusLivro.Select(x => new StatusLivroDto
+            {
+                StatusLivroId = x.StatusLivroId,
+                NomeStatus = x.NomeStatus
+            });
+        }
+
         public StatusLivroDto Post(StatusLivroDto statusLivroEntity)
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();

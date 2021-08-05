@@ -6,6 +6,7 @@ namespace Biblioteca.Domain.Services.StatusLivro
     public interface IStatusLivroService
     {
         IEnumerable<StatusLivroDto> Get();
+        IEnumerable<StatusLivroDto> GetNome(string nome);
         StatusLivroDto GetById(int id);
         StatusLivroDto Post(StatusLivroDto statusLivroEntity);
     }
