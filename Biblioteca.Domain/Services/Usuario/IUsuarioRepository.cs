@@ -6,6 +6,7 @@ namespace Biblioteca.Domain.Services.Usuario
     public interface IUsuarioRepository
     {
         UsuarioEntity PostCadastro(UsuarioEntity usuario);
+        IEnumerable<UsuarioEntity> Get(string nome);
         UsuarioEntity PutAlterarSenha(UsuarioEntity usuario);
         UsuarioEntity PutAlteraremail(UsuarioEntity usuario);
         UsuarioEntity GetUser(string username, string password);

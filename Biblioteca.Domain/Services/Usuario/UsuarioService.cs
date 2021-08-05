@@ -192,31 +192,30 @@ namespace Biblioteca.Domain.Services.Usuario
             return true;
         }
 
-        public UsuarioDto GetNome(UsuarioDto usuario)
+        public IEnumerable<UsuarioDto> GetNome(string nome)
         {
             var dadosUsuarioLogado = _userLoggedData.GetData();
 
             if (dadosUsuarioLogado.Id_PerfilUsuario == 1)
-                return _notification.AddWithReturn<UsuarioDto>
+                return _notification.AddWithReturn<IEnumerable<UsuarioDto>>
                     ("Ops.. parece que você não tem permissão para listar os usuários");
 
-            var usuarioData = _usuarioRepository.GetByName(usuario.NomeUsuario);
+            var usuarios = _usuarioRepository.Get(nome);
 
-            if (usuarioData == null)
-                return _notification.AddWithReturn<UsuarioDto>("Este nome não existe!");
+            if (usuarios == null)
+                return _notification.AddWithReturn<IEnumerable<UsuarioDto>>("Este nome não existe!");
 
-            return new UsuarioDto
+            return usuarios.Select(x => new UsuarioDto
             {
-                UsuarioId = usuarioData.UsuarioId,
-                NomeUsuario = usuarioData.NomeUsuario,
-                StatusUsuarioId = usuarioData.StatusUsuarioId,
-                Email = usuarioData.Email,
-                PerfilUsuarioId = usuarioData.PerfilUsuarioId,
-                PerfilUsuario = usuarioData.PerfilUsuario,
-                StatusUsuario = usuarioData.StatusUsuario
-            };
-        }
+                UsuarioId = x.UsuarioId,
+                NomeUsuario = x.NomeUsuario,
+                StatusUsuarioId = x.StatusUsuarioId,
+                StatusUsuario = x.StatusUsuario,
+                Email = x.Email,
+                PerfilUsuarioId = x.PerfilUsuarioId,
+                PerfilUsuario = x.PerfilUsuario
 
-        
+            }).ToList();
+        }
     }
 }

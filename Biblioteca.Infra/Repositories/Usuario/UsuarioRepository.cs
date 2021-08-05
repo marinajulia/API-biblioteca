@@ -199,5 +199,19 @@ namespace Biblioteca.Infra.Repositories.Usuario
                 return usuario;
             }
         }
+
+        public IEnumerable<UsuarioEntity> Get(string nome)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var usuarios = context.Usuario
+                    .Include(x => x.PerfilUsuario)
+                    .Include(x => x.StatusUsuario)
+                    .Where(x => x.NomeUsuario.Trim().ToLower().Contains(nome))
+                    .AsNoTracking();
+
+                return usuarios.ToList();
+            }
+        }
     }
 }

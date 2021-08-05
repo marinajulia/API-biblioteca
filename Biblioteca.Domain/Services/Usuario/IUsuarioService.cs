@@ -14,6 +14,6 @@ namespace Biblioteca.Domain.Services.Usuario
         bool PostDesbloqueio(UsuarioDto usuarioDto);
         bool Allow(int idUser);
         IEnumerable<UsuarioDto> Get();
-        UsuarioDto GetNome(UsuarioDto usuario);
+        IEnumerable<UsuarioDto> GetNome(string nome);
     }
 }

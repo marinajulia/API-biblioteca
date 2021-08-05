@@ -94,7 +94,7 @@ namespace Biblioteca.Api.Controllers.Usuario
         [HttpGet]
         [Route("getnome")]
         [Authorize]
-        public IActionResult GetNome(UsuarioDto usuario)
+        public IActionResult GetNome(string usuario)
         {
             var response = _usuarioService.GetNome(usuario);
             if (response == null)
