@@ -4,6 +4,7 @@ using Biblioteca.Domain.Services.Editora;
 using Biblioteca.Domain.Services.Entidades;
 using Biblioteca.Domain.Services.Livro.Dto;
 using Biblioteca.Domain.Services.StatusLivro.Entities;
+using Biblioteca.Domain.Services.UsuarioLivros;
 using Biblioteca.SharedKernel;
 using SharedKernel.Domain.Notification;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Biblioteca.Domain.Services.Livro
         private readonly IEditoraRepository _editoraRepository;
         private readonly IAutorRepository _autorRepository;
         private readonly IStatusLivroRepository _statusLivroRepository;
+        private readonly IUsuarioLivrosRepository _usuarioLivrosRepository;
 
         public LivroService(
             ILivroRepository livroRepository,
@@ -28,7 +30,8 @@ namespace Biblioteca.Domain.Services.Livro
             ICategoriaRepository categoriaRepository,
             IEditoraRepository editoraRepository,
             IAutorRepository autorRepository,
-            IStatusLivroRepository statusLivroRepository
+            IStatusLivroRepository statusLivroRepository,
+            IUsuarioLivrosRepository usuarioLivrosRepository
             )
         {
             _livroRepository = livroRepository;
@@ -38,6 +41,7 @@ namespace Biblioteca.Domain.Services.Livro
             _editoraRepository = editoraRepository;
             _autorRepository = autorRepository;
             _statusLivroRepository = statusLivroRepository;
+            _usuarioLivrosRepository = usuarioLivrosRepository;
         }
 
         public bool Delete(LivroDto livro)
@@ -46,6 +50,11 @@ namespace Biblioteca.Domain.Services.Livro
 
             if (livroData == null)
                 return _notification.AddWithReturn<bool>("O livro não pode ser encontrado!");
+
+            var usuarioLivros = _usuarioLivrosRepository.GetByIdLivroUser(livro.LivroId);
+            if (usuarioLivros)
+                return _notification.AddWithReturn<bool>
+                    ("Você não pode concluir esta operação pois existe um usuário com este livro!");
 
             _livroRepository.Delete(livroData);
 

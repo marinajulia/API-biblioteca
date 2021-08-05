@@ -7,7 +7,8 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
     {
         IEnumerable<UsuarioLivrosEntity> Get();
         UsuarioLivrosEntity GetById(int id);
-        UsuarioLivrosEntity GetByIdUsuario(int id);
+        bool GetByIdLivroUser(int idLivro);
+        UsuarioLivrosEntity GetByIdLivro(int id);
         UsuarioLivrosEntity Post(UsuarioLivrosEntity usuarioLivros);
         UsuarioLivrosEntity GetByLivro(int idLivro);
         void Delete(UsuarioLivrosEntity usuarioLivros);

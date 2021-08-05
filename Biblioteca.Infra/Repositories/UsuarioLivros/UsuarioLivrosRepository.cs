@@ -56,13 +56,15 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
             }
         }
 
-        public UsuarioLivrosEntity GetByIdUsuario(int id)
+        public bool GetByIdLivroUser(int idLivro)
         {
             using (var context = new ApplicationContext())
             {
-                var usuarioLivros = context.UsuarioLivros.FirstOrDefault
-                    (x => x.UsuarioId == id);
-                return usuarioLivros;
+                var livro = context.UsuarioLivros.Any(x => x.LivroId == idLivro);
+
+                if (!livro)
+                    return false;
+                return true;
             }
         }
 
@@ -86,6 +88,16 @@ namespace Biblioteca.Infra.Repositories.UsuarioLivros
                     .Where(x => x.UsuarioId == userId);
 
                 return usuarioLivros.ToList();
+            }
+        }
+
+        public UsuarioLivrosEntity GetByIdLivro(int id)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var usuarioLivros = context.UsuarioLivros.FirstOrDefault
+                    (x => x.LivroId == id);
+                return usuarioLivros;
             }
         }
     }
