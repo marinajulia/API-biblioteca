@@ -15,5 +15,6 @@ namespace Biblioteca.Domain.Services.Livro
         LivroEntity Put(LivroEntity livroEntity);
         bool Delete(LivroEntity livroEntity);
         IEnumerable<LivroEntity> Get(string nome);
+        void UpdateStatus(int idlivro, int idStatus);
     }
 }

@@ -40,20 +40,19 @@ namespace Biblioteca.Domain.Services.Autor
         }
 
 
-        public bool Delete(AutorDto autor)
+        public bool Delete(int autor)
         {
-            var autorData = _autorRepository.GetById(autor.AutorId);
+            var autorData = _autorRepository.GetById(autor);
 
             if (autorData == null)
                 return _notification.AddWithReturn<bool>("O autor não pode ser encontrado!");
 
-            var livro = _livroRepository.GetByAutor(autor.AutorId);
+            var livro = _livroRepository.GetByAutor(autorData.AutorId);
             if (livro)
                 return _notification.AddWithReturn<bool>
                     ("Você não pode concluir esta operação pois existe(m) livro(s) com este autor");
 
-
-            var deleteAutor = _autorRepository.Delete(autorData);
+            _autorRepository.Delete(autorData);
 
             _notification.Add("O autor foi deletado com sucesso!");
 

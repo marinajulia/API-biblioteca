@@ -53,7 +53,7 @@ namespace BibliotecaApi.Controllers.Autor
 
         [HttpDelete("delete")]
         [Authorize]
-        public IActionResult Delete(AutorDto autor)
+        public IActionResult Delete(int autor)
         {
             var response = _autorService.Delete(autor);
 

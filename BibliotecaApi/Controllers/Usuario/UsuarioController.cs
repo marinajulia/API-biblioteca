@@ -105,7 +105,7 @@ namespace Biblioteca.Api.Controllers.Usuario
 
         [HttpPut("alterardados")]
         [Authorize]
-        public IActionResult PostAlterarDados(UsuarioEntity usuario)
+        public IActionResult PostAlterarDados(UsuarioDto usuario)
         {   
             var response = _usuarioService.PutAlterarDados(usuario);
             if (!response)

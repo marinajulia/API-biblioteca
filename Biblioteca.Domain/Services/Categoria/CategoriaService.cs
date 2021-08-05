@@ -28,15 +28,15 @@ namespace Biblioteca.Domain.Services.CategoriaService
             _livroRepository = livroRepository;
         }
 
-        public bool Delete(CategoriaDto categoria)
+        public bool Delete(int categoria)
         {
 
-            var categoriaData = _categoriaRepository.GetById(categoria.CategoriaId);
+            var categoriaData = _categoriaRepository.GetById(categoria);
 
             if (categoriaData == null)
                 return _notification.AddWithReturn<bool>("A categoria não pode ser encontrada!");
 
-            var livro = _livroRepository.GetByCategoria(categoria.CategoriaId);
+            var livro = _livroRepository.GetByCategoria(categoriaData.CategoriaId);
             if (livro)
                 return _notification.AddWithReturn<bool>
                     ("Você não pode concluir esta operação pois existe(m) livro(s) com esta categoria");

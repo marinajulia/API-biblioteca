@@ -169,19 +169,22 @@ namespace Biblioteca.Domain.Services.Usuario
             };
         }
 
-        public bool PutAlterarDados(UsuarioEntity usuario)
+        public bool PutAlterarDados(UsuarioDto usuario)
         {
-            if (usuario.NomeUsuario == "" || usuario.Senha == "")
+            if (usuario.NomeUsuario == "")
                 return _notification.AddWithReturn<bool>("Existem campos vazios!");
 
-            var user = _usuarioRepository.GetByName(usuario.NomeUsuario);
+            var user = _usuarioRepository.GetById(usuario.UsuarioId);
             if (user == null)
                 return _notification.AddWithReturn<bool>("Ops.. parece que este usuário não existe");
 
             if (!usuario.Email.IsValidMail())
                 return _notification.AddWithReturn<bool>("Ops.. O email inserido é inválido");
 
-            user.Senha = usuario.Senha;
+            var verificaSeEmailJaExiste = _usuarioRepository.GetByEmail(usuario.Email);
+            if (verificaSeEmailJaExiste != null)
+                return _notification.AddWithReturn<bool>("Ops.. parece que o email inserido já existe");
+
             _usuarioRepository.PutAlterarSenha(user);
 
             user.Email = usuario.Email;

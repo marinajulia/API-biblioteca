@@ -53,7 +53,7 @@ namespace BibliotecaApi.Controllers.Editora
 
         [HttpDelete("delete")]
         [Authorize]
-        public IActionResult Delete(EditoraDto editora)
+        public IActionResult Delete(int editora)
         {
             var response = _editoraService.Delete(editora);
 

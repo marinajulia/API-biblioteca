@@ -27,14 +27,14 @@ namespace Biblioteca.Domain.Services.Editora
             _livroRepository = livroRepository;
         }
 
-        public bool Delete(EditoraDto editora)
+        public bool Delete(int editora)
         {
-            var editoraData = _editoraRepository.GetById(editora.EditoraId);
+            var editoraData = _editoraRepository.GetById(editora);
 
             if (editoraData == null)
                 return _notification.AddWithReturn<bool>("A editora não pode ser encontrada!");
 
-            var livro = _livroRepository.GetByEditora(editora.EditoraId);
+            var livro = _livroRepository.GetByEditora(editoraData.EditoraId);
             if (livro)
                 return _notification.AddWithReturn<bool>
                     ("Você não pode concluir esta operação pois existe(m) livro(s) com esta editora");

@@ -7,7 +7,7 @@ namespace Biblioteca.Domain.Services.CategoriaService
     {
         CategoriaDto Post(CategoriaDto categoria);
         IEnumerable<CategoriaDto> GetNome(string nome);
-        bool Delete(CategoriaDto categoria);
+        bool Delete(int categoria);
         IEnumerable<CategoriaDto> Get();
         CategoriaDto GetById(int id);
 

@@ -134,5 +134,10 @@ namespace Biblioteca.Infra.Repositories.Livro
                 return livroEntity;
             }
         }
+
+        public void UpdateStatus(int idlivro, int idStatus)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

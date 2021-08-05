@@ -53,7 +53,7 @@ namespace BibliotecaApi.Controllers.Categoria
 
         [HttpDelete("delete")]
         [Authorize]
-        public IActionResult Delete(CategoriaDto categoria)
+        public IActionResult Delete(int categoria)
         {
             var response = _categoriaService.Delete(categoria);
 

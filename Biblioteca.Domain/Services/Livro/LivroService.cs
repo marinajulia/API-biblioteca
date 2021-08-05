@@ -44,14 +44,14 @@ namespace Biblioteca.Domain.Services.Livro
             _usuarioLivrosRepository = usuarioLivrosRepository;
         }
 
-        public bool Delete(LivroDto livro)
+        public bool Delete(int livro)
         {
-            var livroData = _livroRepository.GetById(livro.LivroId);
+            var livroData = _livroRepository.GetById(livro);
 
             if (livroData == null)
                 return _notification.AddWithReturn<bool>("O livro não pode ser encontrado!");
 
-            var usuarioLivros = _usuarioLivrosRepository.GetByIdLivroUser(livro.LivroId);
+            var usuarioLivros = _usuarioLivrosRepository.GetByIdLivroUser(livroData.LivroId);
             if (usuarioLivros)
                 return _notification.AddWithReturn<bool>
                     ("Você não pode concluir esta operação pois existe um usuário com este livro!");

@@ -207,7 +207,7 @@ namespace Biblioteca.Infra.Repositories.Usuario
                 var usuarios = context.Usuario
                     .Include(x => x.PerfilUsuario)
                     .Include(x => x.StatusUsuario)
-                    .Where(x => x.NomeUsuario.Trim().ToLower().Contains(nome))
+                    .Where(x => x.NomeUsuario.Trim().ToLower().Contains(nome.ToLower()))
                     .AsNoTracking();
 
                 return usuarios.ToList();

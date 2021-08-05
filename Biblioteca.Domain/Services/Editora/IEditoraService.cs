@@ -7,7 +7,7 @@ namespace Biblioteca.Domain.Services.Editora
     {
         IEnumerable<EditoraDto> Get();
         EditoraDto GetById(int id);
-        bool Delete(EditoraDto editora);
+        bool Delete(int editora);
         IEnumerable<EditoraDto> GetNome(string nome);
         EditoraDto Post(EditoraDto editora);
     }
