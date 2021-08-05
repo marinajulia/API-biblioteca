@@ -169,19 +169,25 @@ namespace Biblioteca.Domain.Services.Usuario
             };
         }
 
-        public bool PostAlterarSenha(UsuarioEntity usuario)
+        public bool PutAlterarDados(UsuarioEntity usuario)
         {
             if (usuario.NomeUsuario == "" || usuario.Senha == "")
                 return _notification.AddWithReturn<bool>("Existem campos vazios!");
 
-            var nome = _usuarioRepository.GetByName(usuario.NomeUsuario);
-            if (nome == null)
+            var user = _usuarioRepository.GetByName(usuario.NomeUsuario);
+            if (user == null)
                 return _notification.AddWithReturn<bool>("Ops.. parece que este usuário não existe");
 
-            nome.Senha = usuario.Senha;
-            _usuarioRepository.PutAlterarSenha(nome);
+            if (!usuario.Email.IsValidMail())
+                return _notification.AddWithReturn<bool>("Ops.. O email inserido é inválido");
 
-            _notification.Add("Sua senha foi alterada com sucesso!");
+            user.Senha = usuario.Senha;
+            _usuarioRepository.PutAlterarSenha(user);
+
+            user.Email = usuario.Email;
+            _usuarioRepository.PutAlteraremail(user);
+
+            _notification.Add("Seus dados foram alterados com sucesso!");
 
             return true;
         }
@@ -211,21 +217,6 @@ namespace Biblioteca.Domain.Services.Usuario
             };
         }
 
-        public bool PostAlterarEmail(UsuarioEntity usuario)
-        {
-            if (usuario.NomeUsuario == "" || usuario.Email == "")
-                return _notification.AddWithReturn<bool>("Existem campos vazios!");
-
-            var usuarioData = _usuarioRepository.GetByName(usuario.NomeUsuario);
-            if (usuarioData == null)
-                return _notification.AddWithReturn<bool>("Ops.. parece que este usuário não existe");
-
-            usuarioData.Email = usuario.Email;
-            _usuarioRepository.PutAlteraremail(usuarioData);
-
-            _notification.Add("Seu email foi alterado com sucesso!");
-
-            return true;
-        }
+        
     }
 }

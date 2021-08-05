@@ -68,16 +68,6 @@ namespace Biblioteca.Api.Controllers.Usuario
             return Ok(_notification.GetErrors());
         }
 
-        [HttpPost("alterarsenha")]
-        [Authorize]
-        public IActionResult PostAlterarSenha(UsuarioEntity usuario)
-        {
-            var response = _usuarioService.PostAlterarSenha(usuario);
-            if (!response)
-                return BadRequest(_notification.GetErrors());
-
-            return Ok(_notification.GetErrors());
-        }
 
         [HttpPost("bloqueio")]
         [Authorize]
@@ -113,11 +103,11 @@ namespace Biblioteca.Api.Controllers.Usuario
             return Ok(response);
         }
 
-        [HttpPost("alteraremail")]
+        [HttpPut("alterardados")]
         [Authorize]
-        public IActionResult PostAlterarEmail(UsuarioEntity usuario)
+        public IActionResult PostAlterarDados(UsuarioEntity usuario)
         {   
-            var response = _usuarioService.PostAlterarEmail(usuario);
+            var response = _usuarioService.PutAlterarDados(usuario);
             if (!response)
                 return BadRequest(_notification.GetErrors());
 

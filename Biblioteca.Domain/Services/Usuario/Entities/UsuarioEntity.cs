@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Biblioteca.Domain.Services.Entidades
 {
@@ -13,12 +14,13 @@ namespace Biblioteca.Domain.Services.Entidades
 
         public string Senha { get; set; }
 
+        [ForeignKey("StatusUsuario")]
         public int StatusUsuarioId { get; set; }
-
         public StatusUsuarioEntity StatusUsuario { get; set; }
 
         public string Email { get; set; }
 
+        [ForeignKey("PerfilUsuario")]
         public int PerfilUsuarioId { get; set; }
         public PerfilUsuarioEntity PerfilUsuario{ get; set; }
     }
