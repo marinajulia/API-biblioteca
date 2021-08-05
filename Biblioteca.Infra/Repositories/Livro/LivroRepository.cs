@@ -137,7 +137,14 @@ namespace Biblioteca.Infra.Repositories.Livro
 
         public void UpdateStatus(int idlivro, int idStatus)
         {
-            throw new System.NotImplementedException();
+            using (var context = new ApplicationContext())
+            {
+                var livro = context.Livro.FirstOrDefault(x => x.LivroId == idlivro);
+
+                livro.StatusLivroId = idStatus;
+
+                context.SaveChanges();
+            }
         }
     }
 }

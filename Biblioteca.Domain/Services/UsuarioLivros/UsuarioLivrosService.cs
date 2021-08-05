@@ -121,11 +121,8 @@ namespace Biblioteca.Domain.Services.UsuarioLivros
                 return _notification.AddWithReturn<UsuarioLivrosDto>
                     ("Ops.. parece que o usuario informado não existe");
 
-            livro.StatusLivroId = 1;
-            _livroRepository.Put(livro);
 
-            usuario.StatusUsuarioId = 6;
-            _usuarioRepository.Put(usuario);
+            _livroRepository.UpdateStatus(livro.LivroId, 1);
 
             var usuarioLivrosEntity = _usuarioLivrosRepository.Post(new UsuarioLivrosEntity
             {
