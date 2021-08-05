@@ -65,7 +65,7 @@ namespace BibliotecaApi.Controllers.Autor
 
         [HttpGet("getnome")]
         [Authorize]
-        public IActionResult GetNome(AutorDto autor)
+        public IActionResult GetNome(string autor)
         {
             var response = _autorService.GetNome(autor);
 

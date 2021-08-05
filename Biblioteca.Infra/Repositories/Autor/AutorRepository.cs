@@ -29,6 +29,17 @@ namespace Biblioteca.Infra.Repositories.Autor
             }
         }
 
+        public IEnumerable<AutorEntity> Get(string nome)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var autores = context.Autor
+                    .Where(x => x.NomeAutor.Trim().ToLower().Contains(nome));
+
+                return autores.ToList();
+            }
+        }
+
         public AutorEntity GetById(int id)
         {
             using (var context = new ApplicationContext())

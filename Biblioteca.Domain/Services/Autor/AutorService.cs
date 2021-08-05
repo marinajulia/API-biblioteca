@@ -104,18 +104,19 @@ namespace Biblioteca.Domain.Services.Autor
             };
         }
 
-        public AutorDto GetNome(AutorDto autor)
+        public IEnumerable<AutorDto> GetNome(string nome)
         {
-            var autorData = _autorRepository.GetByName(autor.NomeAutor);
+            var autores = _autorRepository.Get(nome);
 
-            if (autorData == null)
-                return _notification.AddWithReturn<AutorDto>("Este nome não existe!");
+            if (autores == null)
+                return _notification.AddWithReturn<IEnumerable<AutorDto>>("Este nome não existe!");
 
-            return new AutorDto
+            return autores.Select(x => new AutorDto
             {
-                AutorId = autorData.AutorId,
-                NomeAutor = autorData.NomeAutor
-            };
+                AutorId = x.AutorId,
+                NomeAutor = x.NomeAutor
+
+            });
         }
     }
 }
