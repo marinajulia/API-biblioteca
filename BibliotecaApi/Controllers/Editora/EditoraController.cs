@@ -65,7 +65,7 @@ namespace BibliotecaApi.Controllers.Editora
 
         [HttpGet("getnome")]
         [Authorize]
-        public IActionResult GetNome(EditoraDto editora)
+        public IActionResult GetNome(string editora)
         {
             var response = _editoraService.GetNome(editora);
 

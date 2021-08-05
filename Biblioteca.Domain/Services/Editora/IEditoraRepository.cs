@@ -6,6 +6,7 @@ namespace Biblioteca.Domain.Services.Editora
     public interface IEditoraRepository
     {
         IEnumerable<EditoraEntity> Get();
+        IEnumerable<EditoraEntity> Get(string nome);
         EditoraEntity GetById(int id);
         EditoraEntity Post(EditoraEntity editoraEntity);
         EditoraEntity GetByName(string nome);

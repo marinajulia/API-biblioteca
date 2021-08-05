@@ -55,7 +55,7 @@ namespace Biblioteca.Domain.Services.Editora
             {
                 EditoraId = x.EditoraId,
                 NomeEditora = x.NomeEditora
-            });
+            }).ToList();
         }
 
 
@@ -74,18 +74,18 @@ namespace Biblioteca.Domain.Services.Editora
             };
         }
 
-        public EditoraDto GetNome(EditoraDto editora)
+        public IEnumerable<EditoraDto> GetNome(string nome)
         {
-            var editoraData = _editoraRepository.GetByName(editora.NomeEditora);
+            var editoras = _editoraRepository.Get(nome);
 
-            if (editoraData == null)
-                return _notification.AddWithReturn<EditoraDto>("Este nome não existe!");
+            if (editoras == null)
+                return _notification.AddWithReturn<IEnumerable<EditoraDto>>("Este nome não existe!");
 
-            return new EditoraDto
+            return editoras.Select(x => new EditoraDto
             {
-                EditoraId = editoraData.EditoraId,
-                NomeEditora = editoraData.NomeEditora
-            };
+                EditoraId = x.EditoraId,
+                NomeEditora = x.NomeEditora
+            }).ToList();
         }
 
 

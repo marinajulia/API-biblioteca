@@ -28,9 +28,19 @@ namespace Biblioteca.Infra.Repositories.Editora
             }
         }
 
+        public IEnumerable<EditoraEntity> Get(string nome)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var editoras = context.Editora
+                     .Where(x => x.NomeEditora.Trim().ToLower().Contains(nome));
+                return editoras.ToList();
+            }
+        }
+
         public EditoraEntity GetById(int id)
         {
-            using(var context = new ApplicationContext())
+            using (var context = new ApplicationContext())
             {
                 var editora = context.Editora.FirstOrDefault(x => x.EditoraId == id);
                 return editora;
@@ -39,7 +49,7 @@ namespace Biblioteca.Infra.Repositories.Editora
 
         public EditoraEntity GetByName(string nome)
         {
-            using(var context = new ApplicationContext())
+            using (var context = new ApplicationContext())
             {
                 var editora = context.Editora.FirstOrDefault(x => x.NomeEditora.Trim()
                 .ToLower() == nome.Trim().ToLower());
@@ -49,7 +59,7 @@ namespace Biblioteca.Infra.Repositories.Editora
 
         public EditoraEntity Post(EditoraEntity editora)
         {
-            using(var context = new ApplicationContext())
+            using (var context = new ApplicationContext())
             {
                 context.Editora.Add(editora);
                 context.SaveChanges();
