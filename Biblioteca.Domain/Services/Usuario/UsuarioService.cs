@@ -185,12 +185,26 @@ namespace Biblioteca.Domain.Services.Usuario
             if (verificaSeEmailJaExiste != null)
                 return _notification.AddWithReturn<bool>("Ops.. parece que o email inserido já existe");
 
-            _usuarioRepository.PutAlterarSenha(user);
-
             user.Email = usuario.Email;
             _usuarioRepository.PutAlteraremail(user);
 
             _notification.Add("Seus dados foram alterados com sucesso!");
+
+            return true;
+        }
+        public bool PutAlterarSenha(UsuarioDto usuario)
+        {
+            if (usuario.NomeUsuario == "")
+                return _notification.AddWithReturn<bool>("Existem campos vazios!");
+
+            var user = _usuarioRepository.GetById(usuario.UsuarioId);
+            if (user == null)
+                return _notification.AddWithReturn<bool>("Ops.. parece que este usuário não existe");
+
+            user.Senha = usuario.Senha;
+            _usuarioRepository.PutAlterarSenha(user);
+
+            _notification.Add("Sua senha foi alterada com sucesso!");
 
             return true;
         }
@@ -220,5 +234,7 @@ namespace Biblioteca.Domain.Services.Usuario
 
             }).ToList();
         }
+
+       
     }
 }

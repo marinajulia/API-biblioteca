@@ -113,5 +113,16 @@ namespace Biblioteca.Api.Controllers.Usuario
 
             return Ok(_notification.GetErrors());
         }
+
+        [HttpPut("alterarsenha")]
+        [Authorize]
+        public IActionResult PostAlterarSenha(UsuarioDto usuario)
+        {
+            var response = _usuarioService.PutAlterarSenha(usuario);
+            if (!response)
+                return BadRequest(_notification.GetErrors());
+
+            return Ok(_notification.GetErrors());
+        }
     }
 }
