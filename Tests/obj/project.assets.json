@@ -5629,9 +5629,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Tests\\Tests.csproj",
-      "projectName": "Tests",
-      "projectPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Tests\\Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Tests\\Api Tests.csproj",
+      "projectName": "Api Tests",
+      "projectPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Tests\\Api Tests.csproj",
       "packagesPath": "C:\\Users\\Marina\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Tests\\obj\\",
       "projectStyle": "PackageReference",

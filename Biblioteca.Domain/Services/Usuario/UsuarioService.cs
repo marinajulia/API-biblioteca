@@ -175,18 +175,29 @@ namespace Biblioteca.Domain.Services.Usuario
                 return _notification.AddWithReturn<bool>("Existem campos vazios!");
 
             var user = _usuarioRepository.GetById(usuario.UsuarioId);
+
             if (user == null)
-                return _notification.AddWithReturn<bool>("Ops.. parece que este usuário não existe");
+                return _notification.AddWithReturn<bool>("Ops.. o usuário informado não existe");
 
-            if (!usuario.Email.IsValidMail())
-                return _notification.AddWithReturn<bool>("Ops.. O email inserido é inválido");
+            if (user.NomeUsuario.Trim().ToLower() != usuario.NomeUsuario.Trim().ToLower())
+            {
+                var userName = _usuarioRepository.GetUserByName(usuario.NomeUsuario);
+                if (userName != null)
+                    return _notification.AddWithReturn<bool>("Ops.. o nome informado já possui cadastro!");
+            }
 
-            var verificaSeEmailJaExiste = _usuarioRepository.GetByEmail(usuario.Email);
-            if (verificaSeEmailJaExiste != null)
-                return _notification.AddWithReturn<bool>("Ops.. parece que o email inserido já existe");
+            if (user.Email.Trim().ToLower() != usuario.Email.Trim().ToLower())
+            {
+                var userEmail = _usuarioRepository.GetUserByEmail(usuario.Email);
+                if (userEmail != null)
+                    return _notification.AddWithReturn<bool>("Ops.. o e-mail informado já possui cadastro!");
+            }
+
+            user.NomeUsuario = usuario.NomeUsuario;
+            _usuarioRepository.PutAlterar(user);
 
             user.Email = usuario.Email;
-            _usuarioRepository.PutAlteraremail(user);
+            _usuarioRepository.PutAlterar(user);
 
             _notification.Add("Seus dados foram alterados com sucesso!");
 
@@ -235,6 +246,6 @@ namespace Biblioteca.Domain.Services.Usuario
             }).ToList();
         }
 
-       
+
     }
 }

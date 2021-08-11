@@ -189,7 +189,7 @@ namespace Biblioteca.Infra.Repositories.Usuario
             }
         }
 
-        public UsuarioEntity PutAlteraremail(UsuarioEntity usuario)
+        public UsuarioEntity PutAlterar(UsuarioEntity usuario)
         {
             using (var context = new ApplicationContext())
             {
@@ -211,6 +211,26 @@ namespace Biblioteca.Infra.Repositories.Usuario
                     .AsNoTracking();
 
                 return usuarios.ToList();
+            }
+        }
+
+        public UsuarioEntity GetUserByEmail(string usuarioEmail)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var user = context.Usuario.FirstOrDefault(x => x.Email.ToLower().Trim() == usuarioEmail.ToLower().Trim());
+
+                return user;
+            }
+        }
+
+        public UsuarioEntity GetUserByName(string usuarioNome)
+        {
+            using (var context = new ApplicationContext())
+            {
+                var user = context.Usuario.FirstOrDefault(x => x.NomeUsuario.ToLower().Trim() == usuarioNome.ToLower().Trim());
+
+                return user;
             }
         }
     }

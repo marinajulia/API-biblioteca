@@ -8,7 +8,7 @@ namespace Biblioteca.Domain.Services.Usuario
         UsuarioEntity PostCadastro(UsuarioEntity usuario);
         IEnumerable<UsuarioEntity> Get(string nome);
         UsuarioEntity PutAlterarSenha(UsuarioEntity usuario);
-        UsuarioEntity PutAlteraremail(UsuarioEntity usuario);
+        UsuarioEntity PutAlterar(UsuarioEntity usuario);
         UsuarioEntity GetUser(string username, string password);
         UsuarioEntity GetByName(string username);
         UsuarioEntity GetById(int id);
@@ -16,6 +16,8 @@ namespace Biblioteca.Domain.Services.Usuario
         UsuarioEntity GetByStatus(int id);
         UsuarioEntity GetByCpf(string cpf);
         UsuarioEntity GetByEmail(string email);
+        UsuarioEntity GetUserByEmail(string usuario);
+        UsuarioEntity GetUserByName(string usuario);
         bool ValidaCpf(string cpf);
         UsuarioEntity Put(UsuarioEntity usuarioEntity);
         void UpdateStatus(int idUsuario, int idStatus);
