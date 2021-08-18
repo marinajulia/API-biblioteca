@@ -16,7 +16,6 @@ namespace Fixtures.Categoria
             };
         }
 
-
         public static CategoriaDto CreateValidCategoria(string nomeCategoria, string descricaoCategoria)
         {
             var random = new Random();
