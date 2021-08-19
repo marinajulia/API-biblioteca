@@ -1,31 +1,31 @@
-﻿//using AutoMapper;
-//using Microsoft.Extensions.DependencyInjection;
-//using Biblioteca.Domain.Common.Mapper;
+﻿using AutoMapper;
+using Biblioteca.Domain.Common.Mapper;
+using Microsoft.Extensions.DependencyInjection;
 
-//namespace Fixtures.Mapper
-//{
-//    public static class DynamicMapper
-//    {
-//        private static ServiceProvider RegisterServices()
-//        {
-//            var mappingConfig = new MapperConfiguration(m =>
-//            {
-//                m.AddProfile(new AutoMapperProfile());
-//            });
+namespace Fixtures.Mapper
+{
+    public static class DynamicMapper
+    {
+        private static ServiceProvider RegisterServices()
+        {
+            var mappingConfig = new MapperConfiguration(m =>
+            {
+                m.AddProfile(new AutoMapperProfile());
+            });
 
-//            var mapper = mappingConfig.CreateMapper();
+            var mapper = mappingConfig.CreateMapper();
 
-//            var services = new ServiceCollection()
-//            .AddSingleton(mapper)
-//            .BuildServiceProvider();
+            var services = new ServiceCollection()
+            .AddSingleton(mapper)
+            .BuildServiceProvider();
 
-//            return services;
-//        }
+            return services;
+        }
 
-//        public static T MapTo<T>(object from)
-//        {
-//            return RegisterServices().GetService<IMapper>()
-//                .Map<T>(from);
-//        }
-//    }
-//}
+        public static T MapTo<T>(object from)
+        {
+            return RegisterServices().GetService<IMapper>()
+                .Map<T>(from);
+        }
+    }
+}

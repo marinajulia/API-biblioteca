@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Sv7L+offOILHt5g5+y+b13Zlym/Wexj1aCmdif1CMlocerxpY6y+bfLk63CVs1oewHR3OhIcZezOxPBjWAtGfg==",
+  "dgSpecHash": "ixbdmvOyc8kN2O2QPHvDvhfct39LKvCLg8D80ohGXAasPYEdNbrFXIGKSUjaNV7Hb8c7mxvNNq2vS3l5Ljc3AA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Marina\\Desktop\\API-biblioteca\\Biblioteca.Domain\\Biblioteca.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Marina\\.nuget\\packages\\automapper\\8.0.0\\automapper.8.0.0.nupkg.sha512",
+    "C:\\Users\\Marina\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\chilkat-x64\\9.5.0.87\\chilkat-x64.9.5.0.87.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
@@ -87,7 +87,7 @@
     "C:\\Users\\Marina\\.nuget\\packages\\system.private.datacontractserialization\\4.3.0\\system.private.datacontractserialization.4.3.0.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\system.private.uri\\4.3.2\\system.private.uri.4.3.2.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
-    "C:\\Users\\Marina\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
+    "C:\\Users\\Marina\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
     "C:\\Users\\Marina\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",

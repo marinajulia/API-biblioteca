@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mapper\" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="FluentAssertions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
