@@ -19,11 +19,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0EE35E35
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fixtures", "Fixtures\Fixtures.csproj", "{C160E53C-EC5D-4715-AE2C-1D53674A5A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{4172F7EC-227A-44F4-91E4-92771C4B0FA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{4172F7EC-227A-44F4-91E4-92771C4B0FA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Tests", "Infra.Tests\Infra.Tests.csproj", "{9E29D9F0-7348-4877-A52C-FEFAB0E17533}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Tests", "Infra.Tests\Infra.Tests.csproj", "{9E29D9F0-7348-4877-A52C-FEFAB0E17533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.Tests", "SharedKernel.Tests\SharedKernel.Tests.csproj", "{50ADDDFD-016E-4D49-954B-FCF6FC81DDBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel.Tests", "SharedKernel.Tests\SharedKernel.Tests.csproj", "{50ADDDFD-016E-4D49-954B-FCF6FC81DDBF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{92580979-C284-4590-8938-B02A6B42BF24}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
