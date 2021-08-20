@@ -30,7 +30,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using SharedKernel.Domain;
 using SharedKernel.Domain.Notification;
 using System.Linq;
 using System.Security.Claims;
