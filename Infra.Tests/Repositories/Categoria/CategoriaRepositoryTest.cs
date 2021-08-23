@@ -27,25 +27,52 @@ namespace Infra.Tests.Repositories.Categoria
             categoriaRepository.Verify(r => r.Post(It.IsAny<CategoriaEntity>()), Times.Once);
         }
 
+
         [Fact(DisplayName = "CategoriaRepository, create category should return error")]
         [Trait("Infra", "Categoria Repository")]
         public void CategoriaRepository_CreateCategoria_MustReturnError()
         {
-            //Arrange
             var categoriaInvalida = CategoriaFixtureEntity.CreateInvalidCategoria();
-
-            //var expectedUser = 1;
 
             categoriaRepository.Setup(x => x.Post(categoriaInvalida)).Returns(categoriaInvalida);
 
-            //Act
             var actualResult = categoriaRepository.Object.Post(categoriaInvalida);
 
-            //Assert
             Assert.False(categoriaInvalida.CategoriaId > 0);
             Assert.False(!string.IsNullOrEmpty(categoriaInvalida.NomeCategoria));
             categoriaRepository.Verify(r => r.Post(It.IsAny<CategoriaEntity>()), Times.Once);
         }
 
+
+        [Fact(DisplayName = "CategoriaRepository, get categoria by id categoria must return Success")]
+        [Trait("Infra", "Categoria Repository")]
+        public void UserRepository_GetUserById_MustReturnSuccess()
+        {
+            var categoria = CategoriaFixtureEntity.CreateValidCategoria();
+
+            categoriaRepository.Setup(x => x.GetById(categoria.CategoriaId)).Returns(categoria);
+
+            var resultCategoria = categoriaRepository.Object.GetById(categoria.CategoriaId);
+
+            Assert.Equal(categoria, resultCategoria);
+            Assert.NotNull(resultCategoria);
+            Assert.IsType<CategoriaEntity>(resultCategoria);
+        }
+
+
+        [Fact(DisplayName = "CategoriaRepository, get categoria by id user must return Error")]
+        [Trait("Infra", "User Repository")]
+        public void CategoriaRepository_GetCategoriaById_MustReturnError()
+        {
+            var categoria = CategoriaFixtureEntity.CreateValidCategoria();
+
+            categoriaRepository.Setup(x => x.GetById(categoria.CategoriaId))
+                .Returns(CategoriaFixtureEntity.CreateValidCategoria("testeCategoria", "descrição"));
+
+            var resultCategoria = categoriaRepository.Object.GetById(categoria.CategoriaId);
+
+            Assert.NotEqual(categoria, resultCategoria);
+            Assert.NotNull(resultCategoria);
+        }
     }
 }
