@@ -235,5 +235,3 @@ C:\Users\Marina\Desktop\apinew\API-biblioteca\BibliotecaApi\obj\Debug\netcoreapp
 C:\Users\Marina\Desktop\apinew\API-biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\Biblioteca.Api.dll
 C:\Users\Marina\Desktop\apinew\API-biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\Biblioteca.Api.pdb
 C:\Users\Marina\Desktop\apinew\API-biblioteca\BibliotecaApi\obj\Debug\netcoreapp3.1\Biblioteca.Api.genruntimeconfig.cache
-C:\Users\Marina\Desktop\API-biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
-C:\Users\Marina\Desktop\API-biblioteca\BibliotecaApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
